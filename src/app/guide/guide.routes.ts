@@ -23,7 +23,7 @@ export const routes_pages: Routes = [
       },
       {
         path: '**',
-        redirectTo: '',
+        redirectTo: 'about',
       },
     ],
   },

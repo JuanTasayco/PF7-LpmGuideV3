@@ -7,10 +7,14 @@ export const routes: Routes = [
       import('src/app/guide/guide.routes').then((route) => route.routes_pages),
   },
   {
-    path: '**',
+    path: 'error',
     loadComponent: () =>
       import('src/app/shared/error-page/error-page.component').then(
         (component) => component.ErrorPageComponent
       ),
+  },
+  {
+    path: '**',
+    redirectTo: 'guide',
   },
 ];
