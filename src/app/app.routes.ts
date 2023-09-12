@@ -1,3 +1,16 @@
 import { Routes } from '@angular/router';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  {
+    path: 'guide',
+    loadChildren: () =>
+      import('src/app/guide/guide.routes').then((route) => route.routes_pages),
+  },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('src/app/shared/error-page/error-page.component').then(
+        (component) => component.ErrorPageComponent
+      ),
+  },
+];
