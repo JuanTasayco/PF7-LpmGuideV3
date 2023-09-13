@@ -25,13 +25,6 @@ export const theme = {
   },
   container: {
     center: true,
-    padding: {
-      DEFAULT: "2rem",
-      sm: "2rem",
-      lg: "5rem",
-      xl: "10rem",
-      "2xl": "15rem",
-    },
   },
   fontFamily: {
     inter: ["Inter", "sans-serif"],
