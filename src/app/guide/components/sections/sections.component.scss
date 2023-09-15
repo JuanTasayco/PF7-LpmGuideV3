@@ -12,34 +12,54 @@
   &-square {
     height: 90%;
     width: 90%;
-    border-radius: 5%;
     position: relative;
     border: 2px solid white;
-    &::before {
+    background-color: white;
+    border-radius: 5% 2% 5% 2%;
+
+    &::after {
       content: "";
       position: absolute;
-      height: calc(100%);
-      width: calc(100%);
-      margin: 0.8rem;
+      height: calc(100% + 13px);
+      width: calc(100% + 13px);
       top: 0;
       left: 0;
       border: 2px solid white;
       border-radius: 5%;
     }
-
-    &::after {
+    &::before {
       content: "";
-      background-color: white;
+      border: 2px solid white;
       position: absolute;
-      border-radius: 5% 0 4.5% 0;
+      border-radius: 5%;
       bottom: 0;
       right: 0;
-      height: 95%;
-      width: 96%;
+      height: calc(100% + 13px);
+      width: calc(100% + 13px);
     }
   }
 
   &-descriptions {
     align-self: flex-start;
+  }
+
+  &-containerImg {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: aqua;
+  }
+  &-img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    filter: brightness(1.2);
+    mix-blend-mode: multiply;
+  }
+
+  &-h3 {
+    font-weight: 700;
+    font-size: clamp(1rem, 2vh, 4rem);
   }
 }
