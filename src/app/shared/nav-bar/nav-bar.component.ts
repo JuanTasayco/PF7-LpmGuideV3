@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, signal } from '@angular/core';
+import { CommonModule, NgFor } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 interface NavLinks {
   name: string;
@@ -9,8 +10,27 @@ interface NavLinks {
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgFor, RouterModule],
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss'],
 })
-export class NavBarComponent {}
+export class NavBarComponent {
+  public navItems = signal<NavLinks[]>([
+    {
+      name: 'Acerca de',
+      link: '/guide/about',
+    },
+    {
+      name: 'Contenido',
+      link: '/guide/contents',
+    },
+    {
+      name: 'Preguntas frecuentas',
+      link: '/guide/questions',
+    },
+    {
+      name: 'Login',
+      link: '/guide',
+    },
+  ]);
+}

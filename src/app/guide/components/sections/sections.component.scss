@@ -1,0 +1,45 @@
+.Seccion {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2%;
+  &-contenedor {
+    height: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  &-square {
+    height: 90%;
+    width: 90%;
+    border-radius: 5%;
+    position: relative;
+    border: 2px solid white;
+    &::before {
+      content: "";
+      position: absolute;
+      height: calc(100%);
+      width: calc(100%);
+      margin: 0.8rem;
+      top: 0;
+      left: 0;
+      border: 2px solid white;
+      border-radius: 5%;
+    }
+
+    &::after {
+      content: "";
+      background-color: white;
+      position: absolute;
+      border-radius: 5% 0 4.5% 0;
+      bottom: 0;
+      right: 0;
+      height: 95%;
+      width: 96%;
+    }
+  }
+
+  &-descriptions {
+    align-self: flex-start;
+  }
+}
