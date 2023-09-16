@@ -1,1 +1,6 @@
-
+.Home {
+  &-container {
+    width: min(95%, 1250px);
+    margin: auto;
+  }
+}
