@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 interface NavLinks {
   name: string;
   link: string;
+  fragment?: string;
 }
 
 @Component({
@@ -23,6 +24,7 @@ export class NavBarComponent {
     {
       name: 'Contenido',
       link: '/guide/contents',
+      fragment: 'mi-section',
     },
     {
       name: 'Preguntas frecuentas',
