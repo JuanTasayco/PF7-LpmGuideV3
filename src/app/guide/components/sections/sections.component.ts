@@ -12,18 +12,26 @@ import { InfoSectionsService } from '../../services/info-sections.service';
 export class SectionsComponent implements OnInit, AfterViewInit {
   public sections = signal<string[]>(['']);
 
-  private personalSections = signal<string[]>([
-    'flujo básico, trabajadores, asistencias, registros,asistencias,renta, reportes',
-  ]);
-
   ngOnInit(): void {
     /* tengo  5 secciones*/
     /* la idea del personalSections es acomodar la data a 7 secciones */
     this.infoSectionService
       .getSections()
       .subscribe((responseSections: string[]) => {
-        this.sections.set(responseSections);
+        /* por el momento está vacío en otras maquinas, usaré personal Sections */
+        /*       this.sections.set(responseSections); */
       });
+    this.sections.set([
+      'flujo básico',
+      'trabajadores',
+      'asistencias',
+      'registros',
+      'asistencias',
+      'renta',
+      'reportes',
+    ]);
+
+    console.log(this.sections());
   }
 
   constructor(private infoSectionService: InfoSectionsService) {}
