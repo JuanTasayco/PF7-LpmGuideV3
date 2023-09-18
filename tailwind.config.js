@@ -1,5 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-export const content = ["./src/**/*.{html,ts}"];
+export const content = [
+  "./src/**/*.{html,ts}",
+  "./node_modules/flowbite/**/*.js",
+];
 export const theme = {
   extend: {},
   screens: {
@@ -30,4 +33,4 @@ export const theme = {
     inter: ["Inter", "sans-serif"],
   },
 };
-export const plugins = [];
+export const plugins = [require("flowbite/plugin")];

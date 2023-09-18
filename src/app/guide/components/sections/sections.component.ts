@@ -30,8 +30,6 @@ export class SectionsComponent implements OnInit, AfterViewInit {
       'renta',
       'reportes',
     ]);
-
-    console.log(this.sections());
   }
 
   constructor(private infoSectionService: InfoSectionsService) {}
