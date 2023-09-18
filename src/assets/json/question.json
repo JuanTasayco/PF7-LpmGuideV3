@@ -1,0 +1,36 @@
+{
+  "questions": [
+    {
+      "subtitle": "Tengo problemas con la asignación familiar, que hago ?",
+      "text": "La asignación familar en el sistema necesita recalcularse manualmente en base a un conmutador, este se encuentra en la sección de variables ( asignación familiar), una vez allí buscar entre los recuadros en linea una opción llamada Desc.proporcional, si está marcada el cálculo será proporcional, de lo contrario, se le entregará el valor completo, esto se marca y se desmarca manualmente en base a lo que necesitamos. Por ejemplo si el trabajador tiene vacaciones, vamos aquí y marcamos proporcional, procesamos solo a ese personal y listo, si necesitamos que un trabajador tenga asignación completa, volvemos aquí desmarcamos y procesamos solo a ese trabajador. Tener en cuenta que si procesas a un trabajador de vacaciones modificado anteriormente con valor proporcional y ahora lo procesas cuando el valor está completo en la ficha de variable(asignación familiar),  este tendrá volverá a su asignación completa, por eso se recomienda no procesar a todos una vez ya tengas cambios avanzados."
+    },
+    {
+      "subtitle": "Mi trabajador tiene renta externa (otras rentas) y no veo cambios en la renta",
+      "text": "Recuerda que la renta externa es un cálculo ingresado manualmente cada mes, este número se decide en base a la primera vez que se declaró en el sistema y se hace un recálculo los meses de gratificación, luego; a no ser que el total anual cambie, el monto siempre es el mismo, si notas que la renta no está alta como el mes pasado, es probable que no se haya agregado, esto lo puedes verificar en el panel de renta seleccionando al trabajado y revisando si existe un monto externo insertado."
+    },
+    {
+      "subtitle": "No encuentro el cargo que necesito",
+      "text": "Si necesitas un cargo nuevo y no conoces el sistema a fondo puedes solicitar la creación de este o agregarlo manualmente desde el panel de cargos."
+    },
+    {
+      "subtitle": "No se están calculando las vacaciones",
+      "text": "Recuerda que si el personal es nuevo, necesitas agregar el concepto vacaciones a su ficha personal de trabajador, también revisa si los días están ajustados para el cálculo en el panel de valores, si observas que se está cálculando correctamte el monto pero no aparecen las fechas, revisa el registro de fechas vacaciones en el Registros, este rango pinta directamente tanto en la planilla como en la boleta."
+    },
+    {
+      "subtitle": "No se están calculando las horas extras, tardanzas o faltas",
+      "text": "El no cálculo de estos conceptos puede estar directamente relacionado con la jornada laboral, recuerda revisar que estén todos los campos necesarios para el cálculo, esto se indica en la guía y es estrictamente necesario, también fijate que el concepto faltas (de ser el caso) este en la ficha del trabajador ( Por defecto, todos deberían tenerlo, tengan o no faltas, para asi cuando realmente exista una falta, no tengamos que volver a abrir su ficha)"
+    },
+    {
+      "subtitle": "Puedo trabajar yo la gratificación y cts ?",
+      "text": "Sí, es como trabajar un periodo cualquiera, solo sigue la guía y podrás modificar u/o adaptar los montos a tu parecer, no es complicado."
+    },
+    {
+      "subtitle": "Modifiqué un valor en la gratificación y ya no puedo editarlo por segunda vez",
+      "text": "Si modificaste un valor de gratificación manualmente y luego volviste a editarlo, este seguirá teniendo el primera valor modificado, se podría decir que es un error del sistema, pero para empezar no se debería poder ni siquiera modificar el monto inicial (ya que la grati debería calcularse bien bajo las condiciones y coincidencias de los meses que abarca), la edición manual de grati es en realidad un plus. Para solucionarse se debe quitar al trabajador de valores, volverlo a insertar y realizar su modificación ( máximo 1), si vuelve a modificarse más adelante repite el proceso y podrás editarlo las veces que quieras."
+    },
+    {
+      "subtitle": "Un trabajador ya registrado y cesado hace tiempo está de reingreso.",
+      "text": "Si un trabajador ya fue registrado con anterioridad y su ficha existe en Trabajadores de Baja, necesitas reactivar esta ingresando a la ficha cesada y activando al trabajador junto a su nuevo contrato, es posible que si intentas registrar de nuevo el ID ( que es su DNI) arroje un error de duplicidad, recuerda que internamente existe en la base de datos, solo que está de baja."
+    }
+  ]
+}
