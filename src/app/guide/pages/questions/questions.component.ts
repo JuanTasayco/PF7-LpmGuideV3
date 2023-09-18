@@ -4,6 +4,7 @@ import { initFlowbite } from 'flowbite';
 import { InfoSectionsService } from '../../services/info-sections.service';
 import { QuestionsData } from '../../interfaces/question.interface';
 import { Subscription } from 'rxjs';
+import { Flowbite } from '../../decorator/flowbite-decorator';
 
 @Component({
   selector: 'app-questions',
@@ -12,6 +13,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.scss'],
 })
+@Flowbite()
 export class QuestionsComponent implements OnInit {
   public questions = signal<QuestionsData[]>([]);
 
