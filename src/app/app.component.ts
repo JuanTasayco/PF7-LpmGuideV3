@@ -13,7 +13,6 @@ import { initFlowbite } from 'flowbite';
 export class AppComponent implements OnInit {
   title = 'PF7-LpmAppV3';
   ngOnInit(): void {
-    initFlowbite();
-    console.log('init flowbite');
+    
   }
 }
