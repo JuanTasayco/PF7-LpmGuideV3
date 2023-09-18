@@ -1,8 +1,6 @@
+<h2 class="Questions-h2 text-white md:py-[3rem]">Preguntas frecuentes sobre el sistema</h2>
+
 <div id="accordion-collapse " data-accordion="open">
-  <!-- 
-     a partir del segundo item
-        flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800
-     -->
   <div *ngFor="let question of questions(); let i = index" class="mt-5">
     <h2 id="accordion-collapse-heading-1 ">
       <!--       [ngClass]="{
@@ -12,7 +10,7 @@
         type="button"
         class="bg-slate-900 text-white flex items-center justify-between w-full p-5 font-medium text-left border rounded-xl border-gray-200 focus:ring-white dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-slate-800 dark:hover:bg-gray-800"
         [attr.data-accordion-target]="'#' + question.id"
-        aria-expanded="true"
+        aria-expanded="false"
         [attr.aria-controls]="question.id"
       >
         <span>{{ question.subtitle }}</span>
@@ -50,3 +48,6 @@
     </div>
   </div>
 </div>
+<div class="absolute b-0 left-0 w-full mt-[10rem]">
+    <app-footer></app-footer>
+  </div>

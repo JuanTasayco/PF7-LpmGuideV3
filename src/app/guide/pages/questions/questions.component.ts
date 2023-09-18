@@ -5,11 +5,12 @@ import { InfoSectionsService } from '../../services/info-sections.service';
 import { QuestionsData } from '../../interfaces/question.interface';
 import { Subscription } from 'rxjs';
 import { Flowbite } from '../../decorator/flowbite-decorator';
+import { FooterComponent } from 'src/app/shared/footer/footer.component';
 
 @Component({
   selector: 'app-questions',
   standalone: true,
-  imports: [NgFor, NgClass],
+  imports: [NgFor, NgClass,FooterComponent],
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.scss'],
 })
@@ -21,11 +22,7 @@ export class QuestionsComponent implements OnInit {
     this.infoSectionsService.getQuestions().subscribe((results) => {
       this.questions.set(results);
     });
-    initFlowbite();
   }
 
-  constructor(
-    private infoSectionsService: InfoSectionsService,
-    private cdr: ChangeDetectorRef
-  ) {}
+  constructor(private infoSectionsService: InfoSectionsService) {}
 }

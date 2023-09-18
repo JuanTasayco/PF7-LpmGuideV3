@@ -39,6 +39,11 @@
       "subtitle": "Un trabajador ya registrado y cesado hace tiempo está de reingreso.",
       "text": "Si un trabajador ya fue registrado con anterioridad y su ficha existe en Trabajadores de Baja, necesitas reactivar esta ingresando a la ficha cesada y activando al trabajador junto a su nuevo contrato, es posible que si intentas registrar de nuevo el ID ( que es su DNI) arroje un error de duplicidad, recuerda que internamente existe en la base de datos, solo que está de baja.",
       "id": "question-8"
+    },
+    {
+      "subtitle": "No encuentro el reporte de provisión CTS o vacaciones",
+      "text": "Este reporte no está disponible en el sistema, por lo cual necesitamos que se solicite exclusivamente por correo para poder realizar su desarrollo.",
+      "id": "question-9"
     }
   ]
 }
