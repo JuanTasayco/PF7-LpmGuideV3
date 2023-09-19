@@ -1,0 +1,27 @@
+.About {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  &-presentImg {
+    overflow: hidden;
+    width: 99vw;
+    margin-left: 0;
+    padding: 0;
+  }
+  &-img {
+    filter: brightness(1.2);
+    mix-blend-mode: multiply;
+    width: 60%;
+    height: 60%;
+    object-fit: cover;
+    margin: auto;
+  }
+
+  &-descriptions {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}

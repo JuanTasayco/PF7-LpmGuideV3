@@ -1,8 +1,12 @@
 <section class="About text-white">
-  <div class="About-presentImg"></div>
+  <div
+    class="About-presentImg bg-gradient-to-r from-pink-700 via-sky-500 to-blue-700 max-h-[500px] sm:max-h-[200px] lg:max-h-[300px] 2xl:max-h-[500px]"
+  >
+    <img src="assets/test.jpg" alt="bookImage" class="About-img" />
+  </div>
   <div class="About-descriptions">
-    <div>General</div>
-    <p>
+    <h2 class="text-[2.5rem] font-semibold line mt-[3rem]">General</h2>
+    <p class="About-p">
       Esta guía sirve como una profundización al sistema de contabilidad 2, para
       entender el enfoque, flujo y la finalidad de este. Nos centramos en
       especificar todo lo necesario para poder realizar cambios de manera
@@ -10,7 +14,7 @@
       para evitarlos, como también aquellas que son necesarias para corregir.
     </p>
 
-    <p>
+    <p class="About-p">
       La guía está separada por secciones y llevan un orden de entendimiento,
       esto está ligado directamente con el proceso a seguir, es decir; la parte
       1 es la que deberías perfeccionar primero, cada una necesita tener
@@ -18,7 +22,7 @@
       seguir el flujo correcto de aprendizaje.
     </p>
 
-    <p>
+    <p class="About-p">
       Podría darse el caso donde se llegue a la necesidad de tocar variables
       internas, esto se coordinará directamente con el área de computo y de ser
       necesario se informará al programador.
@@ -29,3 +33,7 @@
     <app-sections></app-sections>
   </div>
 </section>
+
+<div class="absolute  w-full left-0">
+  <app-footer></app-footer>
+</div>

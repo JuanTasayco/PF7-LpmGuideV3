@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-principal-content-static',
   standalone: true,
-  imports: [CommonModule],
+  imports: [RouterModule],
   templateUrl: './principal-content-static.component.html',
   styleUrls: ['./principal-content-static.component.scss']
 })
