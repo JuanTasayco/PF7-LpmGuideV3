@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-banner-section',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgFor],
   templateUrl: './banner-section.component.html',
-  styleUrls: ['./banner-section.component.scss']
+  styleUrls: ['./banner-section.component.scss'],
 })
-export class BannerSectionComponent {
-
-}
+export class BannerSectionComponent {}

@@ -1,0 +1,95 @@
+.Banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &-section {
+    width: 100vw;
+    margin-left: 0;
+    padding: 0;
+  }
+
+  &-box {
+    &--width {
+      width: min(97%, 1400px);
+      margin: auto;
+    }
+  }
+
+  &-container {
+    padding: 4rem 1rem;
+    &--principal {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    /*     &--secondary {
+    } */
+  }
+
+  &-sections {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  &-item {
+    position: relative;
+    display: flex;
+    /*   padding: 1rem 2.5rem; */
+    border: 2px solid green;
+  }
+
+  &-square {
+    position:absolute &--left {
+      width: 80%;
+      background-color: black;
+    }
+    &--right {
+      width: 25%;
+      border: 2px solid red;
+      background-color: blue;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    }
+  }
+
+  &-small {
+    font-size: 18px;
+    text-transform: capitalize;
+  }
+
+  &-arrow {
+    position: relative;
+    & .Arrow {
+      &-container {
+        height: 100%;
+        position: absolute;
+        color: white;
+        display: flex;
+        align-items: center;
+        &--left {
+          z-index: 1;
+          width: 58%;
+          border: 2px solid black;
+          justify-content: flex-start;
+          left: 0;
+          clip-path: polygon(0 0, 77% 0, 100% 50%, 77% 100%, 0 100%);
+        }
+
+        &--right {
+          z-index: 0;
+          width: 75%;
+          right: 0;
+          justify-content: flex-end;
+          clip-path: polygon(0 0, 82% 0, 100% 50%, 82% 100%, 0 100%);
+          border: 1px solid black;
+        }
+      }
+      &-small {
+        font-size: 1.1rem;
+        padding: 0 2.8rem;
+      }
+    }
+  }
+}
