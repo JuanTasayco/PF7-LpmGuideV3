@@ -9,4 +9,6 @@ import { BannerSectionComponent } from '../../components/banner-section/banner-s
   templateUrl: './part2.component.html',
   styleUrls: ['./part2.component.scss'],
 })
-export class Part2Component {}
+export class Part2Component {
+  constructor() {}
+}

@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-part3',
+  selector: 'app-part5',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './part3.component.html',
-  styleUrls: ['./part3.component.scss'],
+  templateUrl: './part5.component.html',
+  styleUrls: ['./part5.component.scss']
 })
-export class Part3Component {
-  constructor() {}
+export class Part5Component {
+
 }

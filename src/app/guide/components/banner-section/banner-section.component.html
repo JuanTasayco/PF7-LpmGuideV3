@@ -3,13 +3,15 @@
     <div class="Banner-box flex flex-col md:flex-row Banner-box--width">
       <div class="Banner-container Banner-container--principal flex-1">
         <div
-          class="Banner-arrow Arrow h-[3.5rem] w-[13rem] lg:h-[4.5rem] lg:w-[17rem]"
+          class="Banner-arrow hidden md:block Arrow h-[3.5rem] w-[13rem] lg:h-[4.5rem] lg:w-[17rem]"
         >
           <div class="Arrow-container Arrow-container--left bg-sky-600">
-            <small class="Arrow-small">Inicio</small>
+            <small class="Arrow-small px-[1.5rem] lg:px-[2.8rem]"
+              >FullStack</small
+            >
           </div>
           <div class="Arrow-container Arrow-container--right bg-black">
-            <small class="Arrow-small">Part 0</small>
+            <small class="Arrow-small px-[2rem] lg:px-[2.8rem]">Part1</small>
           </div>
         </div>
 
@@ -21,13 +23,17 @@
         </p>
 
         <div class="Banner-sections">
-          <div class="Banner-item lg:h-[4rem]">
+          <div class="Banner-item h-[4rem]" *ngFor="let seccion of secciones()">
             <div
-              class="Banner-square Banner-square--left bg-slate-900 text-white"
+              class="Banner-square Banner-square--left text-slate-950 md:text-white"
+              id="square-left"
             >
-              Seccion  de vacaciones pagadas
+              Cositas para fedear despues de la noche xd
             </div>
-            <div class="Banner-square Banner-square--right"></div>
+            <div
+              class="Banner-square Banner-square--right"
+              id="square-right"
+            ></div>
           </div>
         </div>
       </div>

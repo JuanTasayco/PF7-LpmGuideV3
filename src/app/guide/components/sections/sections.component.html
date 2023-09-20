@@ -1,6 +1,7 @@
 <div class="Seccion mx-[2rem] md:mx-[5rem] xl:mx-[2.3rem] text-white">
   <div
     *ngFor="let section of sections(); let i = index"
+    [routerLink]="['/guide/', 'part' + (i + 1)]"
     class="Seccion-block h-[30rem] w-full sm:w-[49%] xl:w-[32%] lg:p-0 p-5"
   >
     <div class="Seccion-contenedor">
