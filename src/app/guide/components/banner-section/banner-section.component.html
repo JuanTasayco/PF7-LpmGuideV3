@@ -1,57 +1,42 @@
 <div class="Banner">
-  <div class="Banner-section bg-sky-600">
-    <div class="Banner-box flex flex-col md:flex-row Banner-box--width">
-      <div class="Banner-container Banner-container--principal flex-1">
-        <div
-          class="Banner-arrow hidden md:block Arrow h-[3.5rem] w-[13rem] lg:h-[4.5rem] lg:w-[17rem]"
-        >
-          <div class="Arrow-container Arrow-container--left bg-sky-600">
-            <small class="Arrow-small px-[1.5rem] lg:px-[2.8rem]"
-              >FullStack</small
-            >
+  <div class="Banner-section">
+    <section class="bg-slate-900 dark:bg-gray-900">
+      <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+          <div class="bg-gray-800 border  border-gray-700 rounded-lg p-8 md:p-12 mb-8">
+              <a href="#" class="text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md bg-gray-700 text-blue-400 mb-2">
+                  <svg class="w-2.5 h-2.5 mr-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 14">
+                      <path d="M11 0H2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm8.585 1.189a.994.994 0 0 0-.9-.138l-2.965.983a1 1 0 0 0-.685.949v8a1 1 0 0 0 .675.946l2.965 1.02a1.013 1.013 0 0 0 1.032-.242A1 1 0 0 0 20 12V2a1 1 0 0 0-.415-.811Z"/>
+                  </svg>
+                  {{abc[0] | uppercase}}
+              </a>
+              <h1 class=" text-white text-3xl md:text-5xl font-extrabold mb-2">{{secciones()[0].titulo2 | titlecase}}</h1>
+              <p class="text-lg font-normal  text-gray-400 mb-6">{{secciones()[0].subtitulo}}</p>
+              <a href="#" class="inline-flex justify-center items-center py-2.5 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4  focus:ring-blue-900">
+                  Leer más
+                  <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                  </svg>
+              </a>
           </div>
-          <div class="Arrow-container Arrow-container--right bg-black">
-            <small class="Arrow-small px-[2rem] lg:px-[2.8rem]">Part1</small>
+          <div class="grid md:grid-cols-2 gap-8">
+              <div class="bg-gray-800 border border-gray-700 rounded-lg p-8 md:p-12" *ngFor="let seccion of secciones().slice(1); let i = index">
+                  <a href="#" class=" text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md bg-gray-700 text-green-400 mb-2">
+                      <svg class="w-2.5 h-2.5 mr-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                          <path d="M17 11h-2.722L8 17.278a5.512 5.512 0 0 1-.9.722H17a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1ZM6 0H1a1 1 0 0 0-1 1v13.5a3.5 3.5 0 1 0 7 0V1a1 1 0 0 0-1-1ZM3.5 15.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM16.132 4.9 12.6 1.368a1 1 0 0 0-1.414 0L9 3.55v9.9l7.132-7.132a1 1 0 0 0 0-1.418Z"/>
+                      </svg>
+                      {{abc[i+1] | uppercase}}
+                  </a>
+                  <h2 class=" text-white text-3xl font-extrabold mb-2">{{seccion.titulo2 | titlecase}}</h2>
+                  <p class="text-lg font-normal  text-gray-400 mb-4">{{seccion.subtitulo}}</p>
+                  <a href="#" class=" text-blue-500  font-medium text-lg inline-flex items-center border py-2.5 px-5 rounded-lg hover:bg-blue-800 focus:ring-4  focus:ring-blue-900 hover:no-underline">    Leer más
+                      <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                  </svg>
+                  </a>
+              </div>
           </div>
-        </div>
-
-        <p class="Banner-p">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque,
-          facere culpa doloremque consectetur neque optio odit quibusdam qui
-          molestias voluptatibus provident ratione, repellendus libero. Mollitia
-          qui dolorem minus similique fugit!
-        </p>
-
-        <div class="Banner-sections">
-          <div
-            class="Banner-item h-[4rem]"
-            *ngFor="let seccion of secciones(); let i = index"
-          >
-            <div
-              class="Banner-square Banner-square--left text-slate-950 md:text-white"
-              id="square-left"
-            >
-              {{ letrasDelAbecedario[i] +'.'+'  ' + seccion.panel }}
-            </div>
-            <div
-              class="Banner-square Banner-square--right"
-              id="square-right"
-            ></div>
-          </div>
-        </div>
       </div>
-      <div class="Banner-container Banner-container-secondary flex-1">
-        <img src="" alt="" />
-      </div>
-    </div>
+  </section>
   </div>
 </div>
 
-<div>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio nesciunt
-    repudiandae quae, debitis et explicabo, voluptatibus suscipit maxime,
-    ducimus soluta eum saepe. Cumque cum laboriosam magnam veniam consequatur
-    corporis similique?
-  </p>
-</div>

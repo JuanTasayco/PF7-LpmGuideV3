@@ -7,7 +7,7 @@ import {
   SimpleChanges,
   signal,
 } from '@angular/core';
-import { CommonModule, NgFor } from '@angular/common';
+import { CommonModule, NgFor, TitleCasePipe, UpperCasePipe } from '@angular/common';
 import { Seccion } from '../../interfaces/sections.interfaces';
 
 export interface DescriptionPart {
@@ -19,7 +19,7 @@ export interface DescriptionPart {
 @Component({
   selector: 'app-banner-section',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor,UpperCasePipe,TitleCasePipe],
   templateUrl: './banner-section.component.html',
   styleUrls: ['./banner-section.component.scss'],
 })
@@ -28,7 +28,7 @@ export class BannerSectionComponent implements OnInit {
     console.log(this.secciones());
   }
   @Input('seccionesInput') secciones = signal<Seccion[]>([]);
-  letrasDelAbecedario: string[] = 'abcdefghijklmnñopqrstwxyz'.split('');
+  abc: string[] = 'abcdefghijklmnñopqrstwxyz'.split('');
 
   @HostListener('window:resize', [''])
   cambiarModoFlecha() {

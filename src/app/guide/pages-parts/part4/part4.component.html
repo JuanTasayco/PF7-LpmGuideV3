@@ -1,2 +1,5 @@
 <!-- asistencia -->
-<H2>parte4</H2>
+<app-banner-section
+  *ngIf="secciones().length > 0"
+  [seccionesInput]="secciones"
+></app-banner-section>
