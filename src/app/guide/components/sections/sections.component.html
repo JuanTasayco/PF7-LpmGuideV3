@@ -1,7 +1,58 @@
-<div class="Seccion mx-[2rem] md:mx-[5rem] xl:mx-[2.3rem] text-white">
+<div class="Seccion grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
   <div
     *ngFor="let section of sections(); let i = index"
-    [routerLink]="['/guide/', 'part' + (i + 1)]"
+    [routerLink]="['/guide/part', section.toLowerCase()]"
+    class="Seccion-block max-w-sm m-auto rounded-lg shadow bg-gray-800 border-gray-700"
+  >
+    <a href="#" class="Seccion-a">
+      <img
+        class="Seccion-img rounded-t-lg"
+        [src]="section | img:'jpg'"
+        alt="imagen"
+      />
+    </a>
+    <div class="Secccion-container p-5">
+      <a href="#" class="Section-a">
+        <h5
+          class="Seccion-h5 mb-2 text-2xl font-bold tracking-tight text-white"
+        >
+          {{ section | titlecase }}
+        </h5>
+      </a>
+      <p class="Seccion-p mb-3 font-normal text-gray-400">
+        Acceder a la sección {{ section }}, entra y aprende a manejar dominar
+        este punto del sistema de conta.
+      </p>
+      <a
+        href="#"
+        class="Seccion-a inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
+      >
+        Ir a la sección
+        <svg
+          class="Seccion-svg w-3.5 h-3.5 ml-2"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 14 10"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M1 5h12m0 0L9 1m4 4L9 9"
+          />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- cuadro personalizado 1  -->
+<!-- <div class="Seccion mx-[2rem] md:mx-[5rem] xl:mx-[2.3rem] text-white">
+  <div
+    *ngFor="let section of sections(); let i = index"
+    [routerLink]="['/guide/part', section.toLowerCase() ]"
     class="Seccion-block h-[30rem] w-full sm:w-[49%] xl:w-[32%] lg:p-0 p-5"
   >
     <div class="Seccion-contenedor">
@@ -17,4 +68,4 @@
       Descripción sobre la sección {{ section | titlecase }}
     </p>
   </div>
-</div>
+</div> -->

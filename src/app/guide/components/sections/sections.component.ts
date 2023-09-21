@@ -1,12 +1,13 @@
 import { AfterViewInit, Component, Input, OnInit, signal } from '@angular/core';
-import { CommonModule, NgFor, TitleCasePipe } from '@angular/common';
+import { NgFor, TitleCasePipe } from '@angular/common';
 import { InfoSectionsService } from '../../services/info-sections.service';
 import { RouterModule } from '@angular/router';
+import { ImgPipe } from '../../pipes/img.pipe';
 
 @Component({
   selector: 'app-sections',
   standalone: true,
-  imports: [NgFor, TitleCasePipe, RouterModule],
+  imports: [NgFor, TitleCasePipe, RouterModule, ImgPipe],
   templateUrl: './sections.component.html',
   styleUrls: ['./sections.component.scss'],
 })

@@ -1,4 +1,19 @@
 .Seccion {
+  &-block {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-img {
+    object-fit:contain;
+    max-height: 192px;
+    margin: auto;
+  }
+}
+
+/* cuadros editados, disponibles para un futuro*/
+/* .Seccion {
   display: flex;
   flex-wrap: wrap;
   gap: 2%;
@@ -70,3 +85,4 @@
     font-size: clamp(1rem, 2vh, 4rem);
   }
 }
+ */

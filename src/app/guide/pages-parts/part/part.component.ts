@@ -1,24 +1,24 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { NgIf } from '@angular/common';
-import { InfoSectionsService } from '../../services/info-sections.service';
-import { ActivatedRoute } from '@angular/router';
-import { Seccion } from '../../interfaces/sections.interfaces';
 import { BannerSectionComponent } from '../../components/banner-section/banner-section.component';
+import { InfoSectionsService } from '../../services/info-sections.service';
+import { Seccion } from '../../interfaces/sections.interfaces';
+import { ActivatedRoute } from '@angular/router';
+import { NgIf } from '@angular/common';
+import { switchMap } from 'rxjs';
 
 @Component({
-  selector: 'app-part3',
+  selector: 'app-part',
   standalone: true,
-  imports: [NgIf, BannerSectionComponent],
-  templateUrl: './part3.component.html',
-  styleUrls: ['./part3.component.scss'],
+  imports: [BannerSectionComponent, NgIf],
+  templateUrl: './part.component.html',
+  styleUrls: ['./part.component.scss'],
 })
-export class Part3Component implements OnInit {
+export class PartComponent implements OnInit {
   public secciones = signal<Seccion[]>([]);
   public partname!: string;
-
   ngOnInit(): void {
-    this.infoSections
-      .getInfoPerSectionName('renta')
+    this.activatedRoute.params
+      .pipe(switchMap(({ id }) => this.infoSections.getInfoPerSectionName(id)))
       .subscribe((sectionsResponse) => {
         this.secciones.set(sectionsResponse);
       });
@@ -29,6 +29,7 @@ export class Part3Component implements OnInit {
       }
     });
   }
+
   constructor(
     private infoSections: InfoSectionsService,
     private activatedRoute: ActivatedRoute
