@@ -23,12 +23,15 @@
         </p>
 
         <div class="Banner-sections">
-          <div class="Banner-item h-[4rem]" *ngFor="let seccion of secciones()">
+          <div
+            class="Banner-item h-[4rem]"
+            *ngFor="let seccion of secciones(); let i = index"
+          >
             <div
               class="Banner-square Banner-square--left text-slate-950 md:text-white"
               id="square-left"
             >
-              Cositas para fedear despues de la noche xd
+              {{ letrasDelAbecedario[i] +'.'+'  ' + seccion.panel }}
             </div>
             <div
               class="Banner-square Banner-square--right"

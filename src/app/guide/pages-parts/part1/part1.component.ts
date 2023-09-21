@@ -3,11 +3,12 @@ import { BannerSectionComponent } from '../../components/banner-section/banner-s
 import { InfoSectionsService } from '../../services/info-sections.service';
 import { Seccion } from '../../interfaces/sections.interfaces';
 import { ActivatedRoute } from '@angular/router';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-part1',
   standalone: true,
-  imports: [BannerSectionComponent],
+  imports: [BannerSectionComponent, NgIf],
   templateUrl: './part1.component.html',
   styleUrls: ['./part1.component.scss'],
 })

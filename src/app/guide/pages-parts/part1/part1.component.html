@@ -1,2 +1,5 @@
 <!-- flujo básico - principal -->
-<app-banner-section [seccionesInput]="secciones"></app-banner-section>
+<app-banner-section
+  *ngIf="secciones().length > 0"
+  [seccionesInput]="secciones"
+></app-banner-section>
