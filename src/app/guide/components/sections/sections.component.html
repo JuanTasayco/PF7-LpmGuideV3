@@ -1,16 +1,18 @@
-<div class="Seccion grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+<div
+  class="Seccion grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-5"
+>
   <div
     *ngFor="let section of sections(); let i = index"
     [routerLink]="['/guide/part', section.toLowerCase()]"
     class="Seccion-block max-w-sm m-auto rounded-lg shadow bg-gray-800 border-gray-700"
   >
-    <a href="#" class="Seccion-a">
+    <div href="#" class="Seccion-a">
       <img
         class="Seccion-img rounded-t-lg"
-        [src]="section | img:'jpg'"
+        [src]="section | img : 'jpg'"
         alt="imagen"
       />
-    </a>
+    </div>
     <div class="Secccion-container p-5">
       <a href="#" class="Section-a">
         <h5

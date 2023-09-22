@@ -6,8 +6,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ImgPipe implements PipeTransform {
   transform(argumentUrl: unknown, args: string): unknown {
-    const url = `assets/${argumentUrl}.${args}`;
-
-    return url;
+    if (argumentUrl) {
+      const url = `assets/${argumentUrl}.${args}`;
+      return url;
+    } else {
+      return 'assets/renta.jpg';
+    }
   }
 }
