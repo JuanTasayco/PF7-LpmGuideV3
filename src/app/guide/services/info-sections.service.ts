@@ -24,5 +24,9 @@ export class InfoSectionsService {
     return this.http.get<Seccion[]>(`${this.url}/lpm/sections/${section}`);
   }
 
+  public getDataByConcept(concept: string) {
+    return this.http.get<Seccion>(`${this.url}/lpm/${concept}`);
+  }
+
   constructor(private http: HttpClient) {}
 }

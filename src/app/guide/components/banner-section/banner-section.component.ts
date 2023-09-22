@@ -14,6 +14,7 @@ import {
   UpperCasePipe,
 } from '@angular/common';
 import { Seccion } from '../../interfaces/sections.interfaces';
+import { RouterLink, RouterModule } from '@angular/router';
 
 export interface DescriptionPart {
   part: string;
@@ -24,7 +25,7 @@ export interface DescriptionPart {
 @Component({
   selector: 'app-banner-section',
   standalone: true,
-  imports: [NgFor, UpperCasePipe, TitleCasePipe],
+  imports: [NgFor, UpperCasePipe, TitleCasePipe, RouterLink],
   templateUrl: './banner-section.component.html',
   styleUrls: ['./banner-section.component.scss'],
 })

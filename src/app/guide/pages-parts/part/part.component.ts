@@ -2,14 +2,14 @@ import { Component, OnInit, signal } from '@angular/core';
 import { BannerSectionComponent } from '../../components/banner-section/banner-section.component';
 import { InfoSectionsService } from '../../services/info-sections.service';
 import { Seccion } from '../../interfaces/sections.interfaces';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-part',
   standalone: true,
-  imports: [BannerSectionComponent, NgIf],
+  imports: [BannerSectionComponent, NgIf, RouterModule],
   templateUrl: './part.component.html',
   styleUrls: ['./part.component.scss'],
 })
