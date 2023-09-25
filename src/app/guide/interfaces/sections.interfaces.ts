@@ -9,6 +9,8 @@ export interface Seccion {
 }
 
 export interface Content {
+  id?:number;
   subtitles: string;
   imagesUrl: string;
+  publicIdImage?: string;
 }
