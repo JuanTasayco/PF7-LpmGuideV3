@@ -30,7 +30,6 @@ export class PartConceptComponent implements OnInit {
       )
       .subscribe((response) => {
         this.concepto.set(<Seccion>response);
-        console.log(this.concepto());
       });
   }
 

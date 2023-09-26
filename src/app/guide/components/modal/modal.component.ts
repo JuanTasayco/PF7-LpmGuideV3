@@ -19,12 +19,8 @@ export class ModalComponent {
   @ViewChild('imageToScale') image!: ElementRef<HTMLElement>;
   private scaleNumber: number = 1;
   retireScale() {
-    console.log('hello');
     this.scaleNumber = 1;
-    gsap.set(this.image.nativeElement, {
-      scaleX: 1,
-      scaleY: 1,
-    });
+    this.updateScale();
   }
   clickEventScaleReduce() {
     if (this.scaleNumber > 1) {
