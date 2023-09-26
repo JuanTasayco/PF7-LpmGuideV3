@@ -1,5 +1,5 @@
 <div
-  class="Seccion grid grid-cols-1 sm:grid-cols-2  gap-y-10 gap-x-5"
+  class="Seccion grid grid-cols-1 sm:grid-cols-2  gap-y-10 gap-x-5 mt-10"
 >
   <div
     *ngFor="let section of sections(); let i = index"
@@ -11,7 +11,7 @@
       [src]="section | img : 'jpg'"
       alt=""
     />
-    <div class="flex flex-col justify-between px-4 py-10 leading-normal">
+    <div class="flex flex-col justify-between px-4 py-14 leading-normal">
       <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">
         {{ section | titlecase }}
       </h5>
