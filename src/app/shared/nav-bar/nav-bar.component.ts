@@ -29,10 +29,7 @@ export class NavBarComponent {
     {
       name: 'Preguntas frecuentas',
       link: '/guide/questions',
-    },
-    {
-      name: 'Login',
-      link: '/guide',
-    },
+    }
+  
   ]);
 }

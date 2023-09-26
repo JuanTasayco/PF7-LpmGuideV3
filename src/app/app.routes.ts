@@ -14,6 +14,11 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'auth',
+    loadChildren: () =>
+      import('src/app/auth/auth.routes').then((route) => route.routes_auth),
+  },
+  {
     path: '**',
     redirectTo: 'guide',
   },
