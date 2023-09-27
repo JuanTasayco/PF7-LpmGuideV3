@@ -3,6 +3,8 @@ export const content = [
   "./src/**/*.{html,ts}",
   "./node_modules/flowbite/**/*.js",
 ];
+
+
 export const theme = {
   extend: {},
   screens: {
