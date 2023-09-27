@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   AfterViewInit,
   Renderer2,
   ElementRef,
@@ -29,15 +28,15 @@ export class LoginComponent implements AfterViewInit {
 
   public formLogin: FormGroup = this.fb.group({
     user: [
-      'usuario1',
+      '',
       [Validators.required, Validators.email, Validators.minLength(3)],
     ],
-    password: ['as', [Validators.required, Validators.minLength(3)]],
+    password: ['', [Validators.required, Validators.minLength(3)]],
   });
 
   getErrorsForm(name: string) {
     const control = this.formLogin.get(name);
-    if (!control?.pristine) {
+    if (!control?.pristine || control?.touched) {
       const element =
         name === 'user'
           ? this.emailInput.nativeElement
@@ -54,12 +53,27 @@ export class LoginComponent implements AfterViewInit {
     return this.existError;
   }
 
-  sendForm() {
-    console.log('touched');
-    if (!this.formLogin.errors) {
-      console.log('enviar formulario');
+  get getErrorNameEmail(): string {
+    const error = this.formLogin.get('user')?.errors;
+    if (error?.['required']) {
+      return 'Es necesario especificar un correo';
+    } else if (error?.['minlength']) {
+      return 'El correo debe tener al menos 3 caracteres';
+    } else if (error?.['email']) {
+      return 'El correo no tiene el formato correcto';
     } else {
-      this.formLogin.markAllAsTouched();
+      return '';
+    }
+  }
+
+  get getErrorNamePassword(): string {
+    const error = this.formLogin.get('password')?.errors;
+    if (error?.['required']) {
+      return 'Es necesario especificar una contraseña';
+    } else if (error?.['minlength']) {
+      return 'Es necesario tener un mínimo de 3 caracteres';
+    } else {
+      return '';
     }
   }
 
@@ -75,12 +89,16 @@ export class LoginComponent implements AfterViewInit {
     this.renderer.addClass(element, 'successInput');
   }
 
-  ngAfterViewInit(): void {
-    console.log(this.emailInput.nativeElement);
-    console.log(this.passwordInput.nativeElement);
-
-    console.log('pristine' + this.formLogin.get('user')?.pristine);
+  /* enviar formulario */
+  sendForm() {
+    if (this.formLogin.valid) {
+      this.formLogin.reset();
+    } else {
+      this.formLogin.markAllAsTouched();
+    }
   }
+
+  ngAfterViewInit(): void {}
 
   constructor(
     private fb: FormBuilder,
