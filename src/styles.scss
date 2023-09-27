@@ -21,4 +21,49 @@
           md:dark:hover:bg-transparent 
           dark:border-gray-700;
   }
+
+  .successInput {
+    @apply border 
+    text-green-900 
+    placeholder-green-700 
+    text-sm 
+    rounded-lg 
+    focus:ring-green-500 
+    focus:border-green-500 
+    block 
+    w-full 
+    p-2.5 
+    bg-green-100 
+    border-green-400;
+  }
+
+  .errorInput {
+    @apply border 
+    text-red-900 
+    placeholder-red-700 
+    text-sm 
+    rounded-lg 
+    focus:ring-red-500 
+    focus:border-red-500 
+    block 
+    w-full 
+    p-2.5 
+    bg-red-100 
+    border-red-400;
+  }
+
+  .normalInput {
+    @apply border   
+    text-sm rounded-lg  
+    block 
+    w-full 
+    pl-10 p-2.5  
+    bg-gray-700 
+    border-gray-600 
+    placeholder-gray-400 
+    text-white 
+    focus:ring-blue-500 
+    focus:border-blue-500 
+    shadow-sm-light;
+  }
 }
