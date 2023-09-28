@@ -1,10 +1,7 @@
 <!-- flujo básico - principal -->
 <!-- part-component -->
+
 <app-banner-section
   *ngIf="secciones().length > 0"
   [seccionesInput]="secciones"
 ></app-banner-section>
-
-<h1 class="text-white">
-  <router-outlet></router-outlet>
-</h1>
