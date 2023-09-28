@@ -32,6 +32,7 @@ export class LoginComponent implements AfterViewInit {
       [Validators.required, Validators.email, Validators.minLength(3)],
     ],
     password: ['', [Validators.required, Validators.minLength(3)]],
+    terms: [false, []],
   });
 
   getErrorsForm(name: string) {
@@ -53,28 +54,22 @@ export class LoginComponent implements AfterViewInit {
     return this.existError;
   }
 
-  get getErrorNameEmail(): string {
-    const error = this.formLogin.get('user')?.errors;
-    if (error?.['required']) {
-      return 'Es necesario especificar un correo';
-    } else if (error?.['minlength']) {
-      return 'El correo debe tener al menos 3 caracteres';
-    } else if (error?.['email']) {
-      return 'El correo no tiene el formato correcto';
-    } else {
-      return '';
+  getErrors(nameControl: string): string | null {
+    if (!this.formLogin.get(nameControl)) return null;
+    const errors = this.formLogin.get(nameControl)?.errors || {};
+    for (let error of Object.keys(errors)) {
+      switch (error) {
+        case 'required':
+          return 'required';
+        case 'minlength':
+          return 'length';
+        case 'email':
+          return 'email';
+        default:
+          return '';
+      }
     }
-  }
-
-  get getErrorNamePassword(): string {
-    const error = this.formLogin.get('password')?.errors;
-    if (error?.['required']) {
-      return 'Es necesario especificar una contraseña';
-    } else if (error?.['minlength']) {
-      return 'Es necesario tener un mínimo de 3 caracteres';
-    } else {
-      return '';
-    }
+    return '';
   }
 
   applyStyleError(element: HTMLElement) {
@@ -91,7 +86,7 @@ export class LoginComponent implements AfterViewInit {
 
   /* enviar formulario */
   sendForm() {
-    if (this.formLogin.valid) {
+    if (this.formLogin.valid && this.formLogin.get('terms')?.value) {
       this.formLogin.reset();
     } else {
       this.formLogin.markAllAsTouched();
