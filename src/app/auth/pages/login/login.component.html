@@ -2,6 +2,7 @@
   <img
     src="assets/lpm.png"
     alt="lpmLogo"
+    routerLink="/guide/principal"
     class="Login-img max-h-[5rem] absolute rounded-lg top-10"
   />
   <form action="" (ngSubmit)="sendForm()" [formGroup]="formLogin">
@@ -86,6 +87,14 @@
     >
       <span class="font-medium"> </span> Necesitamos que aceptes los terminos
     </p>
+
+    <div class="">
+      <a routerLink="/auth/register"
+        ><small class="text-blue-700"
+          >Aún no tienes una cuenta? Registrate aquí</small
+        ></a
+      >
+    </div>
     <button
       type="submit"
       class="text-white mt-6 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

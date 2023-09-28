@@ -13,11 +13,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, JsonPipe, NgIf],
+  imports: [ReactiveFormsModule, JsonPipe, NgIf, RouterModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
@@ -27,10 +28,7 @@ export class LoginComponent implements AfterViewInit {
   existError: any = false;
 
   public formLogin: FormGroup = this.fb.group({
-    user: [
-      '',
-      [Validators.required, Validators.email, Validators.minLength(3)],
-    ],
+    user: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(3)]],
     terms: [false, []],
   });
@@ -60,11 +58,11 @@ export class LoginComponent implements AfterViewInit {
     for (let error of Object.keys(errors)) {
       switch (error) {
         case 'required':
-          return 'required';
+          return 'Es necesario llenar este campo';
         case 'minlength':
-          return 'length';
+          return 'Debe haber al menos 3 carácteners';
         case 'email':
-          return 'email';
+          return 'El formato email no es el correcto';
         default:
           return '';
       }

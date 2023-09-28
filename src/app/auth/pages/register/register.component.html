@@ -1,1 +1,118 @@
-<div class="Login" style="border: 2px solid orange"></div>
+<div class="Register absolute h-full w-full bg-slate-900">
+  <img
+    src="assets/lpm.png"
+    alt="lpmLogo"
+    routerLink="/guide/principal"
+    class="Register-img max-h-[5rem] absolute rounded-lg top-10"
+  />
+  <form action="" (ngSubmit)="sendForm()" [formGroup]="formRegister">
+    <div class="Register-email">
+      <label
+        for="email-address-icon"
+        class="block mb-2 text-sm font-medium text-white"
+        >Email</label
+      >
+      <div class="relative">
+        <div
+          id="username-error"
+          class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none"
+        >
+          <svg
+            class="w-4 h-4 text-gray-400"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 20 16"
+          >
+            <path
+              d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z"
+            />
+            <path
+              d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"
+            />
+          </svg>
+        </div>
+        <input
+          #inputEmail
+          type="text"
+          id="email-address-icon"
+          class="normalInput"
+          formControlName="user"
+          placeholder="names@gmail.com"
+        />
+      </div>
+      <p *ngIf="getErrorsForm('user')" class="mt-2 text-sm text-red-600">
+        <span class="font-medium">Oops! </span>{{ getErrors("user") }}
+      </p>
+    </div>
+
+    <div class="Register-password my-5">
+      <label
+        for="repeat-password"
+        class="block mb-2 text-sm font-medium text-white"
+        >Contraseña</label
+      >
+      <input
+        #inputPassword
+        type="password"
+        id="repeat-password"
+        formControlName="password"
+        class="normalInput"
+      />
+
+      <p *ngIf="getErrorsForm('password')" class="mt-2 text-sm text-red-600">
+        <span class="font-medium">Oops! </span> {{ getErrors("password") }}
+      </p>
+    </div>
+
+    <div class="Register-passRepeat my-5">
+      <label
+        for="repeat-passRepeat"
+        class="block mb-2 text-sm font-medium text-white"
+        >Repite la Contraseña</label
+      >
+      <input
+        #inputpassRepeat
+        type="password"
+        id="repeat-passRepeat"
+        formControlName="passRepeat"
+        class="normalInput"
+      />
+
+      <!--  <p *ngIf="getErrorsForm('passRepeat')" class="mt-2 text-sm text-red-600">
+        <span class="font-medium">Oops! </span> {{ getErrors("passRepeat") }}
+      </p> -->
+    </div>
+
+    <div class="flex items-start mb-6">
+      <div class="flex items-center h-5">
+        <input
+          id="terms"
+          type="checkbox"
+          formControlName="terms"
+          class="w-4 h-4 border rounded focus:ring-3 bg-gray-700 border-gray-600 focus:ring-blue-600 ring-offset-gray-800 focus:ring-offset-gray-800"
+        />
+      </div>
+      <label for="terms" class="ml-2 text-sm font-medium text-gray-300"
+        >I agree with the
+        <a href="#" class="hover:underline text-blue-500"
+          >terms and conditions</a
+        ></label
+      >
+    </div>
+    <p
+      *ngIf="
+        !formRegister.get('terms')?.value && formRegister.get('terms')?.touched
+      "
+      class="mt-2 text-sm text-red-600"
+    >
+      <span class="font-medium"> </span> Necesitamos que aceptes los terminos
+    </p>
+    <button
+      type="submit"
+      class="text-white mt-6 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    >
+      Ingresar al panel
+    </button>
+  </form>
+</div>
