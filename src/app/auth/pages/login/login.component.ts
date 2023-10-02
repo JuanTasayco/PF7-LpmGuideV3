@@ -5,6 +5,8 @@ import {
   ElementRef,
   ViewChild,
   ChangeDetectorRef,
+  signal,
+  OnInit,
 } from '@angular/core';
 import { JsonPipe, NgIf } from '@angular/common';
 import {
@@ -14,19 +16,26 @@ import {
   Validators,
 } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ModalAlertComponent } from '../../components/modal-alert/modal-alert.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, JsonPipe, NgIf, RouterModule],
+  imports: [
+    ReactiveFormsModule,
+    JsonPipe,
+    NgIf,
+    RouterModule,
+    ModalAlertComponent,
+  ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements AfterViewInit {
+export class LoginComponent implements AfterViewInit, OnInit {
   @ViewChild('inputEmail') emailInput!: ElementRef<HTMLElement>;
   @ViewChild('inputPassword') passwordInput!: ElementRef<HTMLElement>;
-  existError: any = false;
-
+  existError: boolean = false;
+  showModal: boolean = false;
   public formLogin: FormGroup = this.fb.group({
     user: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(3)]],
@@ -41,7 +50,7 @@ export class LoginComponent implements AfterViewInit {
           ? this.emailInput.nativeElement
           : this.passwordInput.nativeElement;
 
-      this.existError = control?.touched && control?.errors;
+      this.existError = <boolean>(control?.touched && control?.errors);
       /* además de obtener el error estoy agregando estilos, en caso exista a los input en caso exista o no */
       this.existError
         ? this.applyStyleError(element)
@@ -88,14 +97,16 @@ export class LoginComponent implements AfterViewInit {
       this.formLogin.reset();
     } else {
       this.formLogin.markAllAsTouched();
+      this.showModal = true;
     }
   }
 
   ngAfterViewInit(): void {}
 
-  constructor(
-    private fb: FormBuilder,
-    private renderer: Renderer2,
-    private cdr: ChangeDetectorRef
-  ) {}
+  constructor(private fb: FormBuilder, private renderer: Renderer2) {}
+  ngOnInit(): void {}
+
+  getEventCloseModal(eventClose: boolean) {
+    this.showModal = eventClose;
+  }
 }

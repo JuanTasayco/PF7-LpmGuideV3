@@ -8,11 +8,12 @@ import {
 } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FormLogicService } from '../../services/form-logic.service';
+import { ModalAlertComponent } from '../../components/modal-alert/modal-alert.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [NgIf, ReactiveFormsModule, RouterModule],
+  imports: [NgIf, ReactiveFormsModule, RouterModule, ModalAlertComponent],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
