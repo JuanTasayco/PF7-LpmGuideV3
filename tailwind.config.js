@@ -4,9 +4,10 @@ export const content = [
   "./node_modules/flowbite/**/*.js",
 ];
 
-
 export const theme = {
   extend: {},
+  corePlugins: {
+  },
   screens: {
     xs: "400px",
 
