@@ -75,8 +75,8 @@
           </p>
 
           <app-modal
-            [modelTargetComponent]="introItem.publicIdImage ?? ''"
-            [linkImageComponent]="introItem.imagesUrl"
+            [modelTargetComponent]="introItem.publicIdImage || ('prov'+i)"
+            [linkImageComponent]="introItem.imagesUrl || ''"
             [numberImageComponent]="i"
           ></app-modal>
         </li>
@@ -104,8 +104,8 @@
           </p>
 
           <app-modal
-            [modelTargetComponent]="contentItem.publicIdImage ?? ''"
-            [linkImageComponent]="contentItem.imagesUrl"
+            [modelTargetComponent]="contentItem.publicIdImage || ('prot'+i)"
+            [linkImageComponent]="contentItem.imagesUrl || ''"
             [numberImageComponent]="i"
           ></app-modal>
         </li>

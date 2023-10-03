@@ -36,7 +36,7 @@ export class RegisterComponent {
   @ViewChild('inputPassword') passwordInput!: ElementRef<HTMLElement>;
   @ViewChild('inputpassRepeat') passRepeatInput!: ElementRef<HTMLElement>;
   existError: any = false;
-
+  showModal: boolean = false;
   getErrorsForm(name: string) {
     const control = this.formRegister.get(name);
     if (!control?.pristine || control?.touched) {
@@ -102,7 +102,12 @@ export class RegisterComponent {
       console.log('sendFormulary');
     } else {
       this.formRegister.markAllAsTouched();
+      this.showModal = true;
     }
+  }
+
+  getEventCloseModal(eventClose: boolean) {
+    this.showModal = eventClose;
   }
 
   constructor(

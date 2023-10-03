@@ -121,4 +121,12 @@
       Registrarse
     </button>
   </form>
+  <app-modal-alert
+  [showModalComponent]="showModal"
+  [showButtonsActivate]="true"
+  [textDescriptionModal]="
+    'Exiten errores en el formulario, por favor corrigelos'
+  "
+  (closeModalComponent)="getEventCloseModal($event)"
+></app-modal-alert>
 </div>

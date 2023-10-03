@@ -59,7 +59,6 @@ export class ModalAlertComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes['showModal']);
     if (changes['showModal'].currentValue) {
       this.openButton();
     }

@@ -14,7 +14,7 @@ import {
   UpperCasePipe,
 } from '@angular/common';
 import { Seccion } from '../../interfaces/sections.interfaces';
-import { RouterLink, RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 export interface DescriptionPart {
   part: string;

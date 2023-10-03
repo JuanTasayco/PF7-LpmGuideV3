@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Flowbite } from '../../decorator/flowbite-decorator';
 import { gsap } from 'gsap';
@@ -11,10 +11,14 @@ import { gsap } from 'gsap';
   styleUrls: ['./modal.component.scss'],
 })
 @Flowbite()
-export class ModalComponent {
+export class ModalComponent implements OnInit {
   @Input('modelTargetComponent') modelTarget: string = '';
   @Input('linkImageComponent') linkImage: string = '';
   @Input('numberImageComponent') numberImage: number = 0;
+
+  ngOnInit(): void {
+    console.log('linkImage' + this.linkImage);
+  }
 
   @ViewChild('imageToScale') image!: ElementRef<HTMLElement>;
   private scaleNumber: number = 1;
