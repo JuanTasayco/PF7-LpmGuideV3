@@ -1,5 +1,5 @@
 <!-- Modal toggle -->
-<figure class="max-w-lg" *ngIf="linkImage.length==0">
+<figure class="max-w-lg">
   <img
     [attr.data-modal-target]="modelTarget"
     [attr.data-modal-toggle]="modelTarget"
@@ -42,7 +42,7 @@
       <div class="relative w-full h-full">
         <!-- button close -->
         <button
-        (click)="retireScale()"
+          (click)="retireScale()"
           type="button"
           class="absolute top-0 right-0 z-10 text-gray-400 bg-transparent rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center hover:bg-gray-600 hover:text-white"
           [attr.data-modal-hide]="modelTarget"

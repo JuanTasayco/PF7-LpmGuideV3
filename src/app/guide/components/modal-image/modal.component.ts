@@ -16,16 +16,16 @@ export class ModalComponent implements OnInit {
   @Input('linkImageComponent') linkImage: string = '';
   @Input('numberImageComponent') numberImage: number = 0;
 
-  ngOnInit(): void {
-    console.log('linkImage' + this.linkImage);
-  }
+  ngOnInit(): void {}
 
   @ViewChild('imageToScale') image!: ElementRef<HTMLElement>;
   private scaleNumber: number = 1;
+
   retireScale() {
     this.scaleNumber = 1;
     this.updateScale();
   }
+
   clickEventScaleReduce() {
     if (this.scaleNumber > 1) {
       this.scaleNumber -= 0.1;
