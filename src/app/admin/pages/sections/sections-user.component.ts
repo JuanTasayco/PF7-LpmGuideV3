@@ -1,5 +1,5 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { CommonModule, NgFor, TitleCasePipe } from '@angular/common';
+import { NgFor, TitleCasePipe } from '@angular/common';
 import { InfoSectionsService } from 'src/app/guide/services/info-sections.service';
 import { Seccion } from 'src/app/guide/interfaces/sections.interfaces';
 

@@ -1,24 +1,28 @@
 <div class="Section">
+  <h1 class="text-3xl md:text-4xl text-white font-extrabold">
+    {{ "Editar  " }}
+  </h1>
+
   <section class="Section-section Section-section--banner bg-gray-900">
     <div
-      class="Section-container py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 grid grid-cols-2 gap-5"
+      class="Section-container py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
     >
       <!-- titulo 1 -->
       <div
         *ngFor="let item of getKeysSeccion.splice(1)"
-        class="flex flex-col gap-3 py-5"
-        style="border: 2px solid red"
+        class="Section-block flex flex-col gap-3 py-5 rounded-lg"
       >
         <label
           [for]="item + '1'"
-          class="mb-4 text-3xl font-extrabold tracking-tight md:text-5xl text-white"
+          class="mb-4 text-start text-3xl font-extrabold tracking-tight md:text-3xl text-white"
         >
           {{ item | titlecase }}
         </label>
         <input
           [id]="item + '1'"
           type="text"
-          class="normalInput md:w-[50%] m-auto"
+          class="normalInput w-[90%] md:w-[80%]"
+          placeholder="Ingresa el {{ item }}.."
         />
       </div>
 
@@ -48,12 +52,14 @@
           </a> -->
       </div>
     </div>
-    <a
-      routerLink="../"
-      class="Section-a inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center rounded-lg border focus:ring-4 text-white border-gray-700 hover:bg-gray-700 focus:ring-gray-800"
-    >
-      Retroceder
-    </a>
+    <div class="text-center pb-5">
+      <a
+        routerLink="../"
+        class="Section-a m-auto bg-blue-600 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center rounded-lg border focus:ring-4 text-white border-gray-700 hover:bg-gray-700 focus:ring-gray-800"
+      >
+        Retroceder
+      </a>
+    </div>
   </section>
 
   <section
