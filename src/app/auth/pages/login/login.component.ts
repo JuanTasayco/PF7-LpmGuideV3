@@ -15,7 +15,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ModalAlertComponent } from '../../components/modal-alert/modal-alert.component';
 
 @Component({
@@ -37,9 +37,9 @@ export class LoginComponent implements AfterViewInit, OnInit {
   existError: boolean = false;
   showModal: boolean = false;
   public formLogin: FormGroup = this.fb.group({
-    user: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(3)]],
-    terms: [false, []],
+    user: ['juantasayco@gmail.com', [Validators.required, Validators.email]],
+    password: ['123456', [Validators.required, Validators.minLength(3)]],
+    terms: [true, []],
   });
 
   getErrorsForm(name: string) {
@@ -95,6 +95,7 @@ export class LoginComponent implements AfterViewInit, OnInit {
   sendForm() {
     if (this.formLogin.valid && this.formLogin.get('terms')?.value) {
       this.formLogin.reset();
+      this.router.navigate(['admin/sections/add']);
     } else {
       this.formLogin.markAllAsTouched();
       this.showModal = true;
@@ -103,7 +104,11 @@ export class LoginComponent implements AfterViewInit, OnInit {
 
   ngAfterViewInit(): void {}
 
-  constructor(private fb: FormBuilder, private renderer: Renderer2) {}
+  constructor(
+    private fb: FormBuilder,
+    private renderer: Renderer2,
+    private router: Router
+  ) {}
   ngOnInit(): void {}
 
   getEventCloseModal(eventClose: boolean) {

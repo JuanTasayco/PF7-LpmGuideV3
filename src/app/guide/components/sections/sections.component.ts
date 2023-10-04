@@ -16,7 +16,7 @@ export class SectionsComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.infoSectionService
-      .getSections()
+      .getSectionsName()
       .subscribe((responseSections: string[]) => {
         this.sections.set(responseSections);
       });

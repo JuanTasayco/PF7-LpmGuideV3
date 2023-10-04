@@ -19,6 +19,11 @@ export const routes: Routes = [
       import('src/app/auth/auth.routes').then((route) => route.routes_auth),
   },
   {
+    path: 'admin',
+    loadChildren: () =>
+      import('src/app/admin/admin.routes').then((route) => route.routes_admin),
+  },
+  {
     path: '**',
     redirectTo: 'guide',
   },

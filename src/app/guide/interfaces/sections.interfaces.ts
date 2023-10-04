@@ -1,4 +1,5 @@
 export interface Seccion {
+  id?: string;
   titulo: string;
   titulo2?: string;
   subtitulo: string;
@@ -9,7 +10,7 @@ export interface Seccion {
 }
 
 export interface Content {
-  id?:number;
+  id?: number;
   subtitles: string;
   imagesUrl: string;
   publicIdImage?: string;

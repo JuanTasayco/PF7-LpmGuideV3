@@ -10,8 +10,12 @@ import { Seccion } from '../interfaces/sections.interfaces';
 export class InfoSectionsService {
   private url: string = environment.url;
 
-  public getSections(): Observable<string[]> {
-    return this.http.get<string[]>(`${this.url}/lpm/sections/all`);
+  public getSectionsName(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.url}/lpm/sections/names/all`);
+  }
+
+  public getAllSections(): Observable<Seccion[]> {
+    return this.http.get<Seccion[]>(`${this.url}/lpm`);
   }
 
   public getQuestions(): Observable<QuestionsData[]> {
@@ -20,12 +24,18 @@ export class InfoSectionsService {
       .pipe(map((result) => result.questions));
   }
 
-  public getInfoPerSectionName(section: string): Observable<Seccion[]> {
-    return this.http.get<Seccion[]>(`${this.url}/lpm/sections/${section}`);
+  /* trae coincidencias */
+  public getMultipleDataByMatch(title: string) {
+    return this.http.get(`${this.url}/lpm/titles/${title}`);
   }
 
-  public getDataByConcept(concept: string) {
-    return this.http.get<Seccion>(`${this.url}/lpm/${concept}`);
+  /* pide un titulo exacto */
+  public getOnlyOneDataByTitle(title: string) {
+    return this.http.get<Seccion>(`${this.url}/lpm/${title}`);
+  }
+
+  public getInfoPerSectionName(section: string): Observable<Seccion[]> {
+    return this.http.get<Seccion[]>(`${this.url}/lpm/sections/${section}`);
   }
 
   constructor(private http: HttpClient) {}

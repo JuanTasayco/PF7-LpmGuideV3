@@ -25,7 +25,7 @@ export class PartConceptComponent implements OnInit {
     this.activatedRoute.params
       .pipe(
         switchMap(({ concepto }) =>
-          this.infoSectionsService.getDataByConcept(concepto)
+          this.infoSectionsService.getOnlyOneDataByTitle(concepto)
         )
       )
       .subscribe((response) => {
