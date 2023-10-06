@@ -4,9 +4,9 @@ import {
   ViewChild,
   AfterViewInit,
   Renderer2,
+  ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { gsap } from 'gsap';
 import { Flowbite } from 'src/app/guide/decorator/flowbite-decorator';
 @Component({
   selector: 'app-nav-bar-admin',
@@ -14,6 +14,7 @@ import { Flowbite } from 'src/app/guide/decorator/flowbite-decorator';
   imports: [CommonModule],
   templateUrl: './nav-bar-admin.component.html',
   styleUrls: ['./nav-bar-admin.component.scss'],
+  encapsulation: ViewEncapsulation.Emulated,
 })
 @Flowbite()
 export class NavBarAdminComponent implements AfterViewInit {
