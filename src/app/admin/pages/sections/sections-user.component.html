@@ -1,4 +1,13 @@
-<div class="Section">
+<app-jumbotrom-menu
+  [seccionName]="currentSectionIsAdd ? 'Agregar' : 'Editar'"
+  [textoDescription]="
+    currentSectionIsAdd
+      ? 'Aquí podrás agregar nuevas secciones a tu disposición'
+      : 'Aquí podrás editar partes fundamentales de un concepto'
+  "
+  [colorLabels]="currentSectionIsAdd ? 'bg-green-500' : 'bg-red-600'"
+></app-jumbotrom-menu>
+<form class="Section" (submit)="sendForm()" [formGroup]="sectionsForm">
   <h1 class="text-2xl md:text-4xl text-white font-extrabold">
     {{ "Editar" }}
   </h1>
@@ -17,6 +26,7 @@
         <input
           [id]="item + '1'"
           type="text"
+          [formControlName]="item"
           class="normalInput w-[90%] md:w-[80%]"
           placeholder="Ingresa el {{ item }}.."
         />
@@ -36,10 +46,8 @@
     </div>
   </section>
 
-  <form
-    (submit)="sendForm()"
-    [formGroup]="sectionsForm"
-    class="Section-form Section-form--content mt-5 lg:flex justify-center gap-2"
+  <section
+    class="Section-form Section-form--content my-7 lg:flex justify-center gap-2"
   >
     <!-- ingreso -->
     <div class="Section-content flex-1">
@@ -51,19 +59,19 @@
       >
         <div class="Section-add p-5" [formGroup]="formForArray">
           <div>
-            <label class="text-white text-sm"></label>
+            <label for="subIng" class="text-white text-sm"></label>
             <input
               formControlName="subtitles"
-              id="name"
+              id="subIng"
               type="text"
               class="normalInput"
             />
           </div>
 
           <div class="mt-5">
-            <label class="text-white text-sm"></label>
+            <label for="lastnameIng" class="text-white text-sm"></label>
             <input
-              id="lastname"
+              id="lastnameIng"
               formControlName="imagesUrl"
               type="file"
               class="border rounded-lg text-white text-sm w-full"
@@ -81,6 +89,7 @@
           </button>
         </div>
 
+        <!-- show intro objects add -->
         <div formGroupName="ingreso">
           <li
             class="Section-li mb-10 ml-4"
@@ -145,22 +154,22 @@
       >
         <div class="Section-add p-5" [formGroup]="formForArray">
           <div>
-            <label class="text-white text-sm"></label>
+            <label for="subContent" class="text-white text-sm"></label>
             <input
               formControlName="subtitles"
-              id="name"
+              id="subContent"
               type="text"
               class="normalInput"
             />
           </div>
 
           <div class="mt-5">
-            <label class="text-white text-sm"></label>
+            <label for="lastnameCont" class="text-white text-sm"></label>
             <input
-              id="lastname"
+              id="lastnameCont"
               formControlName="imagesUrl"
               type="file"
-              class="border rounded-lg text-white w-full"
+              class="border rounded-lg text-white w-full text-sm"
             />
           </div>
         </div>
@@ -175,6 +184,7 @@
           </button>
         </div>
 
+        <!-- show contenido objects add -->
         <div formGroupName="contenido">
           <li
             class="Section-li mb-10 ml-4"
@@ -230,5 +240,7 @@
         </div>
       </ol>
     </div>
-  </form>
-</div>
+
+    <button class="submit"></button>
+  </section>
+</form>

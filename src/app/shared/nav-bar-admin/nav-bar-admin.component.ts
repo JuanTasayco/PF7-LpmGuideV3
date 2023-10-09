@@ -8,10 +8,11 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Flowbite } from 'src/app/guide/decorator/flowbite-decorator';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-nav-bar-admin',
   standalone: true,
-  imports: [CommonModule],
+  imports: [RouterModule],
   templateUrl: './nav-bar-admin.component.html',
   styleUrls: ['./nav-bar-admin.component.scss'],
   encapsulation: ViewEncapsulation.Emulated,

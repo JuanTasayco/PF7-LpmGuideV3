@@ -2,16 +2,15 @@ import { Component, OnInit, computed, signal } from '@angular/core';
 import { JsonPipe, NgFor, NgIf, TitleCasePipe } from '@angular/common';
 import { InfoSectionsService } from 'src/app/guide/services/info-sections.service';
 import { Seccion } from 'src/app/guide/interfaces/sections.interfaces';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   FormArray,
   FormBuilder,
-  FormControl,
   FormGroup,
-  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { JumbotromMenuComponent } from '../../components/jumbotrom-menu/jumbotrom-menu.component';
 
 export interface Personaje {
   name: string;
@@ -21,11 +20,19 @@ export interface Personaje {
 @Component({
   selector: 'app-sections',
   standalone: true,
-  imports: [NgFor, NgIf, TitleCasePipe, ReactiveFormsModule, JsonPipe],
+  imports: [
+    NgFor,
+    NgIf,
+    TitleCasePipe,
+    ReactiveFormsModule,
+    JsonPipe,
+    JumbotromMenuComponent,
+  ],
   templateUrl: './sections-user.component.html',
   styleUrls: ['./sections-user.component.scss'],
 })
 export class SectionsUserComponent implements OnInit {
+  currentSectionIsAdd: boolean = false;
   public seccion = signal<Seccion>({
     id: '',
     titulo: '',
@@ -84,18 +91,19 @@ export class SectionsUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRouter.params.subscribe(({ id }) => {
-      if (id) {
-        console.log('estoy editando');
-      } else {
-        console.log('estoy agregando');
-      }
-    });
+    if (this.router.url.includes('add')) {
+      this.currentSectionIsAdd = true;
+      console.log('estoy agregando');
+    } else {
+      this.currentSectionIsAdd = false;
+      console.log('editando');
+    }
   }
 
   constructor(
     private guideService: InfoSectionsService,
-    private activatedRouter: ActivatedRoute,
-    private formBuilder: FormBuilder
+
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {}
 }
