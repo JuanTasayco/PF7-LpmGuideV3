@@ -1,1 +1,112 @@
-<p>edit-user works!</p>
+<section
+  class="EditUser flex flex-col md:items-center lg:flex-row rounded-lg shadow-lg md:p-5"
+>
+  <!-- container Card User -->
+  <div
+    class="EditUser-container EditUser-container--user lg:basis-[60%] h-full w-full"
+  >
+    <h2 class="text-white font-semibold">Bienvenido.</h2>
+    <!-- question test -->
+    <div class="questions test p-5 flex flex-col gap-8">
+      <div>
+        <span
+          class="text-xs font-medium mr-2 px-2.5 py-0.5 rounded bg-purple-900 text-purple-300"
+          >Tutorial</span
+        >
+
+        <h3 class="text-white text-2xl font-bold tracking-tighter mt-2">
+          Necesito especificar un nuevo password ?
+        </h3>
+        <p class="text-gray-400 text-[1rem] my-3 w-full md:w-[71%]">
+          Cada cada vez que intentes actualizar información, la contraseña debe
+          renovarse, puedes utilizar la misma o una nueva, pero necesita
+          enviarse junto con los datos actualizados.
+        </p>
+        <p class="text-[1rem] font-bold text-blue-600">Read More</p>
+      </div>
+
+      <div>
+        <span
+          class="text-xs font-medium mr-2 px-2.5 py-0.5 rounded bg-red-900 text-red-300"
+          >Consejo</span
+        >
+
+        <h3 class="text-white text-2xl font-bold tracking-tighter mt-2">
+          Como editar información? (porqué hay password?)
+        </h3>
+        <p class="text-gray-400 text-[1rem] my-3 w-full md:w-[71%]">
+          Cada cada vez que intentes actualizar información, la contraseña debe
+          renovarse, puedes utilizar la misma o una nueva, pero necesita
+          enviarse junto con los datos actualizados.
+        </p>
+        <p class="text-[1rem] font-bold text-blue-600">Read More</p>
+      </div>
+    </div>
+    <!-- end question test -->
+    <div
+      class="flex mt-6 relative flex-col items-center mx-5 border rounded-lg shadow md:flex-row md:max-w-xl border-gray-700 bg-gray-800 hover:bg-gray-700"
+    >
+      <img
+        class="EditUser-img w-full h-[100px] md:h-[260px] rounded-t-lg md:w-48"
+        src="assets/renta.jpg"
+        alt="image user"
+      />
+      <div class="flex flex-col justify-between p-4 leading-normal">
+        <form [formGroup]="userEdit">
+          <h2 class="mb-2 text-lg font-semibold text-white">
+            Datos de Usuario:
+          </h2>
+          <ul class="max-w-md space-y-1 list-none list-inside text-gray-400">
+            <li
+              class="text-sm"
+              *ngFor="let item of getControls.splice(0, getControls.length - 3)"
+            >
+              {{ userEdit.get(item)?.value | titlecase }}
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- container-form -->
+  <div
+    class="EditUser-container EditUser-container--form md:grow h-full p-5 w-full md:w-auto mt-7 lg:mt-0"
+  >
+    <div
+      class="w-full p-4 m-auto rounded-lg shadow sm:p-6 md:p-8 bg-gray-800 border-gray-700"
+    >
+      <form class="space-y-6" [formGroup]="userEdit">
+        <h5 class="text-xl font-medium text-white">Actualiza tus datos.</h5>
+        <div
+          class=""
+          *ngFor="
+            let item of getControls.slice(0, getControls.length - 2);
+            let i = index
+          "
+        >
+          <label
+            [for]="item + i"
+            class="block mb-2 text-sm font-medium text-white"
+            >{{ item | titlecase }}</label
+          >
+          <input
+            [formControlName]="item"
+            type="email"
+            [id]="item + i"
+            class="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white"
+            placeholder="name@company.com"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
+        >
+         Actualizar información
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
