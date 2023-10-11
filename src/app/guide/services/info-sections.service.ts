@@ -8,6 +8,8 @@ import { Seccion } from '../interfaces/sections.interfaces';
   providedIn: 'root',
 })
 export class InfoSectionsService {
+  constructor(private http: HttpClient) {}
+
   private url: string = environment.url;
 
   public getSectionsName(): Observable<string[]> {
@@ -24,12 +26,6 @@ export class InfoSectionsService {
       .pipe(map((result) => result.questions));
   }
 
-  /* trae coincidencias */
-  public getMultipleDataByMatch(title: string) {
-    return this.http.get(`${this.url}/lpm/titles/${title}`);
-  }
-
-  /* pide un titulo exacto */
   public getOnlyOneDataByTitle(title: string) {
     return this.http.get<Seccion>(`${this.url}/lpm/${title}`);
   }
@@ -38,5 +34,7 @@ export class InfoSectionsService {
     return this.http.get<Seccion[]>(`${this.url}/lpm/sections/${section}`);
   }
 
-  constructor(private http: HttpClient) {}
+  public getMultipleDataByMatch(title: string) {
+    return this.http.get(`${this.url}/lpm/titles/${title}`);
+  }
 }
