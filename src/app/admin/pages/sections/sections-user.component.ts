@@ -138,21 +138,6 @@ export class SectionsUserComponent implements OnInit {
     } else {
       this.currentSectionIsAdd = false;
 
-      this.guideService.getAllSections().subscribe((info) => {
-        let sections: string[] = [...new Set(info.map((info) => info.seccion))];
-
-        /* para creación del menu */
-        const objectSection: { [key: string]: any[] } = {};
-        sections.forEach((element) => {
-          objectSection[element] = [];
-        });
-
-        info.forEach((param) => {
-          objectSection[param.seccion].push(param);
-        });
-
-        console.log(objectSection);
-      });
       this.activatedRouter.params.subscribe(({ id }) => {});
     }
   }
