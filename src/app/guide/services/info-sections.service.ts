@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { Question, QuestionsData } from '../interfaces/question.interface';
 import { Seccion } from '../interfaces/sections.interfaces';
 @Injectable({
@@ -27,7 +27,9 @@ export class InfoSectionsService {
   }
 
   public getOnlyOneDataByTitle(title: string) {
-    return this.http.get<Seccion>(`${this.url}/lpm/${title}`);
+    return this.http
+      .get<Seccion>(`${this.url}/lpm/${title}`)
+      .pipe(catchError((error) => of(false)));
   }
 
   public getInfoPerSectionName(section: string): Observable<Seccion[]> {

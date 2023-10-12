@@ -17,6 +17,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { JumbotromMenuComponent } from '../../components/jumbotrom-menu/jumbotrom-menu.component';
+import { switchMap } from 'rxjs';
 
 export interface Personaje {
   name: string;
@@ -113,7 +114,6 @@ export class SectionsUserComponent implements OnInit {
     currentArray?.controls[pos]
       .get('imagesUrl')
       ?.patchValue(this.currentImageB64);
-    console.log(currentArray?.controls[pos].get('imagesUrl'));
   }
 
   public deleteFormGroupToArray(pos: number, currentArray: FormArray) {
@@ -121,10 +121,10 @@ export class SectionsUserComponent implements OnInit {
   }
 
   sendForm() {
-    console.log(this.sectionsForm.value);
     if (this.sectionsForm.valid) {
       console.log('formValid');
-      if (this.currentSectionIsAdd) {
+      if (!this.currentSectionIsAdd) {
+        console.log(this.formObjectChanges);
       }
     } else {
       console.log('formInvalid');
@@ -134,12 +134,92 @@ export class SectionsUserComponent implements OnInit {
   ngOnInit(): void {
     if (this.router.url.includes('add')) {
       this.currentSectionIsAdd = true;
-      this.sectionsForm.reset();
     } else {
+      /* cambia la url, reseteas form y borras valores del array */
+      this.activatedRouter.params.subscribe(() => {
+        this.deleteValuesForm();
+        this.sectionsForm.reset();
+        this.getValuesChangesForm();
+      });
       this.currentSectionIsAdd = false;
 
-      this.activatedRouter.params.subscribe(({ id }) => {});
+      /* resolver información de sección */
+      this.activatedRouter.params
+        .pipe(
+          switchMap(({ id: title }) =>
+            this.guideService.getOnlyOneDataByTitle(title)
+          )
+        )
+        .subscribe((section) => {
+          if (typeof section == 'boolean') {
+            this.router.navigate(['/admin/sections/add']);
+          } else {
+            this.setValuesToForm(section);
+          }
+        });
     }
+  }
+
+  /* asignar valores que vienen del back en cada sección (solo en editar)*/
+  setValuesToForm(section: Seccion) {
+    this.sectionsForm.patchValue({
+      id: section.id,
+      panel: section.panel,
+      seccion: section.seccion,
+      subtitulo: section.subtitulo,
+      titulo: section.titulo,
+      titulo2: section.titulo2,
+    });
+
+    if (section.contenido && section.contenido.length > 0) {
+      section.contenido?.forEach((values) => {
+        this.contenidoArray.push(
+          this.formBuilder.group({
+            id: [values.id],
+            subtitles: [values.subtitles],
+            imagesUrl: [values.imagesUrl],
+            publicIdImage: [values.publicIdImage],
+          })
+        );
+      });
+    }
+
+    if (section.ingreso && section.ingreso.length > 0) {
+      section.ingreso?.forEach((values) => {
+        this.ingresoArray.push(
+          this.formBuilder.group({
+            id: [values.id],
+            subtitles: [values.subtitles],
+            imagesUrl: [values.imagesUrl],
+            publicIdImage: [values.publicIdImage],
+          })
+        );
+      });
+    }
+  }
+
+  /* borrar cajas del form al cambiar de url de lo contrario se acumulan (solo para editar)*/
+  deleteValuesForm() {
+    while (this.ingresoArray.length > 0) {
+      this.ingresoArray.removeAt(0);
+    }
+
+    while (this.contenidoArray.length > 0) {
+      this.contenidoArray.removeAt(0);
+    }
+  }
+
+  formObjectChanges: { [key: string]: any } = {};
+  getValuesChangesForm() {
+    setTimeout(() => {
+      this.getKeysSeccion.forEach((keyForm) => {
+        this.sectionsForm
+          .get(keyForm)
+          ?.valueChanges.subscribe((valueChange) => {
+            this.formObjectChanges[keyForm] = valueChange;
+          });
+      });
+    }, 1000);
   }
 
   constructor(
