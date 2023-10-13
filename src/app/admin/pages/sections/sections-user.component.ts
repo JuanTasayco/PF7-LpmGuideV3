@@ -1,4 +1,5 @@
 import {
+  AfterViewChecked,
   Component,
   HostListener,
   OnInit,
@@ -135,15 +136,15 @@ export class SectionsUserComponent implements OnInit {
     if (this.router.url.includes('add')) {
       this.currentSectionIsAdd = true;
     } else {
+      this.currentSectionIsAdd = false;
+
+      /* resolver información de sección */
       /* cambia la url, reseteas form y borras valores del array */
       this.activatedRouter.params.subscribe(() => {
         this.deleteValuesForm();
         this.sectionsForm.reset();
-        this.getValuesChangesForm();
       });
-      this.currentSectionIsAdd = false;
 
-      /* resolver información de sección */
       this.activatedRouter.params
         .pipe(
           switchMap(({ id: title }) =>
@@ -151,6 +152,7 @@ export class SectionsUserComponent implements OnInit {
           )
         )
         .subscribe((section) => {
+          console.log('holitas');
           if (typeof section == 'boolean') {
             this.router.navigate(['/admin/sections/add']);
           } else {
@@ -196,6 +198,8 @@ export class SectionsUserComponent implements OnInit {
         );
       });
     }
+    this.formObjectChanges = {};
+    this.getValuesChangesForm();
   }
 
   /* borrar cajas del form al cambiar de url de lo contrario se acumulan (solo para editar)*/
@@ -210,16 +214,13 @@ export class SectionsUserComponent implements OnInit {
   }
 
   formObjectChanges: { [key: string]: any } = {};
+
   getValuesChangesForm() {
-    setTimeout(() => {
-      this.getKeysSeccion.forEach((keyForm) => {
-        this.sectionsForm
-          .get(keyForm)
-          ?.valueChanges.subscribe((valueChange) => {
-            this.formObjectChanges[keyForm] = valueChange;
-          });
+    this.getKeysSeccion.forEach((keyForm) => {
+      this.sectionsForm.get(keyForm)?.valueChanges.subscribe((valueChange) => {
+        this.formObjectChanges[keyForm] = valueChange;
       });
-    }, 1000);
+    });
   }
 
   constructor(
