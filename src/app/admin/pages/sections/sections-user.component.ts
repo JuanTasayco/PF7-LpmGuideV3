@@ -19,6 +19,7 @@ import {
 } from '@angular/forms';
 import { JumbotromMenuComponent } from '../../components/jumbotrom-menu/jumbotrom-menu.component';
 import { switchMap } from 'rxjs';
+import { ModalComponent } from 'src/app/guide/components/modal-image/modal.component';
 
 export interface Personaje {
   name: string;
@@ -35,6 +36,7 @@ export interface Personaje {
     ReactiveFormsModule,
     JsonPipe,
     JumbotromMenuComponent,
+    ModalComponent,
   ],
   templateUrl: './sections-user.component.html',
   styleUrls: ['./sections-user.component.scss'],
@@ -124,7 +126,10 @@ export class SectionsUserComponent implements OnInit {
   sendForm() {
     if (this.sectionsForm.valid) {
       console.log('formValid');
-      if (!this.currentSectionIsAdd) {
+      if (
+        !this.currentSectionIsAdd &&
+        Object.getOwnPropertyNames(this.formObjectChanges).length > 0
+      ) {
         console.log(this.formObjectChanges);
       }
     } else {
@@ -152,7 +157,6 @@ export class SectionsUserComponent implements OnInit {
           )
         )
         .subscribe((section) => {
-          console.log('holitas');
           if (typeof section == 'boolean') {
             this.router.navigate(['/admin/sections/add']);
           } else {

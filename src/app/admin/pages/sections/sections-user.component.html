@@ -132,22 +132,23 @@
                 />
               </div>
 
-              <div class="flex items-center justify-center">
-                <button
-                  type="button"
-                  (click)="deleteFormGroupToArray(i, ingresoArray)"
-                  class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 mt-3"
-                >
-                  Borrar
-                </button>
+              <div class="flex items-center justify-center mt-5">
+                <app-modal
+                  [modelTargetComponent]="'content' + i"
+                  [linkImageComponent]="item.get('imagesUrl')?.value || ''"
+                  [numberImageComponent]="i"
+                ></app-modal>
               </div>
             </div>
-            <!-- 
-            <app-modal
-              [modelTargetComponent]="introItem.publicIdImage || ('prov'+i)"
-              [linkImageComponent]="introItem.imagesUrl || ''"
-              [numberImageComponent]="i"
-            ></app-modal> -->
+            <div class="flex items-center justify-center">
+              <button
+                type="button"
+                (click)="deleteFormGroupToArray(i, ingresoArray)"
+                class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 mt-3"
+              >
+                Borrar
+              </button>
+            </div>
           </li>
         </div>
       </ol>
@@ -232,6 +233,14 @@
                   class="normalInput w-full"
                 />
               </div>
+
+              <div class="flex items-center justify-center mt-5">
+                <app-modal
+                  [modelTargetComponent]="'content' + i"
+                  [linkImageComponent]="item.get('imagesUrl')?.value || ''"
+                  [numberImageComponent]="i"
+                ></app-modal>
+              </div>
             </div>
 
             <div class="flex items-center justify-center">
@@ -243,12 +252,6 @@
                 Borrar
               </button>
             </div>
-            <!-- 
-          <app-modal
-            [modelTargetComponent]="introItem.publicIdImage || ('prov'+i)"
-            [linkImageComponent]="introItem.imagesUrl || ''"
-            [numberImageComponent]="i"
-          ></app-modal> -->
           </li>
         </div>
       </ol>
