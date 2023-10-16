@@ -56,23 +56,27 @@ export class EditUserComponent implements OnInit {
   sendUser() {
     if (this.currentSeccionIsEdit) {
       if (this.userEdit.valid) {
-        console.log(this.currentChanges);
-      } else {
-        for (let item of Object.keys(this.userEdit.controls)) {
-          console.log(item);
-          console.log(this.userEdit.get(item)?.status);
-          console.log(this.userEdit.get(item)?.errors);
-          /*   console.log(this.userEdit.get(item)?.errors); */
+        if (Object.getOwnPropertyNames(this.currentChanges).length > 0) {
+          console.log(this.currentChanges);
+          console.log('editando');
+        } else {
+          console.log('formulario valido pero no hubo cambios');
         }
+      } else {
         console.log('form invalid');
       }
     } else {
-      console.log('agregando');
+      if (this.userEdit.valid) {
+        this.adminService.createUser(this.userEdit.value);
+      } else {
+        console.log('formulario inválido');
+      }
     }
   }
 
   setValues(user: User) {
     this.currentChanges = {};
+
     this.userEdit.patchValue({
       nombre: user.nombre,
       apellido: user.apellido,

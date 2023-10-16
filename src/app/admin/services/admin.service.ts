@@ -30,6 +30,10 @@ export class AdminService {
     return this.http.get<User>(`${this.currentUrl}/auth/user/${id}`);
   }
 
+  createUser(body: any) {
+    return this.http.post<User>(`${this.currentUrl}/auth/register`, body);
+  }
+
   updateUser(changes: any, id: string): Observable<User> {
     return this.http.put<User>(`${this.currentUrl}/updateUser/${id}`, changes);
   }
