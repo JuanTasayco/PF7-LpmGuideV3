@@ -135,7 +135,7 @@
               <div class="flex items-center justify-center mt-5">
                 <app-modal
                   [modelTargetComponent]="'content' + i"
-                  [linkImageComponent]="item.get('imagesUrl')?.value || ''"
+                  [linkImageComponent]="item.get('imagesUrl')?.value | img"
                   [numberImageComponent]="i"
                 ></app-modal>
               </div>
@@ -237,7 +237,7 @@
               <div class="flex items-center justify-center mt-5">
                 <app-modal
                   [modelTargetComponent]="'content' + i"
-                  [linkImageComponent]="item.get('imagesUrl')?.value || ''"
+                  [linkImageComponent]="item.get('imagesUrl')?.value | img"
                   [numberImageComponent]="i"
                 ></app-modal>
               </div>

@@ -20,6 +20,7 @@ import {
 import { JumbotromMenuComponent } from '../../components/jumbotrom-menu/jumbotrom-menu.component';
 import { switchMap } from 'rxjs';
 import { ModalComponent } from 'src/app/guide/components/modal-image/modal.component';
+import { ImgPipe } from 'src/app/guide/pipes/img.pipe';
 
 export interface Personaje {
   name: string;
@@ -37,6 +38,7 @@ export interface Personaje {
     JsonPipe,
     JumbotromMenuComponent,
     ModalComponent,
+    ImgPipe,
   ],
   templateUrl: './sections-user.component.html',
   styleUrls: ['./sections-user.component.scss'],
@@ -125,12 +127,10 @@ export class SectionsUserComponent implements OnInit {
 
   sendForm() {
     if (this.sectionsForm.valid) {
-      console.log('formValid');
       if (
         !this.currentSectionIsAdd &&
         Object.getOwnPropertyNames(this.formObjectChanges).length > 0
       ) {
-        console.log(this.formObjectChanges);
       }
     } else {
       console.log('formInvalid');
@@ -161,6 +161,7 @@ export class SectionsUserComponent implements OnInit {
             this.router.navigate(['/admin/sections/add']);
           } else {
             this.setValuesToForm(section);
+            console.log(section);
           }
         });
     }
