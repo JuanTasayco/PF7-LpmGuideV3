@@ -1,1 +1,19 @@
-<app-edit-user></app-edit-user>
+<div>
+  <small class="text-[1.5rem] text-white tracking-tight font-semibold"
+    >Administradores</small
+  >
+
+  <app-card-user
+    *ngIf="adminUsers.length > 0"
+    [usersArray]="adminUsers"
+  ></app-card-user>
+</div>
+<div class="my-10" *ngIf="normalUsers.length > 0">
+  <small class="text-[1.5rem] text-white tracking-tight font-semibold"
+    >Usuarios</small
+  >
+  <app-card-user
+    *ngIf="normalUsers.length > 0"
+    [usersArray]="normalUsers"
+  ></app-card-user>
+</div>

@@ -5,7 +5,9 @@
   <div
     class="EditUser-container EditUser-container--user lg:basis-[60%] h-full w-full"
   >
-    <h2 class="text-white font-semibold">Bienvenido.</h2>
+    <h2 class="text-white font-semibold">
+      Bienvenido {{ userEdit.get("nombre")?.value }}
+    </h2>
     <!-- question test -->
     <div class="questions test p-5 flex flex-col gap-8">
       <div>
@@ -71,12 +73,12 @@
 
   <!-- container-form -->
   <div
-    class="EditUser-container EditUser-container--form md:grow h-full p-5 w-full md:w-auto mt-7 lg:mt-0"
+    class="EditUser-container EditUser-container--form md:grow h-full p-5 w-full lg:w-auto mt-7 lg:mt-0"
   >
     <div
       class="w-full p-4 m-auto rounded-lg shadow sm:p-6 md:p-8 bg-gray-800 border-gray-700"
     >
-      <form class="space-y-6" [formGroup]="userEdit">
+      <form (submit)="sendUser()" class="space-y-6" [formGroup]="userEdit">
         <h5 class="text-xl font-medium text-white">Actualiza tus datos.</h5>
         <div
           class=""
@@ -95,8 +97,7 @@
             type="email"
             [id]="item + i"
             class="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white"
-            placeholder="name@company.com"
-            required
+            [placeholder]="'Ingresa ' + item + '...'"
           />
         </div>
 
@@ -104,7 +105,7 @@
           type="submit"
           class="w-full text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
         >
-         Actualizar información
+          {{ currentSeccionIsEdit ? "Editar Usuario" : "Agregar Usuario" }}
         </button>
       </form>
     </div>
