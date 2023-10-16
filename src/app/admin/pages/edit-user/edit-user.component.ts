@@ -19,6 +19,7 @@ import { User } from '../../interfaces/admin.interfaces';
   styleUrls: ['./edit-user.component.scss'],
 })
 export class EditUserComponent implements OnInit {
+  currentSeccionIsEdit: boolean = false;
   userEdit: FormGroup = this.formBuilder.group({
     nombre: ['', Validators.required],
     apellido: [''],
@@ -28,7 +29,7 @@ export class EditUserComponent implements OnInit {
     ciudad: [''],
     roles: [''],
     imagenUrl: [''],
-    password: ['', Validators.required],
+    password: ['', [this.currentSeccionIsEdit ? '' : Validators.required]],
     isActive: ['', []],
   });
 
@@ -36,7 +37,6 @@ export class EditUserComponent implements OnInit {
     return Object.keys(this.userEdit.controls);
   }
 
-  currentSeccionIsEdit: boolean = false;
   ngOnInit(): void {
     this.userEdit.reset();
     if (this.router.url.includes('edit')) {
@@ -67,7 +67,8 @@ export class EditUserComponent implements OnInit {
       }
     } else {
       if (this.userEdit.valid) {
-        this.adminService.createUser(this.userEdit.value);
+        const { isActive, ...newUser } = this.userEdit.value;
+        this.adminService.createUser(newUser).subscribe(console.log);
       } else {
         console.log('formulario inválido');
       }
@@ -85,7 +86,7 @@ export class EditUserComponent implements OnInit {
       pais: user.pais,
       ciudad: user.ciudad,
       roles: user.roles,
-      imagenUrl: user.imagesUrl,
+      imagenUrl: user.imagesUrl || '',
       password: user.password,
       isActive: user.isActive,
     });
