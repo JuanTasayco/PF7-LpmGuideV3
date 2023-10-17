@@ -4,8 +4,6 @@ import {
   Renderer2,
   ElementRef,
   ViewChild,
-  ChangeDetectorRef,
-  signal,
   OnInit,
 } from '@angular/core';
 import { JsonPipe, NgIf } from '@angular/common';
@@ -16,7 +14,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { ModalAlertComponent } from '../../components/modal-alert/modal-alert.component';
+import { ModalAlertComponent } from '../../../shared/modal-alert/modal-alert.component';
 
 @Component({
   selector: 'app-login',

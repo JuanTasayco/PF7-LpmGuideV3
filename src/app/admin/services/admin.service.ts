@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 import { Seccion } from 'src/app/guide/interfaces/sections.interfaces';
 import { environment } from 'src/environments/environment.development';
 import { User } from '../interfaces/admin.interfaces';
@@ -31,7 +31,11 @@ export class AdminService {
   }
 
   createUser(body: any) {
-    return this.http.post<User>(`${this.currentUrl}/auth/register`, body);
+    return this.http
+      .post<User>(`${this.currentUrl}/auth/register`, body)
+      .pipe(
+        catchError((response: HttpErrorResponse) => of(response.error.message))
+      );
   }
 
   updateUser(changes: any, id: string): Observable<User> {

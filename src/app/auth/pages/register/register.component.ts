@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FormLogicService } from '../../services/form-logic.service';
-import { ModalAlertComponent } from '../../components/modal-alert/modal-alert.component';
+import { ModalAlertComponent } from '../../../shared/modal-alert/modal-alert.component';
 
 @Component({
   selector: 'app-register',

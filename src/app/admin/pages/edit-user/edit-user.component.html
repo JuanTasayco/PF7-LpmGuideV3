@@ -1,14 +1,11 @@
-<section
-  class="EditUser flex flex-col md:items-center lg:flex-row rounded-lg shadow-lg md:p-5"
->
-  <!-- container Card User -->
-  <div
+<!-- container Card User -->
+<!--  <div
     class="EditUser-container EditUser-container--user lg:basis-[60%] h-full w-full"
   >
     <h2 class="text-white font-semibold">
       Bienvenido {{ userEdit.get("nombre")?.value }}
     </h2>
-    <!-- question test -->
+
     <div class="questions test p-5 flex flex-col gap-8">
       <div>
         <span
@@ -44,7 +41,7 @@
         <p class="text-[1rem] font-bold text-blue-600">Read More</p>
       </div>
     </div>
-    <!-- end question test -->
+ 
     <div
       class="flex mt-6 relative flex-col items-center mx-5 border rounded-lg shadow md:flex-row md:max-w-xl border-gray-700 bg-gray-800 hover:bg-gray-700"
     >
@@ -69,45 +66,78 @@
         </form>
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <!-- container-form -->
-  <div
-    class="EditUser-container EditUser-container--form md:grow h-full p-5 w-full lg:w-auto mt-7 lg:mt-0"
+<!-- container-form -->
+
+<div
+  class="EditUser-container EditUser-container--form md:grow h-full p-5 w-full lg:w-auto mt-7 lg:mt-0"
+>
+  <small class="text-white text-lg">{{
+    currentSeccionIsEdit ? "Editar Usuario" : "Agregar Usuario"
+  }}</small>
+  <form
+    (submit)="sendUser()"
+    [formGroup]="userEdit"
+    class="w-full lg:max-w-[42rem] p-4 m-auto rounded-lg shadow sm:p-6 md:p-8 bg-gray-800 border-gray-700"
   >
-    <div
-      class="w-full p-4 m-auto rounded-lg shadow sm:p-6 md:p-8 bg-gray-800 border-gray-700"
-    >
-      <form (submit)="sendUser()" class="space-y-6" [formGroup]="userEdit">
-        <h5 class="text-xl font-medium text-white">Actualiza tus datos.</h5>
-        <div
-          class=""
-          *ngFor="
-            let item of getControls.slice(0, getControls.length - 1);
-            let i = index
-          "
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+      <div class="" *ngFor="let item of getControls; let i = index">
+        <label
+          [for]="item + i"
+          class="block mb-2 text-sm font-medium text-white"
+          >{{ item | titlecase }}</label
         >
-          <label
-            [for]="item + i"
-            class="block mb-2 text-sm font-medium text-white"
-            >{{ item | titlecase }}</label
-          >
-          <input
-            [formControlName]="item"
-            type="email"
-            [id]="item + i"
-            class="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white"
-            [placeholder]="'Ingresa ' + item + '...'"
-          />
-        </div>
+        <input
+          [formControlName]="item"
+          [type]="item == 'password' ? 'password' : 'text'"
+          [id]="item + i"
+          class="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white"
+          [placeholder]="'Ingresa ' + item + '...'"
+        />
+      </div>
 
-        <button
-          type="submit"
-          class="w-full text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
+      <div class="">
+        <label for="rolesUser" class="block mb-2 text-sm font-medium text-white"
+          >Elige un rol</label
         >
-          {{ currentSeccionIsEdit ? "Editar Usuario" : "Agregar Usuario" }}
-        </button>
-      </form>
+        <select
+          id="rolesUser"
+          formControlName="roles"
+          class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+        >
+          <option selected value="user">Usuario</option>
+          <option value="admin">Administrador</option>
+        </select>
+      </div>
+
+      <div class="md:mt-10 ml-5">
+        <label class="relative inline-flex items-center mr-5 cursor-pointer">
+          <input
+            type="checkbox"
+            formControlName="isActive"
+            class="sr-only peer"
+            checked
+          />
+          <div
+            class="w-11 h-6 rounded-full peer bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all border-gray-600 peer-checked:bg-green-600"
+          ></div>
+          <span class="ml-3 text-sm font-medium text-gray-300">Activo</span>
+        </label>
+      </div>
     </div>
-  </div>
-</section>
+    <button
+      type="submit"
+      class="w-full mt-10 text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
+    >
+      {{ currentSeccionIsEdit ? "Editar Usuario" : "Agregar Usuario" }}
+    </button>
+  </form>
+</div>
+<app-modal-alert
+  [showModalComponent]="showModal"
+  [showButtonsActivate]="false"
+  [textDescriptionModal]="currentMsgForModal"
+  (closeModalComponent)="closeModal($event)"
+>
+</app-modal-alert>

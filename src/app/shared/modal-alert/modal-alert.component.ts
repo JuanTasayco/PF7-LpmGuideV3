@@ -4,12 +4,10 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
   ViewChild,
-  signal,
 } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { gsap } from 'gsap';
@@ -56,12 +54,12 @@ export class ModalAlertComponent implements OnInit, OnChanges {
     });
   }
 
-  constructor() {}
-
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['showModal'].currentValue) {
       this.openButton();
     }
   }
+
+  constructor() {}
   ngOnInit(): void {}
 }

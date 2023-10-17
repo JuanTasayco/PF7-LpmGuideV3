@@ -3,11 +3,12 @@ import { CardUserComponent } from '../../components/card-user/card-user.componen
 import { AdminService } from '../../services/admin.service';
 import { User } from '../../interfaces/admin.interfaces';
 import { JsonPipe, NgFor, NgIf } from '@angular/common';
+import { SearchComponent } from 'src/app/shared/search/search.component';
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [CardUserComponent, JsonPipe, NgFor, NgIf],
+  imports: [CardUserComponent, JsonPipe, NgFor, NgIf, SearchComponent],
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
 })
