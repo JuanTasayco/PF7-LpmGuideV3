@@ -73,15 +73,15 @@
 <div
   class="EditUser-container EditUser-container--form md:grow h-full p-5 w-full lg:w-auto mt-7 lg:mt-0"
 >
-  <small class="text-white text-lg">{{
-    currentSeccionIsEdit ? "Editar Usuario" : "Agregar Usuario"
-  }}</small>
   <form
     (submit)="sendUser()"
     [formGroup]="userEdit"
     class="w-full lg:max-w-[42rem] p-4 m-auto rounded-lg shadow sm:p-6 md:p-8 bg-gray-800 border-gray-700"
   >
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+    <small class="text-white text-lg font-semibold">{{
+      currentSeccionIsEdit ? "Editar Usuario" : "Nuevo Usuario"
+    }}</small>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 mt-5">
       <div class="" *ngFor="let item of getControls; let i = index">
         <label
           [for]="item + i"
