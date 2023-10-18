@@ -25,15 +25,13 @@ export class SearchComponent implements AfterViewInit, OnInit {
   obsTextUser = new Subject<string>();
 
   getSearchUser(eventUser: Event) {
-    if (eventUser) {
-    }
     const { value: valueText } = eventUser?.target as HTMLInputElement;
     this.obsTextUser.next(valueText);
   }
 
   ngOnInit(): void {
     this.obsTextUser.pipe(debounceTime(500)).subscribe((text) => {
-      this.eventValueText.emit(text);
+      this.eventValueText.emit(text.toLowerCase());
     });
   }
 
