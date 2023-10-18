@@ -33,7 +33,6 @@ export class SearchComponent implements AfterViewInit, OnInit {
 
   ngOnInit(): void {
     this.obsTextUser.pipe(debounceTime(500)).subscribe((text) => {
-      console.log(text);
       this.eventValueText.emit(text);
     });
   }

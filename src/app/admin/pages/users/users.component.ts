@@ -44,5 +44,9 @@ export class UsersComponent {
     return this.users().filter((user) => user.roles.includes('user'));
   }
 
+  getTextUser(textUser: string) {
+    console.log(textUser);
+  }
+
   constructor(private adminService: AdminService) {}
 }
