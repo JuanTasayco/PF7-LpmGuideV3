@@ -31,15 +31,15 @@ export class EditUserComponent implements OnInit {
   currentMsgForModal: string = '';
 
   userEdit: FormGroup = this.formBuilder.group({
-    nombre: ['TestUser', Validators.required],
+    nombre: ['', Validators.required],
     apellido: [''],
-    email: ['test@gmail.com', Validators.required],
+    email: ['', Validators.required],
     direccion: [''],
     pais: [''],
     ciudad: [''],
-    roles: ['user'],
+    roles: [''],
     imagenUrl: [''],
-    password: ['12345', [this.currentSeccionIsEdit ? '' : Validators.required]],
+    password: ['', [this.currentSeccionIsEdit ? '' : Validators.required]],
     isActive: [''],
   });
 
