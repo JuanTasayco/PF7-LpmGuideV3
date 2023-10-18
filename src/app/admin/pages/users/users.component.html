@@ -1,20 +1,28 @@
-<div class="p-5">
-  <app-search></app-search>
+<div>
+  <div class="lg:max-w-[70%] m-auto my-16">
+    <app-search [place]="''"> </app-search>
+  </div>
 
-  <small class="text-[1.5rem] text-white tracking-tight font-semibold"
-    >Administradores</small
-  >
+  <div class="text-center">
+    <small class="text-[1.7rem] ml-0 text-white tracking-tight font-semibold"
+      >Administradores</small
+    >
+  </div>
 
   <app-card-user
+    [roleUserName]="'admin'"
     *ngIf="adminUsers.length > 0"
     [usersArray]="adminUsers"
   ></app-card-user>
 </div>
 <div class="my-10" *ngIf="normalUsers.length > 0">
-  <small class="text-[1.5rem] text-white tracking-tight font-semibold"
-    >Usuarios</small
-  >
+  <div class="text-center">
+    <small class="text-[1.7rem] ml-0 text-white tracking-tight font-semibold"
+      >Usuarios</small
+    >
+  </div>
   <app-card-user
+    [roleUserName]="'usuario'"
     *ngIf="normalUsers.length > 0"
     [usersArray]="normalUsers"
   ></app-card-user>

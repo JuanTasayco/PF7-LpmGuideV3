@@ -18,6 +18,7 @@ import { RouterModule } from '@angular/router';
 })
 export class CardUserComponent implements OnInit {
   @Input() usersArray: User[] = [];
+  @Input() roleUserName: string = '';
   ngOnInit(): void {}
 
   getkeysUser(user: User) {

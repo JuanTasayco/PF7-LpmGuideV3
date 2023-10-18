@@ -4,24 +4,24 @@
   <div
     *ngFor="let user of usersArray"
     [routerLink]="['/admin/user/edit/', user.id]"
-    class="CardUser-container m-auto flex mt-6 overflow-hidden relative flex-col items-center mx-5 border rounded-lg shadow md:flex-row md:max-w-xl border-gray-700 bg-gray-800 hover:bg-gray-700"
+    class="CardUser-container m-auto flex mt-6 overflow-hidden relative flex-col items-end mx-5 border rounded-lg shadow md:flex-row md:max-w-xl border-gray-700 bg-gray-800 hover:bg-gray-700"
   >
     <img
-      class="CardUser-img w-full h-[100px] md:h-[260px] rounded-t-lg md:w-48 object-cover"
+      class="CardUser-img absolute z-10"
       [src]="user.imagesUrl | img"
       alt="image user"
     />
     <div
-      class="CardUser-descriptions flex flex-col w-full justify-between p-3 leading-normal"
+      class="CardUser-descriptions flex flex-col items-center w-full p-3 leading-normal z-20"
     >
       <h2 class="CardUser-h2 mb-2 text-lg font-semibold text-white">
-        Datos de Usuario:
+        Role : {{ roleUserName | titlecase }}
       </h2>
       <ul
-        class="CardUser-ul max-w-md space-y-1 list-none list-inside text-gray-400"
+        class="CardUser-ul max-w-md flex space-y-1 list-none list-inside text-gray-400 items-center justify-center"
       >
-        <li class="CardUser-li text-sm" *ngFor="let item of user | keyvalue">
-          {{ item.key | titlecase }} : {{ item.value }}
+        <li class="CardUser-li text-lg">
+          {{ user.nombre | titlecase }} {{ user.apellido | titlecase }}
         </li>
       </ul>
     </div>
