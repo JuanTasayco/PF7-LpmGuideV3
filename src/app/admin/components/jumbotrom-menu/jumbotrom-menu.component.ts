@@ -10,7 +10,8 @@ import { CommonModule } from '@angular/common';
 })
 export class JumbotromMenuComponent {
   @Input() colorLabels: string = 'bg-pink-800';
-  @Input() seccionName: string = 'Editar';
+  @Input() typeSeccionName: string = 'Editar';
+  @Input() seccionName : string = "Seccion"
   @Input() textoDescription: string =
     'Aquí podrás editar partes fundamentales del concepto';
 }

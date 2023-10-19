@@ -1,11 +1,4 @@
-import {
-  AfterViewChecked,
-  Component,
-  HostListener,
-  OnInit,
-  computed,
-  signal,
-} from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { JsonPipe, NgFor, NgIf, TitleCasePipe } from '@angular/common';
 import { InfoSectionsService } from 'src/app/guide/services/info-sections.service';
 import { Seccion } from 'src/app/guide/interfaces/sections.interfaces';
@@ -21,6 +14,8 @@ import { JumbotromMenuComponent } from '../../components/jumbotrom-menu/jumbotro
 import { switchMap } from 'rxjs';
 import { ModalComponent } from 'src/app/guide/components/modal-image/modal.component';
 import { ImgPipe } from 'src/app/guide/pipes/img.pipe';
+import { AdminService } from '../../services/admin.service';
+import { ModalAlertComponent } from 'src/app/shared/modal-alert/modal-alert.component';
 
 export interface Personaje {
   name: string;
@@ -28,7 +23,7 @@ export interface Personaje {
 }
 
 @Component({
-  selector: 'app-sections',
+  selector: 'app-edit-section',
   standalone: true,
   imports: [
     NgFor,
@@ -39,11 +34,12 @@ export interface Personaje {
     JumbotromMenuComponent,
     ModalComponent,
     ImgPipe,
+    ModalAlertComponent,
   ],
-  templateUrl: './sections-user.component.html',
-  styleUrls: ['./sections-user.component.scss'],
+  templateUrl: './edit-section.component.html',
+  styleUrls: ['./edit-section.component.scss'],
 })
-export class SectionsUserComponent implements OnInit {
+export class EditSectionComponent implements OnInit {
   currentSectionIsAdd: boolean = false;
   public sectionsForm: FormGroup = this.formBuilder.group({
     id: [],
@@ -127,13 +123,39 @@ export class SectionsUserComponent implements OnInit {
 
   sendForm() {
     if (this.sectionsForm.valid) {
-      if (
-        !this.currentSectionIsAdd &&
-        Object.getOwnPropertyNames(this.formObjectChanges).length > 0
-      ) {
+      /* si formulario es válido */
+      /* si la sección es editar y si existen cambios */
+      if (!this.currentSectionIsAdd) {
+        if (Object.getOwnPropertyNames(this.currentChanges).length > 0) {
+          const id = this.sectionsForm.get('id')?.value;
+          if (this.currentChanges['contenido']) {
+            this.deleteIdForImg(this.currentChanges['contenido']);
+          }
+          if (this.currentChanges['ingreso']) {
+            this.deleteIdForImg(this.currentChanges['ingreso']);
+          }
+
+          this.adminService
+            .updateSection(id, this.currentChanges)
+            .subscribe((response) => {
+              if (response) {
+                this.handleModal('Actualizado correctamente');
+              }
+            });
+        } else {
+          this.handleModal('No hubo cambios en la sección');
+        }
+      } else {
+        const { id, ...newSection } = this.sectionsForm?.value;
+        this.adminService.createSection(newSection).subscribe((msg) => {
+          console.log(msg);
+          this.handleModal(msg);
+        });
       }
     } else {
-      console.log('formInvalid');
+      this.handleModal(
+        'El formulario no es válido, por favor revisa con detenimiento si está completo'
+      );
     }
   }
 
@@ -142,7 +164,6 @@ export class SectionsUserComponent implements OnInit {
       this.currentSectionIsAdd = true;
     } else {
       this.currentSectionIsAdd = false;
-
       /* resolver información de sección */
       /* cambia la url, reseteas form y borras valores del array */
       this.activatedRouter.params.subscribe(() => {
@@ -203,7 +224,7 @@ export class SectionsUserComponent implements OnInit {
         );
       });
     }
-    this.formObjectChanges = {};
+    this.currentChanges = {};
     this.getValuesChangesForm();
   }
 
@@ -218,20 +239,39 @@ export class SectionsUserComponent implements OnInit {
     }
   }
 
-  formObjectChanges: { [key: string]: any } = {};
-
+  currentChanges: { [key: string]: any } = {};
   getValuesChangesForm() {
     this.getKeysSeccion.forEach((keyForm) => {
       this.sectionsForm.get(keyForm)?.valueChanges.subscribe((valueChange) => {
-        this.formObjectChanges[keyForm] = valueChange;
+        this.currentChanges[keyForm] = valueChange;
       });
     });
+  }
+
+  /* así pide al back, sucede que al enviar imagenes a editar, envía también el id */
+  deleteIdForImg(arreglo: any[]) {
+    return arreglo.map((objeto) => {
+      delete objeto.id;
+      return objeto;
+    });
+  }
+
+  showModal = false;
+  currentMsgForModal: string = '';
+  handleModal(msg: string) {
+    this.showModal = true;
+    this.currentMsgForModal = msg;
+  }
+
+  closeModal(eventBoolean: boolean) {
+    this.showModal = eventBoolean;
   }
 
   constructor(
     private guideService: InfoSectionsService,
     private activatedRouter: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private adminService: AdminService
   ) {}
 }

@@ -70,7 +70,6 @@ export class EditUserComponent implements OnInit {
     /* editando */
     if (this.currentSeccionIsEdit) {
       if (this.userEdit.valid) {
-        console.log(this.userEdit.value);
         if (Object.getOwnPropertyNames(this.currentChanges).length > 0) {
           const id = this.userEdit.get('id')?.value;
           this.adminService

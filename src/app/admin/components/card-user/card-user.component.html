@@ -14,14 +14,16 @@
     <div
       class="CardUser-descriptions flex flex-col items-center w-full p-3 leading-normal z-20"
     >
-      <h2 class="CardUser-h2 mb-2 text-lg font-semibold text-white">
-        Role : {{ roleUserName | titlecase }}
-      </h2>
       <ul
         class="CardUser-ul max-w-md flex space-y-1 list-none list-inside text-gray-400 items-center justify-center"
       >
-        <li class="CardUser-li text-lg">
-          {{ user.nombre | titlecase }} {{ user.apellido | titlecase }}
+        <li class="CardUser-li flex flex-col items-center">
+          <h5 class="mb-1 text-xl font-medium text-white">
+            {{ user.nombre | titlecase }} {{ user.apellido | titlecase }}
+          </h5>
+          <span class="text-sm text-gray-400 dark:text-gray-400">{{
+            user.roles | titlecase
+          }}</span>
         </li>
       </ul>
     </div>

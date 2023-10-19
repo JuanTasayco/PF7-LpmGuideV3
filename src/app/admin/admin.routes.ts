@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { SectionsUserComponent } from './pages/sections/sections-user.component';
+import { EditSectionComponent } from './pages/sections/edit-section.component';
 import { UsersComponent } from './pages/users/users.component';
 import { HomeAdminComponent } from './pages/home-admin/home-admin.component';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
@@ -11,11 +11,11 @@ export const routes_admin: Routes = [
     children: [
       {
         path: 'sections/add',
-        component: SectionsUserComponent,
+        component: EditSectionComponent,
       },
       {
         path: 'sections/edit/:id',
-        component: SectionsUserComponent,
+        component: EditSectionComponent,
       },
       {
         path: 'users',

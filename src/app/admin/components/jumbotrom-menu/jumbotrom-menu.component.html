@@ -1,27 +1,78 @@
-<section class=" bg-slate-900 ">
-    <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 z-10 relative">
-        <div  class="hidden sm:inline-flex  justify-between items-center py-1 px-1 pr-4 mb-7 text-sm  rounded-full bg-slate-800 text-blue-300  hover:bg-blue-800">
-            <span 
-            [ngClass]="colorLabels=='bg-white' ? 'bg-white text-black' : colorLabels+' text-white'"
-            class="text-xs m-auto rounded-full px-4 py-1.5 mr-3">{{seccionName}}</span> <span class="text-sm font-medium">{{textoDescription}}</span> 
-            <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-            </svg>
-        </div>
-        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none  md:text-5xl lg:text-6xl text-white">Una interfaz flexible y potente</h1>
-        <p class="mb-8 text-lg font-normal  lg:text-xl sm:px-16 lg:px-48 text-gray-200">Las secciones están construidas de manera intuitiva, aquí podrás realizar diferentes acciones de forma sencilla, rápida y concisa.</p>
-        <form class="w-full max-w-md mx-auto">   
-            <label for="default-email" class="mb-2 text-sm font-medium  sr-only text-white">Email sign-up</label>
-            <div class="relative">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-             
-                </div>
-                <input disabled type="email" id="default-email" class="block w-full p-4 pl-10 text-sm border  rounded-lg    bg-gray-800 border-gray-700 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Accede a la información aquí abajo" required>
-                <button 
-                type="submit" 
-                [ngClass]="colorLabels=='bg-white' ? 'bg-white text-black' : colorLabels+' text-white'"
-                class="text-white absolute right-2.5 bottom-2.5   focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 " disabled>{{seccionName}}</button>
-            </div>
-        </form>
+<section class="bg-slate-900">
+  <div
+    class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 z-10 relative"
+  >
+    <div
+      class="hidden sm:inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm rounded-full bg-slate-800 text-blue-300 hover:bg-blue-800"
+    >
+      <span
+        [ngClass]="
+          colorLabels == 'bg-white'
+            ? 'bg-white text-black'
+            : colorLabels + ' text-white'
+        "
+        class="text-xs m-auto rounded-full px-4 py-1.5 mr-3"
+        >{{ typeSeccionName }}</span
+      >
+      <span class="text-sm font-medium">{{ textoDescription }}</span>
+      <svg
+        class="w-2.5 h-2.5 ml-2"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 6 10"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="m1 9 4-4-4-4"
+        />
+      </svg>
     </div>
+    <h1
+      class="mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl text-white"
+    >
+    {{typeSeccionName}}  {{ seccionName }}
+    </h1>
+    <p
+      class="mb-8 text-lg font-normal lg:text-xl sm:px-16 lg:px-48 text-gray-200"
+    >
+      Las secciones están construidas de manera intuitiva, aquí podrás realizar
+      diferentes acciones de forma sencilla, rápida y concisa.
+    </p>
+    <form class="w-full max-w-md mx-auto">
+      <label
+        for="default-email"
+        class="mb-2 text-sm font-medium sr-only text-white"
+        >Email sign-up</label
+      >
+      <div class="relative">
+        <div
+          class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none"
+        ></div>
+        <input
+          disabled
+          type="email"
+          id="default-email"
+          class="block w-full p-4 pl-10 text-sm border rounded-lg bg-gray-800 border-gray-700 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+          placeholder="Accede a la información aquí abajo"
+          required
+        />
+        <button
+          type="submit"
+          [ngClass]="
+            colorLabels == 'bg-white'
+              ? 'bg-white text-black'
+              : colorLabels + ' text-white'
+          "
+          class="text-white absolute right-2.5 bottom-2.5 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2"
+          disabled
+        >
+          {{ typeSeccionName }}
+        </button>
+      </div>
+    </form>
+  </div>
 </section>
