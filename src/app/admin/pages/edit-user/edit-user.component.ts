@@ -75,8 +75,13 @@ export class EditUserComponent implements OnInit {
           const id = this.userEdit.get('id')?.value;
           this.adminService
             .updateUser(id, this.currentChanges)
-            .subscribe(console.log);
-          console.log(this.currentChanges);
+            .subscribe((response) => {
+              if (response) this.handleModal('Editado correctamente');
+              else this.handleModal('No pudimos actualizar el usuario');
+              setTimeout(() => {
+                window.location.reload();
+              }, 1200);
+            });
         } else {
           this.handleModal('No hubo cambios en el usuario.');
         }
@@ -124,7 +129,7 @@ export class EditUserComponent implements OnInit {
       pais: user.pais,
       ciudad: user.ciudad,
       roles: user.roles,
-      imagenUrl: user.imagesUrl,
+      imagenUrl: user.imagenUrl,
       password: user.password,
       isActive: user.isActive,
     });

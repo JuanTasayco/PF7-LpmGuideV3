@@ -16,6 +16,7 @@ export class UsersComponent implements OnInit {
   public allUsers = signal<User[]>([]);
   public currentUsers = signal<User[]>([]);
   existResults: boolean = false;
+
   get adminUsers() {
     return this.currentUsers().filter((user) => user.roles.includes('admin'));
   }

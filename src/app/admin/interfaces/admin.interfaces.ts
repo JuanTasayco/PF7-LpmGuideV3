@@ -7,7 +7,7 @@ export interface User {
   pais: string;
   ciudad: string;
   roles: string;
-  imagesUrl: string;
+  imagenUrl: string;
   password: string;
   isActive: boolean;
   token: string /* solo para response */;
