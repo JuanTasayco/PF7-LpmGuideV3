@@ -1,8 +1,9 @@
 <div>
   <div class="lg:max-w-[50%] m-auto my-16">
     <app-search
-      [place]="'Busca usuarios ...'"
+      [placeh]="'Busca usuarios ...'"
       (eventValueText)="getTextUser($event)"
+      [currentUsers]="currentUsers()"
     >
     </app-search>
   </div>

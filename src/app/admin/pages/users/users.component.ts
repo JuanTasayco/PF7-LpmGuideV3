@@ -12,40 +12,32 @@ import { SearchComponent } from 'src/app/shared/search/search.component';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
 })
-export class UsersComponent {
-  private users = signal<User[]>([
-    {
-      id: '',
-      nombre: '',
-      apellido: '',
-      email: '',
-      direccion: '',
-      pais: '',
-      ciudad: '',
-      roles: '',
-      imagesUrl: '',
-      password: '',
-      isActive: false,
-      token: '' /* solo para response */,
-    },
-  ]);
-
-  ngOnInit(): void {
-    this.adminService.getAllUsers().subscribe((users) => {
-      this.users.set(users);
-    });
-  }
-
+export class UsersComponent implements OnInit {
+  public allUsers = signal<User[]>([]);
+  public currentUsers = signal<User[]>([]);
+  existResults: boolean = false;
   get adminUsers() {
-    return this.users().filter((user) => user.roles.includes('admin'));
+    return this.currentUsers().filter((user) => user.roles.includes('admin'));
   }
 
   get normalUsers() {
-    return this.users().filter((user) => user.roles.includes('user'));
+    return this.currentUsers().filter((user) => user.roles.includes('user'));
   }
 
   getTextUser(textUser: string) {
-    console.log(textUser);
+    this.adminService.getUsersByName(textUser).subscribe((results) => {
+      this.currentUsers.update(() => results);
+    });
+    if (textUser.length == 0) {
+      this.currentUsers.update(() => this.allUsers());
+    }
+  }
+
+  ngOnInit(): void {
+    this.adminService.getAllUsers().subscribe((users) => {
+      this.allUsers.set(users);
+      this.currentUsers.set(this.allUsers());
+    });
   }
 
   constructor(private adminService: AdminService) {}

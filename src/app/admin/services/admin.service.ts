@@ -38,8 +38,15 @@ export class AdminService {
       );
   }
 
-  updateUser(changes: any, id: string): Observable<User> {
-    return this.http.put<User>(`${this.currentUrl}/updateUser/${id}`, changes);
+  updateUser(id: string, changes: any): Observable<User> {
+    return this.http.post<User>(
+      `${this.currentUrl}/auth/updateUser/${id}`,
+      changes
+    );
+  }
+
+  getUsersByName(name: string): Observable<User[]> {
+    return this.http.get<User[]>(`${this.currentUrl}/auth/users/${name}`);
   }
 
   constructor(private http: HttpClient) {}

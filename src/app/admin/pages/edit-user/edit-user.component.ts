@@ -31,6 +31,7 @@ export class EditUserComponent implements OnInit {
   currentMsgForModal: string = '';
 
   userEdit: FormGroup = this.formBuilder.group({
+    id: [],
     nombre: ['', Validators.required],
     apellido: [''],
     email: ['', Validators.required],
@@ -66,11 +67,15 @@ export class EditUserComponent implements OnInit {
 
   currentChanges: any = {};
   sendUser() {
+    /* editando */
     if (this.currentSeccionIsEdit) {
       if (this.userEdit.valid) {
         console.log(this.userEdit.value);
         if (Object.getOwnPropertyNames(this.currentChanges).length > 0) {
-          this.handleModal('Editado Correctamente.');
+          const id = this.userEdit.get('id')?.value;
+          this.adminService
+            .updateUser(id, this.currentChanges)
+            .subscribe(console.log);
           console.log(this.currentChanges);
         } else {
           this.handleModal('No hubo cambios en el usuario.');
@@ -79,9 +84,9 @@ export class EditUserComponent implements OnInit {
         this.handleModal('Formulario no es válido por favor revisar.');
       }
     } else {
+      /* agregando */
       if (this.userEdit.valid) {
         const { isActive, ...newUser } = this.userEdit.value;
-        console.log(this.userEdit.value);
         this.adminService.createUser(newUser).subscribe((responseObject) => {
           if (typeof responseObject == 'string') {
             this.handleModal(responseObject);
@@ -111,6 +116,7 @@ export class EditUserComponent implements OnInit {
   setValues(user: User) {
     this.currentChanges = {};
     this.userEdit.patchValue({
+      id: user.id,
       nombre: user.nombre,
       apellido: user.apellido,
       email: user.email,
