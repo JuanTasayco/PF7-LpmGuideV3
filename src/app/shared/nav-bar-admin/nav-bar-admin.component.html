@@ -1,11 +1,36 @@
 <nav class="border-gray-600 bg-gray-900">
   <div
-    class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4"
+    class="flex flex-wrap justify-between relative items-center mx-auto max-w-screen-xl p-4"
   >
     <!-- reservado para logo si hay más adelante -->
-    <div></div>
+    <div class="hidden md:block"></div>
 
-    <!-- barra navegación -->
+    <!-- barra de navegación (por debajo de md hamburguer) -->
+    <button
+      data-collapse-toggle="mega-menu-full"
+      type="button"
+      class="inline-flex items-center w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+      aria-controls="mega-menu-full"
+      aria-expanded="false"
+    >
+      <span class="sr-only">Open main menu</span>
+      <svg
+        class="w-5 h-5"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 17 14"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M1 1h15M1 7h15M1 13h15"
+        />
+      </svg>
+    </button>
+    <!-- barra navegación (por encima de md)-->
     <div
       id="mega-menu-full"
       class="items-center justify-between font-medium hidden w-full md:flex md:w-auto md:order-1"
@@ -26,7 +51,8 @@
             id="mega-menu-full-dropdown-button"
             data-collapse-toggle="mega-menu-full-dropdown"
             class="flex items-center justify-between w-full py-2 pl-3 pr-4 rounded md:w-auto md:border-0 md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-blue-500 md:hover:bg-transparent border-gray-700"
-          >
+            aria-expanded="false"
+            >
             Editar Sección
             <svg
               class="w-2.5 h-2.5 ml-2.5"
@@ -64,7 +90,7 @@
     </div>
 
     <!-- nav del usuario ( donde está la foto de perfil) -->
-    <div class="Nabvar-box flex relative items-center md:order-2">
+    <div class="Nabvar-box flex md:relative items-center md:order-2">
       <button
         type="button"
         class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-600"
@@ -113,12 +139,12 @@
   <div
     *ngIf="items"
     id="mega-menu-full-dropdown"
-    class="mt-1 shadow-sm border-y bg-gray-800 border-gray-600"
+    class="mt-1 shadow-sm border-y bg-gray-800 border-gray-600 hidden"
   >
     <div
       class="grid max-w-screen-xl px-4 py-5 mx-auto text-white sm:grid-cols-2 md:px-6"
     >
-      <ul *ngFor="let item of itemsKeys; let i = index">
+      <ul *ngFor="let item of itemsKeys; let i = index" class="mt-3">
         <li>
           <!-- button para submenus -->
           <button
@@ -144,7 +170,8 @@
             </svg>
           </button>
           <span class="text-sm text-gray-400"
-            >Connect with third-party tools that you're already using.</span
+            >Click para revisar el contenido de {{ item }} y realizar una
+            modificación.</span
           >
 
           <div>

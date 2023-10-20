@@ -148,7 +148,6 @@ export class EditSectionComponent implements OnInit {
       } else {
         const { id, ...newSection } = this.sectionsForm?.value;
         this.adminService.createSection(newSection).subscribe((msg) => {
-          console.log(msg);
           this.handleModal(msg);
         });
       }
@@ -182,7 +181,6 @@ export class EditSectionComponent implements OnInit {
             this.router.navigate(['/admin/sections/add']);
           } else {
             this.setValuesToForm(section);
-            console.log(section);
           }
         });
     }
