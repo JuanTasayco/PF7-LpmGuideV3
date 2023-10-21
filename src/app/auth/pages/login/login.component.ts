@@ -15,6 +15,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { ModalAlertComponent } from '../../../shared/modal-alert/modal-alert.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -34,8 +35,9 @@ export class LoginComponent implements AfterViewInit, OnInit {
   @ViewChild('inputPassword') passwordInput!: ElementRef<HTMLElement>;
   existError: boolean = false;
   showModal: boolean = false;
+  /*  juantasayco@gmail.com*/
   public formLogin: FormGroup = this.fb.group({
-    user: ['juantasayco@gmail.com', [Validators.required, Validators.email]],
+    email: ['labight@gmail.com', [Validators.required, Validators.email]],
     password: ['123456', [Validators.required, Validators.minLength(3)]],
     terms: [true, []],
   });
@@ -44,7 +46,7 @@ export class LoginComponent implements AfterViewInit, OnInit {
     const control = this.formLogin.get(name);
     if (!control?.pristine || control?.touched) {
       const element =
-        name === 'user'
+        name === 'email'
           ? this.emailInput.nativeElement
           : this.passwordInput.nativeElement;
 
@@ -92,12 +94,24 @@ export class LoginComponent implements AfterViewInit, OnInit {
   /* enviar formulario */
   sendForm() {
     if (this.formLogin.valid && this.formLogin.get('terms')?.value) {
-      this.formLogin.reset();
+      const { terms, ...restValues } = this.formLogin.value;
+      this.authService.loginUser(restValues).subscribe((response) => {
+        if (typeof response == 'string') {
+          this.handleModal(response);
+        } else {
+        }
+      });
       this.router.navigate(['admin/sections/add']);
     } else {
       this.formLogin.markAllAsTouched();
-      this.showModal = true;
+      this.handleModal('Existen errores en el formulario');
     }
+  }
+
+  currentMsgModal: string = '';
+  handleModal(message: string) {
+    this.showModal = true;
+    this.currentMsgModal = message;
   }
 
   ngAfterViewInit(): void {}
@@ -105,10 +119,13 @@ export class LoginComponent implements AfterViewInit, OnInit {
   constructor(
     private fb: FormBuilder,
     private renderer: Renderer2,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
+
   ngOnInit(): void {}
 
+  /* solo evento close */
   getEventCloseModal(eventClose: boolean) {
     this.showModal = eventClose;
   }

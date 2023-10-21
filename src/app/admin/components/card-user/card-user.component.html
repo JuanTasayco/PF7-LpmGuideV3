@@ -5,6 +5,7 @@
     *ngFor="let user of usersArray"
     [routerLink]="['/admin/user/edit/', user.id]"
     class="CardUser-container m-auto flex mt-6 overflow-hidden relative flex-col items-end mx-5 border rounded-lg shadow md:flex-row md:max-w-xl border-gray-700 bg-gray-800 hover:bg-gray-700"
+    style="border: 2px solid yellow"
   >
     <img
       class="CardUser-img absolute z-10"

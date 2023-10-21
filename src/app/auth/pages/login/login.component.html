@@ -37,12 +37,12 @@
           type="text"
           id="email-address-icon"
           class="normalInput"
-          formControlName="user"
+          formControlName="email"
           placeholder="names@gmail.com"
         />
       </div>
-      <p *ngIf="getErrorsForm('user')" class="mt-2 text-sm text-red-600">
-        <span class="font-medium">Oops! </span>{{ getErrors("user") }}
+      <p *ngIf="getErrorsForm('email')" class="mt-2 text-sm text-red-600">
+        <span class="font-medium">Oops! </span>{{ getErrors("email") }}
       </p>
     </div>
 
@@ -106,9 +106,7 @@
   <app-modal-alert
     [showModalComponent]="showModal"
     [showButtonsActivate]="true"
-    [textDescriptionModal]="
-      'Exiten errores en el formulario, por favor corrigelos'
-    "
+    [textDescriptionModal]="currentMsgModal"
     (closeModalComponent)="getEventCloseModal($event)"
   ></app-modal-alert>
 </div>
