@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { LoginUser, UserResponse } from '../interfaces/login.interface';
 import { environment } from 'src/environments/environment.development';
 import {
@@ -6,7 +6,7 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
-import { Observable, catchError, of, tap } from 'rxjs';
+import { Observable, catchError, map, of, tap } from 'rxjs';
 import { User } from 'src/app/admin/interfaces/admin.interfaces';
 
 @Injectable({
@@ -14,28 +14,29 @@ import { User } from 'src/app/admin/interfaces/admin.interfaces';
 })
 export class AuthService {
   private currentUrl = environment.url;
-  private _currentUser?: User;
+  private _currentUser = signal<User | null>(null);
+  public currentUser = computed(() => this._currentUser);
+
+  currentErrorMsg = signal<string>('');
 
   registerUser() {}
 
-  loginUser(userData: LoginUser): Observable<User | string> {
+  loginUser(userData: LoginUser): Observable<boolean> {
     return this.httpClient
       .post<UserResponse>(`${this.currentUrl}/auth/login`, userData)
       .pipe(
         tap(({ token }) => {
           localStorage.setItem('keyToken', token);
         }),
-        catchError((responseError: HttpErrorResponse) =>
-          of(responseError?.error?.message)
-        )
+        map(() => true),
+        catchError((responseError: HttpErrorResponse) => {
+          this.currentErrorMsg = responseError.error?.message;
+          return of(false);
+        })
       );
   }
 
-  public get currentUser() {
-    return this._currentUser;
-  }
-
-  verifyToken(): Observable<User | string> {
+  verifyToken(): Observable<boolean> {
     const token = localStorage.getItem('keyToken') || '';
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
@@ -44,9 +45,14 @@ export class AuthService {
     return this.httpClient
       .get<User>(`${this.currentUrl}/auth/verify`, { headers })
       .pipe(
-        catchError((reponseError: HttpErrorResponse) =>
-          of(reponseError.error.message)
-        )
+        tap((response) => {
+          this._currentUser.set(response);
+        }),
+        map(() => true),
+        catchError((reponseError: HttpErrorResponse) => {
+          this.currentErrorMsg = reponseError.error.message;
+          return of(false);
+        })
       );
   }
 

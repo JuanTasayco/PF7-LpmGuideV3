@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { gsap } from 'gsap';
+import { Flowbite } from 'src/app/guide/decorator/flowbite-decorator';
 @Component({
   selector: 'app-modal-alert',
   standalone: true,
@@ -18,6 +19,7 @@ import { gsap } from 'gsap';
   templateUrl: './modal-alert.component.html',
   styleUrls: ['./modal-alert.component.scss'],
 })
+@Flowbite()
 export class ModalAlertComponent implements OnInit, OnChanges {
   @Input() showButtonsActivate: boolean = false;
   textYesButton: string = 'Ok';

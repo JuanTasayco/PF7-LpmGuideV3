@@ -95,13 +95,13 @@ export class LoginComponent implements AfterViewInit, OnInit {
   sendForm() {
     if (this.formLogin.valid && this.formLogin.get('terms')?.value) {
       const { terms, ...restValues } = this.formLogin.value;
-      this.authService.loginUser(restValues).subscribe((response) => {
-        if (typeof response == 'string') {
-          this.handleModal(response);
+      this.authService.loginUser(restValues).subscribe((status) => {
+        if (!status) {
+          this.handleModal(this.authService.currentErrorMsg());
         } else {
+          this.router.navigate(['/admin/sections/add']);
         }
       });
-      this.router.navigate(['admin/sections/add']);
     } else {
       this.formLogin.markAllAsTouched();
       this.handleModal('Existen errores en el formulario');
