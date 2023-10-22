@@ -27,11 +27,19 @@ export class AdminService {
     );
   }
 
-  updateSection(id: string, sectionChanges: any): Observable<Seccion> {
-    return this.http.patch<Seccion>(
-      `${this.currentUrl}/lpm/section/${id}`,
-      sectionChanges
-    );
+  updateSection(id: string, sectionChanges: any): Observable<boolean> {
+    return this.http
+      .patch<Seccion>(`${this.currentUrl}/lpm/section/${id}`, sectionChanges)
+      .pipe(
+        map((resp: Seccion) => {
+          this._currentSection.set(<Seccion>resp);
+          return true;
+        }),
+        catchError((respError) => {
+          this.currentError.update(() => respError?.error?.message);
+          return of(false);
+        })
+      );
   }
 
   getAllUsers(): Observable<User[]> {
@@ -53,16 +61,15 @@ export class AdminService {
     );
   }
 
-  updateUser(id: string, changes: any): Observable<boolean> {
+  updateUser(id: string, userChanges: any): Observable<boolean> {
     return this.http
-      .post<User>(`${this.currentUrl}/auth/updateUser/${id}`, changes)
+      .post<User>(`${this.currentUrl}/auth/updateUser/${id}`, userChanges)
       .pipe(
         map((resp: User) => {
           this._currentUser.set(<User>resp);
           return true;
         }),
         catchError((respError) => {
-          console.log(respError);
           this.currentError.update(() => respError?.error?.message);
           return of(false);
         })

@@ -16,6 +16,7 @@ import { ModalComponent } from 'src/app/guide/components/modal-image/modal.compo
 import { ImgPipe } from 'src/app/guide/pipes/img.pipe';
 import { AdminService } from '../../services/admin.service';
 import { ModalAlertComponent } from 'src/app/shared/modal-alert/modal-alert.component';
+import { ModalChangesService } from 'src/app/shared/modal-changes.service';
 
 export interface Personaje {
   name: string;
@@ -123,9 +124,8 @@ export class EditSectionComponent implements OnInit {
 
   sendForm() {
     if (this.sectionsForm.valid) {
-      /* si formulario es válido */
-      /* si la sección es editar y si existen cambios */
       if (!this.currentSectionIsAdd) {
+        /* esditando */
         if (Object.getOwnPropertyNames(this.currentChanges).length > 0) {
           const id = this.sectionsForm.get('id')?.value;
           if (this.currentChanges['contenido']) {
@@ -137,24 +137,36 @@ export class EditSectionComponent implements OnInit {
 
           this.adminService
             .updateSection(id, this.currentChanges)
-            .subscribe((response) => {
-              if (response) {
-                this.handleModal('Actualizado correctamente');
+            .subscribe((resp: boolean) => {
+              if (!resp) {
+                this.modalService.setEventForOpenModal =
+                  this.adminService.currentError();
+              } else {
+                this.modalService.setEventForOpenModal =
+                  'Actualizado correctamente';
               }
             });
         } else {
-          this.handleModal('No hubo cambios en la sección');
+          this.modalService.setEventForOpenModal =
+            'No hubo cambios en la sección';
         }
       } else {
+        /* agregando ando */
         const { id, ...newSection } = this.sectionsForm?.value;
-        this.adminService.createSection(newSection).subscribe((msg) => {
-          /*  this.handleModal(msg); */
-        });
+        this.adminService
+          .createSection(newSection)
+          .subscribe((resp: boolean) => {
+            if (!resp) {
+              this.modalService.setEventForOpenModal =
+                this.adminService.currentError();
+            } else {
+              this.modalService.setEventForOpenModal = 'Agregado correctamente';
+            }
+          });
       }
     } else {
-      this.handleModal(
-        'El formulario no es válido, por favor revisa con detenimiento si está completo'
-      );
+      this.modalService.setEventForOpenModal =
+        'El formulario no es válido, por favor revisa con detenimiento si está completo';
     }
   }
 
@@ -254,22 +266,12 @@ export class EditSectionComponent implements OnInit {
     });
   }
 
-  showModal = false;
-  currentMsgForModal: string = '';
-  handleModal(msg: string) {
-    this.showModal = true;
-    this.currentMsgForModal = msg;
-  }
-
-  closeModal(eventBoolean: boolean) {
-    this.showModal = eventBoolean;
-  }
-
   constructor(
     private guideService: InfoSectionsService,
     private activatedRouter: ActivatedRoute,
     private formBuilder: FormBuilder,
     private router: Router,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private modalService: ModalChangesService
   ) {}
 }
