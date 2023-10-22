@@ -40,14 +40,17 @@
       >
         <li>
           <a
-            routerLink="/admin/secions/add"
+            routerLink="/admin/sections/add"
+            routerLinkActive="activeNav"
+            [routerLinkActiveOptions]="{
+              exact: true
+            }"
             class="block py-2 pl-3 pr-4 rounded md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-blue-500 md:hover:bg-transparent border-gray-700"
-            aria-current="page"
             >Agregar Sección</a
           >
         </li>
         <li>
-          <button
+          <a
             id="mega-menu-full-dropdown-button"
             data-collapse-toggle="mega-menu-full-dropdown"
             class="flex items-center justify-between w-full py-2 pl-3 pr-4 rounded md:w-auto md:border-0 md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-blue-500 md:hover:bg-transparent border-gray-700"
@@ -69,11 +72,15 @@
                 d="m1 1 4 4 4-4"
               />
             </svg>
-          </button>
+          </a>
         </li>
         <li>
           <a
             routerLink="/admin/users"
+            routerLinkActive="activeNav"
+            [routerLinkActiveOptions]="{
+              exact: true
+            }"
             class="block py-2 pl-3 pr-4 rounded md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-blue-500 md:hover:bg-transparent border-gray-700"
             >Usuarios</a
           >
