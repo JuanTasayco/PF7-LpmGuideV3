@@ -11,6 +11,7 @@ import { switchMap } from 'rxjs';
 import { AdminService } from '../../services/admin.service';
 import { User } from '../../interfaces/admin.interfaces';
 import { ModalAlertComponent } from 'src/app/shared/modal-alert/modal-alert.component';
+import { ModalChangesService } from 'src/app/shared/modal-changes.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -27,7 +28,6 @@ import { ModalAlertComponent } from 'src/app/shared/modal-alert/modal-alert.comp
 })
 export class EditUserComponent implements OnInit {
   currentSeccionIsEdit: boolean = false;
-  showModal: boolean = false;
   currentMsgForModal: string = '';
 
   userEdit: FormGroup = this.formBuilder.group({
@@ -58,6 +58,7 @@ export class EditUserComponent implements OnInit {
         .pipe(switchMap(({ id }) => this.adminService.getUserById(id)))
         .subscribe((user: User) => {
           this.setValues(user);
+          console.log(this.currentChanges);
         });
     } else {
       /* nombre email password isActive */
@@ -72,20 +73,30 @@ export class EditUserComponent implements OnInit {
       if (this.userEdit.valid) {
         if (Object.getOwnPropertyNames(this.currentChanges).length > 0) {
           const id = this.userEdit.get('id')?.value;
+          console.log(this.userEdit.value);
+          console.log(this.currentChanges);
           this.adminService
             .updateUser(id, this.currentChanges)
             .subscribe((response) => {
-              if (response) this.handleModal('Editado correctamente');
-              else this.handleModal('No pudimos actualizar el usuario');
+              console.log(response);
+              /*    if (response)
+                this.modalService.setEventForOpenModal =
+                  'Editado Correctamente.';
+              else
+                this.modalService.setEventForOpenModal =
+                  'No pudimos actualizar el usuario'; */
+
               setTimeout(() => {
                 window.location.reload();
               }, 1200);
             });
         } else {
-          this.handleModal('No hubo cambios en el usuario.');
+          this.modalService.setEventForOpenModal =
+            'No hubo cambios en el usuario.';
         }
       } else {
-        this.handleModal('Formulario no es válido por favor revisar.');
+        this.modalService.setEventForOpenModal =
+          'Formulario no es válido por favor revisar.';
       }
     } else {
       /* agregando */
@@ -93,9 +104,9 @@ export class EditUserComponent implements OnInit {
         const { isActive, ...newUser } = this.userEdit.value;
         this.adminService.createUser(newUser).subscribe((responseObject) => {
           if (typeof responseObject == 'string') {
-            this.handleModal(responseObject);
+            this.modalService.setEventForOpenModal = responseObject;
           } else {
-            this.handleModal('Agregado Correctamente');
+            this.modalService.setEventForOpenModal = 'Agregado Correctamente';
             this.userEdit.reset({
               apellido: '',
               direccion: '',
@@ -107,18 +118,13 @@ export class EditUserComponent implements OnInit {
           }
         });
       } else {
-        this.handleModal('Formulario no es válido por favor revisar.');
+        this.modalService.setEventForOpenModal =
+          'Formulario no es válido por favor revisar.';
       }
     }
   }
 
-  handleModal(msg: string) {
-    this.showModal = true;
-    this.currentMsgForModal = msg;
-  }
-
   setValues(user: User) {
-    this.currentChanges = {};
     this.userEdit.patchValue({
       id: user.id,
       nombre: user.nombre,
@@ -132,7 +138,8 @@ export class EditUserComponent implements OnInit {
       password: user.password,
       isActive: user.isActive,
     });
-
+    
+    this.currentChanges = {};
     for (let controlName of Object.keys(this.userEdit.controls)) {
       this.userEdit.get(controlName)?.valueChanges.subscribe((value) => {
         this.currentChanges[controlName] = value;
@@ -140,13 +147,11 @@ export class EditUserComponent implements OnInit {
     }
   }
 
-  closeModal(event: boolean) {
-    this.showModal = event;
-  }
   constructor(
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private adminService: AdminService,
-    private router: Router
+    private router: Router,
+    private modalService: ModalChangesService
   ) {}
 }

@@ -71,7 +71,7 @@
 <!-- container-form -->
 
 <div
-  class="EditUser-container relative EditUser-container--form md:grow h-full p-5 w-full lg:w-auto mt-7 lg:mt-0 lg:top-[15rem]"
+  class="EditUser-container relative EditUser-container--form md:grow h-full p-5 w-full lg:w-auto mt-7 lg:mt-0"
 >
   <form
     (submit)="sendUser()"
@@ -112,12 +112,15 @@
       </div>
 
       <div class="md:mt-10 ml-5">
-        <label class="relative inline-flex items-center mr-5 cursor-pointer">
+        <label
+          for="active"
+          class="relative inline-flex items-center mr-5 cursor-pointer"
+        >
           <input
+            id="active"
             type="checkbox"
             formControlName="isActive"
             class="sr-only peer"
-            checked
           />
           <div
             class="w-11 h-6 rounded-full peer bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all border-gray-600 peer-checked:bg-green-600"
@@ -133,5 +136,6 @@
       {{ currentSeccionIsEdit ? "Editar Usuario" : "Agregar Usuario" }}
     </button>
   </form>
+
+  <app-modal-alert></app-modal-alert>
 </div>
-<app-modal-alert> </app-modal-alert>

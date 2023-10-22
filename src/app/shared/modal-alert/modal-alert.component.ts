@@ -1,23 +1,23 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ElementRef,
-  Input,
-  OnChanges,
   OnInit,
-  SimpleChanges,
+  Renderer2,
   ViewChild,
   inject,
   signal,
 } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 
 import { Modal, ModalOptions } from 'flowbite';
 import { ModalChangesService } from '../modal-changes.service';
+import { Flowbite } from 'src/app/guide/decorator/flowbite-decorator';
 @Component({
   selector: 'app-modal-alert',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf, NgClass],
   templateUrl: './modal-alert.component.html',
   styleUrls: ['./modal-alert.component.scss'],
 })
@@ -26,7 +26,8 @@ export class ModalAlertComponent implements AfterViewInit, OnInit {
   @ViewChild('modalObject') modalComponent!: ElementRef<HTMLElement>;
   modalService = inject(ModalChangesService);
   modal!: Modal;
-
+  addBgToModal: boolean = false;
+  /*  bg-gray-900 bg-opacity-50 fixed inset-0 */
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
@@ -34,10 +35,14 @@ export class ModalAlertComponent implements AfterViewInit, OnInit {
       /* bottom-right */
       placement: 'center',
       backdrop: 'dynamic',
-      backdropClasses: 'bg-gray-900 bg-opacity-50 fixed inset-0 z-40',
+      backdropClasses: 'z-10',
       closable: true,
-      onHide: () => {},
-      onShow: () => {},
+      onHide: () => {
+        this.addBgToModal = false;
+      },
+      onShow: () => {
+        this.addBgToModal = true;
+      },
       onToggle: () => {},
     };
 
@@ -58,4 +63,6 @@ export class ModalAlertComponent implements AfterViewInit, OnInit {
   closeModal() {
     this.modal.hide();
   }
+
+  constructor() {}
 }

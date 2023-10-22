@@ -148,7 +148,7 @@ export class EditSectionComponent implements OnInit {
       } else {
         const { id, ...newSection } = this.sectionsForm?.value;
         this.adminService.createSection(newSection).subscribe((msg) => {
-          this.handleModal(msg);
+          /*  this.handleModal(msg); */
         });
       }
     } else {
