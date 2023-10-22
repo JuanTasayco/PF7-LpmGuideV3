@@ -21,7 +21,7 @@ export class AdminService {
     return this.http.post<Seccion>(`${this.currentUrl}/lpm/`, section).pipe(
       map(() => true),
       catchError((respError) => {
-        this.currentError.update(respError);
+        this.currentError.update(() => respError?.error?.message);
         return of(false);
       })
     );
@@ -47,7 +47,7 @@ export class AdminService {
     return this.http.post<User>(`${this.currentUrl}/auth/register`, body).pipe(
       map(() => true),
       catchError((respError) => {
-        this.currentError.update(respError);
+        this.currentError.update(() => respError?.error?.message);
         return of(false);
       })
     );
@@ -62,7 +62,8 @@ export class AdminService {
           return true;
         }),
         catchError((respError) => {
-          this.currentError.update(respError);
+          console.log(respError);
+          this.currentError.update(() => respError?.error?.message);
           return of(false);
         })
       );

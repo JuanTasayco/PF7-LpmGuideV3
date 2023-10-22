@@ -66,6 +66,7 @@ export class EditUserComponent implements OnInit {
     }
   }
 
+  /* algunas propiedades del userEditForm, puede ir solo nombre o roles, o etc */
   currentChanges: any = {};
   sendUser() {
     /* editando */
@@ -73,28 +74,29 @@ export class EditUserComponent implements OnInit {
       if (this.userEdit.valid) {
         if (Object.getOwnPropertyNames(this.currentChanges).length > 0) {
           const id = this.userEdit.get('id')?.value;
-          console.log(this.userEdit.value);
-          console.log(this.currentChanges);
           this.adminService
             .updateUser(id, this.currentChanges)
-            .subscribe((response) => {
-              console.log(response);
-              /*    if (response)
+            .subscribe((resp: boolean) => {
+              if (resp) {
                 this.modalService.setEventForOpenModal =
                   'Editado Correctamente.';
-              else
-                this.modalService.setEventForOpenModal =
-                  'No pudimos actualizar el usuario'; */
 
-              setTimeout(() => {
-                window.location.reload();
-              }, 1200);
+                setTimeout(() => {
+                  window.location.reload();
+                }, 1200);
+              } else {
+                this.modalService.setEventForOpenModal =
+                  this.adminService.currentError();
+              }
             });
+
+          /* si no hay currentChanges ( propiedades que cambian) */
         } else {
           this.modalService.setEventForOpenModal =
             'No hubo cambios en el usuario.';
         }
       } else {
+        /* si el formulario no es válido */
         this.modalService.setEventForOpenModal =
           'Formulario no es válido por favor revisar.';
       }
@@ -102,9 +104,10 @@ export class EditUserComponent implements OnInit {
       /* agregando */
       if (this.userEdit.valid) {
         const { isActive, ...newUser } = this.userEdit.value;
-        this.adminService.createUser(newUser).subscribe((responseObject) => {
-          if (typeof responseObject == 'string') {
-            this.modalService.setEventForOpenModal = responseObject;
+        this.adminService.createUser(newUser).subscribe((resp: boolean) => {
+          if (!resp) {
+            this.modalService.setEventForOpenModal =
+              this.adminService.currentError();
           } else {
             this.modalService.setEventForOpenModal = 'Agregado Correctamente';
             this.userEdit.reset({
@@ -138,7 +141,7 @@ export class EditUserComponent implements OnInit {
       password: user.password,
       isActive: user.isActive,
     });
-    
+
     this.currentChanges = {};
     for (let controlName of Object.keys(this.userEdit.controls)) {
       this.userEdit.get(controlName)?.valueChanges.subscribe((value) => {
