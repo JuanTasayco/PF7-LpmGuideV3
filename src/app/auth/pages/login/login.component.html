@@ -103,10 +103,6 @@
       Ingresar al panel
     </button>
   </form>
-  <app-modal-alert
-    [showModalComponent]="showModal"
-    [showButtonsActivate]="true"
-    [textDescriptionModal]="currentMsgModal"
-    (closeModalComponent)="getEventCloseModal($event)"
-  ></app-modal-alert>
 </div>
+<!-- parte del componente tiene que estar aquí para saber donde irá -->
+<app-modal-alert></app-modal-alert>

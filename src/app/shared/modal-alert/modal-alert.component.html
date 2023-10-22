@@ -1,20 +1,14 @@
 <div
-  id="modal-alert"
+  #modalObject
   tabindex="-1"
-  #modalContainer
-  type="button"
-  class="Alert hidden fixed z-50 p-4 overflow-x-hidden overflow-y-auto inset-0 h-[calc(100%-1rem)] max-h-full"
+  class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
 >
-  <div
-    #modalItem
-    class="Alert-box relative w-full max-w-md max-h-full mb-[10%]"
-  >
+  <div class="relative w-full max-w-md max-h-full">
     <div class="relative rounded-lg shadow bg-gray-700">
       <button
-        (click)="closeButton()"
         type="button"
+        (click)="closeModal()"
         class="absolute top-3 right-2.5 text-gray-400 bg-transparent rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center hover:bg-gray-600 hover:text-white"
-        data-modal-hide="modal-alert"
       >
         <svg
           class="w-3 h-3"
@@ -50,22 +44,16 @@
           />
         </svg>
         <h3 class="mb-5 text-lg font-normal text-gray-400">
-          {{ textDescriptionModal }}
+          {{ currentMessageForModal() }}
         </h3>
         <button
-          (click)="closeButton()"
-          *ngIf="showButtonsActivate"
-          data-modal-hide="modal-alert"
+          (click)="closeModal()"
           type="button"
           class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
         >
-          {{ textYesButton }}
+          Ok
         </button>
-
       </div>
     </div>
   </div>
 </div>
-
-
-

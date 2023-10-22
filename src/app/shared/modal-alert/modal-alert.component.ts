@@ -1,17 +1,19 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
-  EventEmitter,
   Input,
   OnChanges,
   OnInit,
-  Output,
   SimpleChanges,
   ViewChild,
+  inject,
+  signal,
 } from '@angular/core';
 import { NgIf } from '@angular/common';
-import { gsap } from 'gsap';
-import { Flowbite } from 'src/app/guide/decorator/flowbite-decorator';
+
+import { Modal, ModalOptions } from 'flowbite';
+import { ModalChangesService } from '../modal-changes.service';
 @Component({
   selector: 'app-modal-alert',
   standalone: true,
@@ -19,49 +21,41 @@ import { Flowbite } from 'src/app/guide/decorator/flowbite-decorator';
   templateUrl: './modal-alert.component.html',
   styleUrls: ['./modal-alert.component.scss'],
 })
-@Flowbite()
-export class ModalAlertComponent implements OnInit, OnChanges {
-  @Input() showButtonsActivate: boolean = false;
-  textYesButton: string = 'Ok';
-  textNoButton: string = 'Salir';
-  @Input() textDescriptionModal: string = '';
-  @Input('showModalComponent') showModal: boolean = false;
-  @Output('closeModalComponent') closeModal: EventEmitter<boolean> =
-    new EventEmitter<boolean>();
-  /* Alert--show  */
-  @ViewChild('modalContainer') modalContainer!: ElementRef<HTMLElement>;
-  @ViewChild('modalItem') modalItem!: ElementRef<HTMLElement>;
+export class ModalAlertComponent implements AfterViewInit, OnInit {
+  /*   @Input() msgForModal: string = ''; */
+  @ViewChild('modalObject') modalComponent!: ElementRef<HTMLElement>;
+  modalService = inject(ModalChangesService);
+  modal!: Modal;
 
-  closeButton() {
-    gsap.to(this.modalItem.nativeElement, {
-      opacity: 0,
-      scale: 0.5,
-      duration: 0.3,
-      onComplete: () => {
-        this.modalContainer.nativeElement.classList.remove('Alert--show');
-        this.showModal = false;
-        this.closeModal.emit(this.showModal);
-      },
-    });
-  }
-
-  openButton() {
-    gsap.to(this.modalItem.nativeElement, {
-      opacity: 1,
-      scale: 1,
-      duration: 0.3,
-      onComplete: () => {
-        this.modalContainer.nativeElement.classList.add('Alert--show');
-      },
-    });
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['showModal'].currentValue) {
-      this.openButton();
-    }
-  }
-
-  constructor() {}
   ngOnInit(): void {}
+
+  ngAfterViewInit(): void {
+    const options: ModalOptions = {
+      /* bottom-right */
+      placement: 'center',
+      backdrop: 'dynamic',
+      backdropClasses: 'bg-gray-900 bg-opacity-50 fixed inset-0 z-40',
+      closable: true,
+      onHide: () => {},
+      onShow: () => {},
+      onToggle: () => {},
+    };
+
+    this.modal = new Modal(this.modalComponent.nativeElement, options);
+
+    /* recibir mensaje que tendrá el modal */
+    this.modalService.getOpenModalEvent.subscribe((message) => {
+      if (message) this.openModal(message);
+    });
+  }
+
+  currentMessageForModal = signal<string>('');
+  openModal(message: string) {
+    this.currentMessageForModal.update(() => message);
+    this.modal.show();
+  }
+
+  closeModal() {
+    this.modal.hide();
+  }
 }

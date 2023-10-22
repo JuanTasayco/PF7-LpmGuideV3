@@ -30,7 +30,7 @@ export class AuthService {
         }),
         map(() => true),
         catchError((responseError: HttpErrorResponse) => {
-          this.currentErrorMsg = responseError.error?.message;
+          this.currentErrorMsg.update(() => responseError.error?.message);
           return of(false);
         })
       );
@@ -50,7 +50,7 @@ export class AuthService {
         }),
         map(() => true),
         catchError((reponseError: HttpErrorResponse) => {
-          this.currentErrorMsg = reponseError.error.message;
+          this.currentErrorMsg.update(() => reponseError.error?.message);
           return of(false);
         })
       );

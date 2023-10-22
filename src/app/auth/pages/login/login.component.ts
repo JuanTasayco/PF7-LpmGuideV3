@@ -16,6 +16,7 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { ModalAlertComponent } from '../../../shared/modal-alert/modal-alert.component';
 import { AuthService } from '../../services/auth.service';
+import { ModalChangesService } from 'src/app/shared/modal-changes.service';
 
 @Component({
   selector: 'app-login',
@@ -34,7 +35,6 @@ export class LoginComponent implements AfterViewInit, OnInit {
   @ViewChild('inputEmail') emailInput!: ElementRef<HTMLElement>;
   @ViewChild('inputPassword') passwordInput!: ElementRef<HTMLElement>;
   existError: boolean = false;
-  showModal: boolean = false;
   /*  juantasayco@gmail.com*/
   public formLogin: FormGroup = this.fb.group({
     email: ['labight@gmail.com', [Validators.required, Validators.email]],
@@ -97,21 +97,19 @@ export class LoginComponent implements AfterViewInit, OnInit {
       const { terms, ...restValues } = this.formLogin.value;
       this.authService.loginUser(restValues).subscribe((status) => {
         if (!status) {
-          this.handleModal(this.authService.currentErrorMsg());
+          /* showModal , es current cuando el error lo entrega el backend*/
+          this.modalService.setEventForOpenModal =
+            this.authService.currentErrorMsg();
         } else {
           this.router.navigate(['/admin/sections/add']);
         }
       });
     } else {
       this.formLogin.markAllAsTouched();
-      this.handleModal('Existen errores en el formulario');
+      /* showModal , es un msg simple cuando el error es propio del componente*/
+      this.modalService.setEventForOpenModal =
+        'Existen errores en el formulario';
     }
-  }
-
-  currentMsgModal: string = '';
-  handleModal(message: string) {
-    this.showModal = true;
-    this.currentMsgModal = message;
   }
 
   ngAfterViewInit(): void {}
@@ -120,13 +118,9 @@ export class LoginComponent implements AfterViewInit, OnInit {
     private fb: FormBuilder,
     private renderer: Renderer2,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private modalService: ModalChangesService
   ) {}
 
   ngOnInit(): void {}
-
-  /* solo evento close */
-  getEventCloseModal(eventClose: boolean) {
-    this.showModal = eventClose;
-  }
 }
