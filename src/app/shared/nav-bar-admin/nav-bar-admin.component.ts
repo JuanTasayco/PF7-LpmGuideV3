@@ -3,14 +3,16 @@ import {
   ElementRef,
   ViewChild,
   AfterViewInit,
-  Renderer2,
   ViewEncapsulation,
   OnInit,
+  signal,
 } from '@angular/core';
-import { CommonModule, NgFor, NgIf, TitleCasePipe } from '@angular/common';
+import { NgFor, NgIf, TitleCasePipe } from '@angular/common';
 import { Flowbite } from 'src/app/guide/decorator/flowbite-decorator';
 import { RouterModule } from '@angular/router';
 import { InfoSectionsService } from 'src/app/guide/services/info-sections.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { User } from 'src/app/admin/interfaces/admin.interfaces';
 @Component({
   selector: 'app-nav-bar-admin',
   standalone: true,
@@ -22,7 +24,7 @@ import { InfoSectionsService } from 'src/app/guide/services/info-sections.servic
 @Flowbite()
 export class NavBarAdminComponent implements AfterViewInit, OnInit {
   @ViewChild('menuDisplay') menuDisplayItem!: ElementRef<HTMLElement>;
-
+  currentUser = signal<User | null>(null);
   items!: { [key: string]: any[] };
   ngOnInit(): void {
     this.guideService.getAllSections().subscribe((info) => {
@@ -37,8 +39,9 @@ export class NavBarAdminComponent implements AfterViewInit, OnInit {
       });
 
       this.items = objectSection;
-
     });
+
+    this.currentUser.update(this.authService.currentUser());
   }
 
   get itemsKeys(): string[] {
@@ -48,8 +51,8 @@ export class NavBarAdminComponent implements AfterViewInit, OnInit {
   openMenuUser() {}
 
   constructor(
-    private renderer2: Renderer2,
-    private guideService: InfoSectionsService
+    private guideService: InfoSectionsService,
+    private authService: AuthService
   ) {}
   ngAfterViewInit(): void {}
 }

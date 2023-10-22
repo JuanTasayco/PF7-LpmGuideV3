@@ -52,7 +52,7 @@
             data-collapse-toggle="mega-menu-full-dropdown"
             class="flex items-center justify-between w-full py-2 pl-3 pr-4 rounded md:w-auto md:border-0 md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-blue-500 md:hover:bg-transparent border-gray-700"
             aria-expanded="false"
-            >
+          >
             Editar Sección
             <svg
               class="w-2.5 h-2.5 ml-2.5"
@@ -90,7 +90,10 @@
     </div>
 
     <!-- nav del usuario ( donde está la foto de perfil) -->
-    <div class="Nabvar-box flex md:relative items-center md:order-2">
+    <div
+      *ngIf="this.currentUser()"
+      class="Nabvar-box flex md:relative items-center md:order-2"
+    >
       <button
         type="button"
         class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-600"
@@ -102,7 +105,7 @@
         <span class="Nabvar-span sr-only">Open user menu</span>
         <img
           class="Navbar-photo w-8 h-8 rounded-full"
-          src="assets/renta.jpg"
+          [src]="this.currentUser()?.imagenUrl"
           alt="user photo"
         />
       </button>
@@ -112,23 +115,42 @@
         id="user-dropdown"
       >
         <div class="px-4 py-3">
-          <span class="Navbar-span block text-sm text-white">Juan Tasayco</span>
-          <span class="Navbar-span block text-sm truncate text-gray-400"
-            >juantasayco266@gmail.com</span
+          <span class="Navbar-span block text-sm text-white"
+            >{{ this.currentUser()?.nombre }}
+            {{ this.currentUser()?.apellido }}</span
           >
+          <span class="Navbar-span block text-sm truncate text-gray-400">{{
+            this.currentUser()?.email
+          }}</span>
         </div>
         <ul class="Navbar-ul py-2" aria-labelledby="user-menu-button">
           <li class="Navbar-li">
-            <a href="#" class="Navbar-a navBarItemsUser">Ver perfil</a>
+            <a
+              [routerLink]="['/admin/user/edit', this.currentUser()?.id]"
+              class="Navbar-a navBarItemsUser"
+              >Ver perfil</a
+            >
           </li>
           <li class="Navbar-li">
-            <a href="#" class="Navbar-a navBarItemsUser">Editar perfil</a>
+            <a
+              [routerLink]="['/admin/user/edit', this.currentUser()?.id]"
+              class="Navbar-a navBarItemsUser"
+              >Editar perfil</a
+            >
           </li>
           <li class="Navbar-li">
-            <a href="#" class="Navbar-a navBarItemsUser">Eliminar perfil</a>
+            <a
+              [routerLink]="['/admin/user/edit', this.currentUser()?.id]"
+              class="Navbar-a navBarItemsUser"
+              >Eliminar perfil</a
+            >
           </li>
           <li class="Navbar-li">
-            <a href="#" class="Navbar-a navBarItemsUser">Salir</a>
+            <a
+              [routerLink]="['/guide/principal']"
+              class="Navbar-a navBarItemsUser"
+              >Salir</a
+            >
           </li>
         </ul>
       </div>
