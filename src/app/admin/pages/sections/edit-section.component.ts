@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { JsonPipe, NgFor, NgIf, TitleCasePipe } from '@angular/common';
 import { InfoSectionsService } from 'src/app/guide/services/info-sections.service';
 import { Seccion } from 'src/app/guide/interfaces/sections.interfaces';
@@ -277,13 +277,17 @@ export class EditSectionComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<any>): void {
+    /* animación para que se quede donde lo dejo al arrastrar */
     moveItemInArray(
       event.container.data,
       event.previousIndex,
       event.currentIndex
     );
+    this.ingresoArray.updateValueAndValidity();
+    this.cdr.detectChanges();
 
     console.log(this.ingresoArray.value);
+    console.log(this.currentChanges);
   }
 
   constructor(
@@ -292,6 +296,7 @@ export class EditSectionComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private adminService: AdminService,
-    private modalService: ModalChangesService
+    private modalService: ModalChangesService,
+    private cdr: ChangeDetectorRef
   ) {}
 }
