@@ -1,5 +1,5 @@
-<div>
-  <div class="lg:max-w-[50%] m-auto my-16">
+<div class="Users">
+  <div class="Users-search lg:max-w-[70%] m-auto my-16">
     <app-search
       [placeh]="'Busca usuarios ...'"
       (eventValueText)="getTextUser($event)"
@@ -8,10 +8,28 @@
     </app-search>
   </div>
 
-  <div class="text-center">
-    <small class="text-[1.7rem] ml-0 text-white tracking-tight font-semibold"
+  <div class="Users-controls ms-10">
+    <button
+      class="User-button relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+    >
+      <a
+        routerLink="/admin/user/add"
+        class="User-span relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
+      >
+        Agregar Usuario
+      </a>
+    </button>
+  </div>
+
+  <div class="Users-title text-center mt-10">
+    <small class="text-[1.8rem] ml-0 text-white tracking-tight font-semibold"
       >Administradores</small
     >
+    <p class="text-gray-500 md:max-w-[60%] text-center m-auto mt-5">
+      Los administradores tienen acceso a todo tipo de edición, desde secciones
+      hasta de los propios usuarios incluyendo los propios admins, por esta
+      razón los administradores no puede ser cualquier persona.
+    </p>
   </div>
 
   <app-card-user
@@ -19,12 +37,17 @@
     *ngIf="adminUsers.length > 0"
     [usersArray]="adminUsers"
   ></app-card-user>
-</div>
-<div class="my-10" *ngIf="normalUsers.length > 0">
-  <div class="text-center">
-    <small class="text-[1.7rem] ml-0 text-white tracking-tight font-semibold"
+
+  <div class="Users-title text-center mt-10">
+    <small class="text-[1.8rem] ml-0 text-white tracking-tight font-semibold"
       >Usuarios</small
     >
+
+    <p class="text-gray-500 md:max-w-[60%] text-center m-auto mt-5">
+      Los usuarios no podrán acceder a esta sección de administración, los
+      beneficios de un usuario aún no están registrados, por el momento solo los
+      admin podrán editar secciones entre otras cosas.
+    </p>
   </div>
   <app-card-user
     [roleUserName]="'usuario'"

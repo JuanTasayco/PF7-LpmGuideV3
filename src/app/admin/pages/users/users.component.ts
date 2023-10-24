@@ -4,11 +4,19 @@ import { AdminService } from '../../services/admin.service';
 import { User } from '../../interfaces/admin.interfaces';
 import { JsonPipe, NgFor, NgIf } from '@angular/common';
 import { SearchComponent } from 'src/app/shared/search/search.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [CardUserComponent, JsonPipe, NgFor, NgIf, SearchComponent],
+  imports: [
+    CardUserComponent,
+    JsonPipe,
+    NgFor,
+    NgIf,
+    SearchComponent,
+    RouterModule,
+  ],
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
 })

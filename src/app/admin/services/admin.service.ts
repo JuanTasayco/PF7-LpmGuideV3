@@ -76,6 +76,10 @@ export class AdminService {
       );
   }
 
+  deleteUser(id: string): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.currentUrl}/auth/delete/${id}`);
+  }
+
   getUsersByName(name: string): Observable<User[]> {
     return this.http.get<User[]>(`${this.currentUrl}/auth/users/${name}`);
   }

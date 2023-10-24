@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { JsonPipe, NgFor, TitleCasePipe } from '@angular/common';
+import { JsonPipe, NgClass, NgFor, TitleCasePipe } from '@angular/common';
 import {
   FormBuilder,
   FormGroup,
@@ -22,6 +22,7 @@ import { ModalChangesService } from 'src/app/shared/modal-changes.service';
     JsonPipe,
     TitleCasePipe,
     ModalAlertComponent,
+    NgClass,
   ],
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.scss'],
@@ -58,7 +59,6 @@ export class EditUserComponent implements OnInit {
         .pipe(switchMap(({ id }) => this.adminService.getUserById(id)))
         .subscribe((user: User) => {
           this.setValues(user);
-          console.log(this.currentChanges);
         });
     } else {
       /* nombre email password isActive */
@@ -83,7 +83,7 @@ export class EditUserComponent implements OnInit {
 
                 setTimeout(() => {
                   window.location.reload();
-                }, 1200);
+                }, 1000);
               } else {
                 this.modalService.setEventForOpenModal =
                   this.adminService.currentError();
@@ -125,6 +125,21 @@ export class EditUserComponent implements OnInit {
           'Formulario no es válido por favor revisar.';
       }
     }
+  }
+
+  deleteUser(id: string) {
+    console.log('trayendo info');
+    this.adminService.deleteUser(id).subscribe((response: boolean) => {
+      if (response) {
+        this.modalService.setEventForOpenModal = 'Eliminado Correctamente';
+        setTimeout(() => {
+          this.router.navigate(['/admin/users']);
+        }, 1000);
+      } else {
+        this.modalService.setEventForOpenModal =
+          'No se pudo eliminar el usuario';
+      }
+    });
   }
 
   setValues(user: User) {

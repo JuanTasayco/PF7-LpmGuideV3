@@ -1,11 +1,8 @@
 <!-- container Card User -->
-<!--  <div
+<div class="EditUser xl:flex items-center justify-center">
+  <div
     class="EditUser-container EditUser-container--user lg:basis-[60%] h-full w-full"
   >
-    <h2 class="text-white font-semibold">
-      Bienvenido {{ userEdit.get("nombre")?.value }}
-    </h2>
-
     <div class="questions test p-5 flex flex-col gap-8">
       <div>
         <span
@@ -17,11 +14,10 @@
           Necesito especificar un nuevo password ?
         </h3>
         <p class="text-gray-400 text-[1rem] my-3 w-full md:w-[71%]">
-          Cada cada vez que intentes actualizar información, la contraseña debe
-          renovarse, puedes utilizar la misma o una nueva, pero necesita
-          enviarse junto con los datos actualizados.
+          No, pero si necesitas cambiar la contraseña, recuerda vaciar el
+          recuadro password y colocar la nueva contraseña.
         </p>
-        <p class="text-[1rem] font-bold text-blue-600">Read More</p>
+        <p class="text-[1rem] font-bold text-blue-600">Leer más</p>
       </div>
 
       <div>
@@ -31,23 +27,23 @@
         >
 
         <h3 class="text-white text-2xl font-bold tracking-tighter mt-2">
-          Como editar información? (porqué hay password?)
+          Como campos no debería cambiar?
         </h3>
         <p class="text-gray-400 text-[1rem] my-3 w-full md:w-[71%]">
-          Cada cada vez que intentes actualizar información, la contraseña debe
-          renovarse, puedes utilizar la misma o una nueva, pero necesita
-          enviarse junto con los datos actualizados.
+          Puedes modificar el campo que desees pero modificar el rol y activar o
+          desactivar al usuario tendrá cambios importantes, como perder el
+          acceso a este panel y/o incluso perder el acceso al propio sistema.
         </p>
-        <p class="text-[1rem] font-bold text-blue-600">Read More</p>
+        <p class="text-[1rem] font-bold text-blue-600">Leer Más</p>
       </div>
     </div>
- 
+
     <div
       class="flex mt-6 relative flex-col items-center mx-5 border rounded-lg shadow md:flex-row md:max-w-xl border-gray-700 bg-gray-800 hover:bg-gray-700"
     >
       <img
         class="EditUser-img w-full h-[100px] md:h-[260px] rounded-t-lg md:w-48"
-        src="assets/renta.jpg"
+        [src]="userEdit.get('imagenUrl')?.value"
         alt="image user"
       />
       <div class="flex flex-col justify-between p-4 leading-normal">
@@ -66,76 +62,88 @@
         </form>
       </div>
     </div>
-  </div> -->
+  </div>
 
-<!-- container-form -->
+  <!-- container-form -->
 
-<div
-  class="EditUser-container relative EditUser-container--form md:grow h-full p-5 w-full lg:w-auto mt-7 lg:mt-0"
->
-  <form
-    (submit)="sendUser()"
-    [formGroup]="userEdit"
-    class="w-full lg:max-w-[42rem] p-4 m-auto rounded-lg shadow sm:p-6 md:p-8 bg-gray-800 border-gray-700"
+  <div
+    class="EditUser-container xl:basis-[60%] relative EditUser-container--form md:grow h-full p-5 md:w-auto mt-7 lg:mt-0"
   >
-    <small class="text-white text-lg font-semibold">{{
-      currentSeccionIsEdit ? "Editar Usuario" : "Nuevo Usuario"
-    }}</small>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 mt-5">
-      <div class="" *ngFor="let item of getControls.slice(1); let i = index">
-        <label
-          [for]="item + i"
-          class="block mb-2 text-sm font-medium text-white"
-          >{{ item | titlecase }}</label
-        >
-        <input
-          [formControlName]="item"
-          [type]="item == 'password' ? 'password' : 'text'"
-          [id]="item + i"
-          class="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white"
-          [placeholder]="'Ingresa ' + item + '...'"
-        />
-      </div>
-
-      <div class="">
-        <label for="rolesUser" class="block mb-2 text-sm font-medium text-white"
-          >Elige un rol</label
-        >
-        <select
-          id="rolesUser"
-          formControlName="roles"
-          class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-        >
-          <option selected value="user">Usuario</option>
-          <option value="admin">Administrador</option>
-        </select>
-      </div>
-
-      <div class="md:mt-10 ml-5">
-        <label
-          for="active"
-          class="relative inline-flex items-center mr-5 cursor-pointer"
-        >
-          <input
-            id="active"
-            type="checkbox"
-            formControlName="isActive"
-            class="sr-only peer"
-          />
-          <div
-            class="w-11 h-6 rounded-full peer bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all border-gray-600 peer-checked:bg-green-600"
-          ></div>
-          <span class="ml-3 text-sm font-medium text-gray-300">Activo</span>
-        </label>
-      </div>
-    </div>
-    <button
-      type="submit"
-      class="w-full mt-10 text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
+    <form
+      (submit)="sendUser()"
+      [formGroup]="userEdit"
+      class="w-full md:max-w-[42rem] p-4 m-auto rounded-lg shadow sm:p-6 md:p-8 bg-gray-800 border-gray-700"
     >
-      {{ currentSeccionIsEdit ? "Editar Usuario" : "Agregar Usuario" }}
-    </button>
-  </form>
+      <small class="text-white text-lg font-semibold">{{
+        currentSeccionIsEdit ? "Editar Usuario" : "Nuevo Usuario"
+      }}</small>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 mt-5">
+        <div class="" *ngFor="let item of getControls.slice(1); let i = index">
+          <label
+            [for]="item + i"
+            class="block mb-2 text-sm font-medium text-white"
+            >{{ item | titlecase }}</label
+          >
+          <input
+            [formControlName]="item"
+            [type]="item == 'password' ? 'password' : 'text'"
+            [id]="item + i"
+            class="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white"
+            [placeholder]="'Ingresa ' + item + '...'"
+          />
+        </div>
 
-  <app-modal-alert></app-modal-alert>
+        <div class="">
+          <label
+            for="rolesUser"
+            class="block mb-2 text-sm font-medium text-white"
+            >Elige un rol</label
+          >
+          <select
+            id="rolesUser"
+            formControlName="roles"
+            class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+          >
+            <option selected value="user">Usuario</option>
+            <option value="admin">Administrador</option>
+          </select>
+        </div>
+
+        <div class="md:mt-10 ml-5">
+          <label
+            for="active"
+            class="relative inline-flex items-center mr-5 cursor-pointer"
+          >
+            <input
+              id="active"
+              type="checkbox"
+              formControlName="isActive"
+              class="sr-only peer"
+            />
+            <div
+              class="w-11 h-6 rounded-full peer bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all border-gray-600 peer-checked:bg-green-600"
+            ></div>
+            <span class="ml-3 text-sm font-medium text-gray-300">Activo</span>
+          </label>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="w-full mt-10 text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
+      >
+        {{ currentSeccionIsEdit ? "Editar Usuario" : "Agregar Usuario" }}
+      </button>
+      <button
+        [disabled]="!currentSeccionIsEdit"
+        [ngClass]="currentSeccionIsEdit ? '' : 'cursor-not-allowed'"
+        (click)="deleteUser(userEdit.get('id')?.value)"
+        type="button"
+        class="w-full mt-10 text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-pink-700 hover:bg-red-600 focus:ring-blue-800"
+      >
+        Eliminar
+      </button>
+    </form>
+
+    <app-modal-alert></app-modal-alert>
+  </div>
 </div>
