@@ -11,7 +11,7 @@
       type="button"
       class="inline-flex items-center w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
       aria-controls="mega-menu-full"
-      aria-expanded="false"
+      aria-expanded="true"
     >
       <span class="sr-only">Open main menu</span>
       <svg
@@ -54,7 +54,7 @@
           <a
             id="mega-menu-full-dropdown-button"
             data-collapse-toggle="mega-menu-full-dropdown"
-            class="flex items-center justify-between w-full py-2 pl-3 pr-4 rounded md:w-auto md:border-0 md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-blue-500 md:hover:bg-transparent border-gray-700"
+            class="flex items-center cursor-pointer justify-between w-full py-2 pl-3 pr-4 rounded md:w-auto md:border-0 md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-blue-500 md:hover:bg-transparent border-gray-700"
             aria-expanded="false"
           >
             Editar Sección
@@ -166,6 +166,8 @@
   </div>
 
   <!-- lógica para las barras de despliegue de algunos li en la barra de navegación -->
+
+  <!-- coloca hidden cuando cierra y arriba -->
   <div
     *ngIf="items"
     id="mega-menu-full-dropdown"
@@ -217,6 +219,7 @@
                 <li *ngFor="let section of items[item]">
                   <a
                     routerLink="/admin/sections/edit/{{ section.id }}"
+                    routerLinkActive="activeNav"
                     class="block px-4 py-2 hover:bg-gray-600 hover:text-white"
                     >{{ section.titulo2 | titlecase }}</a
                   >

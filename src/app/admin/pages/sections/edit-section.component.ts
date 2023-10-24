@@ -17,6 +17,13 @@ import { ImgPipe } from 'src/app/guide/pipes/img.pipe';
 import { AdminService } from '../../services/admin.service';
 import { ModalAlertComponent } from 'src/app/shared/modal-alert/modal-alert.component';
 import { ModalChangesService } from 'src/app/shared/modal-changes.service';
+import {
+  CdkDrag,
+  CdkDragDrop,
+  CdkDropList,
+  CdkDropListGroup,
+  moveItemInArray,
+} from '@angular/cdk/drag-drop';
 
 export interface Personaje {
   name: string;
@@ -36,6 +43,9 @@ export interface Personaje {
     ModalComponent,
     ImgPipe,
     ModalAlertComponent,
+    CdkDrag,
+    CdkDropList,
+    CdkDropListGroup,
   ],
   templateUrl: './edit-section.component.html',
   styleUrls: ['./edit-section.component.scss'],
@@ -264,6 +274,16 @@ export class EditSectionComponent implements OnInit {
       delete objeto.id;
       return objeto;
     });
+  }
+
+  drop(event: CdkDragDrop<any>): void {
+    moveItemInArray(
+      event.container.data,
+      event.previousIndex,
+      event.currentIndex
+    );
+
+    console.log(this.ingresoArray.value);
   }
 
   constructor(

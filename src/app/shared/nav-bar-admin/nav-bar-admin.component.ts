@@ -6,8 +6,10 @@ import {
   ViewEncapsulation,
   OnInit,
   signal,
+  QueryList,
+  ViewChildren,
 } from '@angular/core';
-import { NgFor, NgIf, TitleCasePipe } from '@angular/common';
+import { NgClass, NgFor, NgIf, TitleCasePipe } from '@angular/common';
 import { Flowbite } from 'src/app/guide/decorator/flowbite-decorator';
 import { RouterModule } from '@angular/router';
 import { InfoSectionsService } from 'src/app/guide/services/info-sections.service';
@@ -16,7 +18,7 @@ import { User } from 'src/app/admin/interfaces/admin.interfaces';
 @Component({
   selector: 'app-nav-bar-admin',
   standalone: true,
-  imports: [RouterModule, NgFor, TitleCasePipe, NgIf],
+  imports: [RouterModule, NgFor, TitleCasePipe, NgIf, NgClass],
   templateUrl: './nav-bar-admin.component.html',
   styleUrls: ['./nav-bar-admin.component.scss'],
   encapsulation: ViewEncapsulation.Emulated,
@@ -48,11 +50,13 @@ export class NavBarAdminComponent implements AfterViewInit, OnInit {
     return Object.keys(this.items);
   }
 
-  openMenuUser() {}
+  ngAfterViewInit(): void {}
 
   constructor(
     private guideService: InfoSectionsService,
     private authService: AuthService
   ) {}
-  ngAfterViewInit(): void {}
 }
+
+/* aria expanded=false */
+/*  */

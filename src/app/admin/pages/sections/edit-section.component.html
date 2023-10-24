@@ -93,64 +93,74 @@
         </div>
 
         <!-- show intro objects add -->
-        <div formGroupName="ingreso" class="px-5">
-          <li
-            class="Section-li mb-10 ml-4"
-            *ngFor="let item of ingresoArray.controls; let i = index"
+        <div cdkDropListGroup class="Drop">
+          <div
+            cdkDropList
+            [cdkDropListData]="ingresoArray.controls"
+            (cdkDropListDropped)="drop($event)"
+            formGroupName="ingreso"
+            class="px-5 Drop-array"
           >
-            <div [formGroupName]="i">
-              <div
-                class="absolute w-3 h-3 rounded-full mt-1.5 -left-1.5 border border-gray-900 bg-gray-700"
-              ></div>
-              <time class="mb-1 text-sm font-normal leading-none text-gray-500"
-                >Introduccion
-              </time>
-              <h3 class="text-lg font-semibold text-white">
-                Contenido introductorio
-              </h3>
+            <li
+              class="Section-li mb-10 ml-4 Drop-li"
+              cdkDrag
+              *ngFor="let item of ingresoArray.controls; let i = index"
+            >
+              <div [formGroupName]="i">
+                <div
+                  class="absolute w-3 h-3 rounded-full mt-1.5 -left-1.5 border border-gray-900 bg-gray-700"
+                ></div>
+                <time
+                  class="mb-1 text-sm font-normal leading-none text-gray-500"
+                  >Introduccion
+                </time>
+                <h3 class="text-lg font-semibold text-white">
+                  Contenido introductorio
+                </h3>
 
-              <div>
-                <label for="nameIntro{{ i }}" class="text-white text-sm">{{
-                  "texto" | titlecase
-                }}</label>
-                <input
-                  formControlName="subtitles"
-                  id="nameIntro{{ i }}"
-                  type="text"
-                  class="normalInput"
-                />
-              </div>
+                <div>
+                  <label for="nameIntro{{ i }}" class="text-white text-sm">{{
+                    "texto" | titlecase
+                  }}</label>
+                  <input
+                    formControlName="subtitles"
+                    id="nameIntro{{ i }}"
+                    type="text"
+                    class="normalInput"
+                  />
+                </div>
 
-              <div class="mt-5">
-                <label for="lastname" class="text-white text-sm">{{
-                  "imagen" | titlecase
-                }}</label>
-                <input
-                  id="lastname"
-                  (change)="changeImage($event, 'update', ingresoArray, i)"
-                  type="file"
-                  class="normalInput w-full"
-                />
-              </div>
+                <div class="mt-5">
+                  <label for="lastname" class="text-white text-sm">{{
+                    "imagen" | titlecase
+                  }}</label>
+                  <input
+                    id="lastname"
+                    (change)="changeImage($event, 'update', ingresoArray, i)"
+                    type="file"
+                    class="normalInput w-full"
+                  />
+                </div>
 
-              <div class="flex items-center justify-center mt-5">
-                <app-modal
-                  [modelTargetComponent]="'content' + i"
-                  [linkImageComponent]="item.get('imagesUrl')?.value | img"
-                  [numberImageComponent]="i"
-                ></app-modal>
+                <div class="flex items-center justify-center mt-5">
+                  <app-modal
+                    [modelTargetComponent]="'content' + i"
+                    [linkImageComponent]="item.get('imagesUrl')?.value | img"
+                    [numberImageComponent]="i"
+                  ></app-modal>
+                </div>
               </div>
-            </div>
-            <div class="flex items-center justify-center">
-              <button
-                type="button"
-                (click)="deleteFormGroupToArray(i, ingresoArray)"
-                class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 mt-3"
-              >
-                Borrar
-              </button>
-            </div>
-          </li>
+              <div class="flex items-center justify-center">
+                <button
+                  type="button"
+                  (click)="deleteFormGroupToArray(i, ingresoArray)"
+                  class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 mt-3"
+                >
+                  Borrar
+                </button>
+              </div>
+            </li>
+          </div>
         </div>
       </ol>
     </div>
