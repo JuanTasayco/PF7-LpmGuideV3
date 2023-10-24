@@ -276,17 +276,22 @@ export class EditSectionComponent implements OnInit {
     });
   }
 
-  drop(event: CdkDragDrop<any>): void {
+  drop(event: CdkDragDrop<any>, arrayName: string): void {
     /* animación para que se quede donde lo dejo al arrastrar */
     moveItemInArray(
       event.container.data,
       event.previousIndex,
       event.currentIndex
     );
-    this.ingresoArray.updateValueAndValidity();
-    this.cdr.detectChanges();
 
-    console.log(this.ingresoArray.value);
+    if (arrayName == 'contenido') {
+      this.contenidoArray.updateValueAndValidity();
+    } else if (arrayName == 'ingreso') {
+      this.ingresoArray.updateValueAndValidity();
+    }
+
+    /* me funciona sin detect changes, pero solo para prevenir en caso Angular en algún momento no los quiera ver como un two way data binding */
+    this.cdr.detectChanges();
     console.log(this.currentChanges);
   }
 
