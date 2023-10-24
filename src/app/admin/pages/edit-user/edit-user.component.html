@@ -1,7 +1,7 @@
 <!-- container Card User -->
 <div class="EditUser xl:flex items-center justify-center">
   <div
-    class="EditUser-container EditUser-container--user lg:basis-[60%] h-full w-full"
+    class="EditUser-container EditUser-container--user lg:basis-[60%] h-full w-full m-auto"
   >
     <div class="questions test p-5 flex flex-col gap-8">
       <div>
@@ -67,12 +67,12 @@
   <!-- container-form -->
 
   <div
-    class="EditUser-container xl:basis-[60%] relative EditUser-container--form md:grow h-full p-5 md:w-auto mt-7 lg:mt-0"
+    class="EditUser-container xl:basis-[60%] relative EditUser-container--form md:grow h-full p-5 md:w-auto lg:mt-0"
   >
     <form
       (submit)="sendUser()"
       [formGroup]="userEdit"
-      class="w-full md:max-w-[42rem] p-4 m-auto rounded-lg shadow sm:p-6 md:p-8 bg-gray-800 border-gray-700"
+      class="w-full md:max-w-[42rem] mt-5 p-4 m-auto rounded-lg shadow sm:p-6 md:p-8 bg-gray-800 border-gray-700"
     >
       <small class="text-white text-lg font-semibold">{{
         currentSeccionIsEdit ? "Editar Usuario" : "Nuevo Usuario"
