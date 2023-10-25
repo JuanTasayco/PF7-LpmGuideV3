@@ -305,6 +305,10 @@ export class EditSectionComponent implements OnInit {
         this.modalService.setEventForOpenModal = 'Seccion eliminada';
         this.redirectPageWhenHideModal = true;
         this.linkRedirectPageWhenHideModal = '/admin/sections/add';
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       }
     });
   }
