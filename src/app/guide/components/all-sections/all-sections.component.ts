@@ -3,11 +3,12 @@ import { KeyValuePipe, NgFor, NgIf, TitleCasePipe } from '@angular/common';
 import { Seccion } from '../../interfaces/sections.interfaces';
 import { InfoSectionsService } from '../../services/info-sections.service';
 import { Flowbite } from '../../decorator/flowbite-decorator';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-all-sections',
   standalone: true,
-  imports: [NgFor, NgIf, KeyValuePipe, TitleCasePipe],
+  imports: [NgFor, NgIf, KeyValuePipe, TitleCasePipe, RouterModule],
   templateUrl: './all-sections.component.html',
   styleUrls: ['./all-sections.component.scss'],
 })

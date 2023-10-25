@@ -1,0 +1,6 @@
+.hijo{
+    &:nth-child(2){
+        background-color: white;
+        flex-shrink: 1;
+    }
+}

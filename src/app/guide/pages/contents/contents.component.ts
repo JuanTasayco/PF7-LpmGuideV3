@@ -1,5 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { SectionsComponent } from '../../components/sections/sections.component';
+import { MenuSectionsComponent } from '../../components/menu-sections/menu-sections.component';
 import { PrincipalContentStaticComponent } from 'src/app/shared/principal-content-static/principal-content-static.component';
 import { ActivatedRoute } from '@angular/router';
 import { FooterComponent } from 'src/app/shared/footer/footer.component';
@@ -8,7 +8,7 @@ import { FooterComponent } from 'src/app/shared/footer/footer.component';
   selector: 'app-contents',
   standalone: true,
   imports: [
-    SectionsComponent,
+    MenuSectionsComponent,
     PrincipalContentStaticComponent,
     FooterComponent,
   ],

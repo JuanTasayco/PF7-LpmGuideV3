@@ -1,7 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ViewEncapsulation } from '@angular/core';
-import { SectionsComponent } from '../../components/sections/sections.component';
+import { MenuSectionsComponent } from '../../components/menu-sections/menu-sections.component';
 import { PrincipalContentStaticComponent } from 'src/app/shared/principal-content-static/principal-content-static.component';
 import { ActivatedRoute } from '@angular/router';
 import { FooterComponent } from 'src/app/shared/footer/footer.component';
@@ -11,7 +11,7 @@ import { AllSectionsComponent } from '../../components/all-sections/all-sections
   selector: 'app-principal',
   standalone: true,
   imports: [
-    SectionsComponent,
+    MenuSectionsComponent,
     PrincipalContentStaticComponent,
     FooterComponent,
     AllSectionsComponent,

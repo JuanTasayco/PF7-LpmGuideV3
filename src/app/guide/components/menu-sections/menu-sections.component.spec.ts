@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SectionsComponent } from './sections.component';
+import { MenuSectionsComponent } from './menu-sections.component';
 
 describe('SectionsComponent', () => {
-  let component: SectionsComponent;
-  let fixture: ComponentFixture<SectionsComponent>;
+  let component: MenuSectionsComponent;
+  let fixture: ComponentFixture<MenuSectionsComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [SectionsComponent]
+      imports: [MenuSectionsComponent],
     });
-    fixture = TestBed.createComponent(SectionsComponent);
+    fixture = TestBed.createComponent(MenuSectionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

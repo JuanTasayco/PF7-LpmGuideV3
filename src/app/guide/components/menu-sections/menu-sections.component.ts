@@ -8,10 +8,10 @@ import { ImgPipe } from '../../pipes/img.pipe';
   selector: 'app-sections',
   standalone: true,
   imports: [NgFor, TitleCasePipe, RouterModule, ImgPipe],
-  templateUrl: './sections.component.html',
-  styleUrls: ['./sections.component.scss'],
+  templateUrl: './menu-sections.component.html',
+  styleUrls: ['./menu-sections.component.scss'],
 })
-export class SectionsComponent implements OnInit, AfterViewInit {
+export class MenuSectionsComponent implements OnInit, AfterViewInit {
   public sections = signal<string[]>(['']);
 
   ngOnInit(): void {

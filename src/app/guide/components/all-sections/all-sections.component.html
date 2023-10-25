@@ -1,7 +1,3 @@
-<h2 class="All-h2 text-white md:py-[3rem]">
-  Preguntas frecuentes sobre el sistema
-</h2>
-
 <div id="accordion-collapse relative  h-full" data-accordion="open">
   <div
     *ngFor="let section of sections | keyvalue; let i = index"
@@ -20,7 +16,7 @@
       >
         <div class="flex items-center gap-3">
           <span class="text-blue-400 text-[1.2rem] tracking-tigh">{{
-            section.key | titlecase
+            "Chapter " + i | titlecase
           }}</span>
           <svg
             data-accordion-icon
@@ -51,9 +47,25 @@
       [attr.aria-labelledby]="'accordion' + section.key"
     >
       <div class="p-5 border border-b-0 border-gray-700 bg-gray-900">
-        <p *ngFor="let item of section.value" class="mb-2 text-white">
-          {{ item.titulo2 }}
-        </p>
+        <a
+          *ngFor="let item of section.value"
+          [routerLink]="['/guide/part', item.titulo]"
+          class="mb-2 text-white flex gap-3 cursor-pointer"
+        >
+          <svg
+            class="max-w-[1.5rem]"
+            fill="#22d3ee"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+          {{ item.titulo2 | titlecase }}
+        </a>
       </div>
     </div>
   </div>
