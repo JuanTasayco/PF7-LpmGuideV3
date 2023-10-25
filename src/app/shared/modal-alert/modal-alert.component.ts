@@ -45,9 +45,11 @@ export class ModalAlertComponent implements AfterViewInit, OnInit {
       onHide: () => {
         this.addBgToModal = false;
 
+        /* redirect en true y además linkRedirect tiene que tener una ruta de string no venir vacío */
         if (this.redirectPage) {
-          this.router.navigate([this.linkNameRedirect]);
-          window.location.reload();
+          this.linkNameRedirect.length == 0
+            ? window.location.reload()
+            : this.router.navigate([this.linkNameRedirect]);
         }
       },
       onShow: () => {

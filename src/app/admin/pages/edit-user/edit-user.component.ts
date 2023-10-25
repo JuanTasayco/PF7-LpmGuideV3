@@ -30,7 +30,7 @@ import { ModalChangesService } from 'src/app/shared/modal-changes.service';
 export class EditUserComponent implements OnInit {
   /* lógica para el modal component, para redireccionar al cerrar modal */
   redirectPageWhenHideModal: boolean = false;
-  linkRedirectPageWhenHideModal: string = '/';
+  linkRedirectPageWhenHideModal: string = '';
 
   currentSeccionIsEdit: boolean = false;
   currentMsgForModal: string = '';
@@ -56,6 +56,8 @@ export class EditUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.redirectPageWhenHideModal);
+    console.log(this.linkRedirectPageWhenHideModal);
     if (this.router.url.includes('edit')) {
       this.userEdit.reset();
       this.currentSeccionIsEdit = true;
@@ -84,10 +86,7 @@ export class EditUserComponent implements OnInit {
               if (resp) {
                 this.modalService.setEventForOpenModal =
                   'Editado Correctamente.';
-
-                setTimeout(() => {
-                  window.location.reload();
-                }, 1000);
+                this.redirectPageWhenHideModal = true;
               } else {
                 this.modalService.setEventForOpenModal =
                   this.adminService.currentError();
@@ -107,13 +106,16 @@ export class EditUserComponent implements OnInit {
     } else {
       /* agregando */
       if (this.userEdit.valid) {
-        const { isActive, ...newUser } = this.userEdit.value;
+        const { id, ...newUser } = this.userEdit.value;
+        console.log(newUser);
         this.adminService.createUser(newUser).subscribe((resp: boolean) => {
           if (!resp) {
             this.modalService.setEventForOpenModal =
               this.adminService.currentError();
           } else {
             this.modalService.setEventForOpenModal = 'Agregado Correctamente';
+            this.redirectPageWhenHideModal = true;
+            this.linkRedirectPageWhenHideModal = '/admin/users';
             this.userEdit.reset({
               apellido: '',
               direccion: '',
@@ -132,13 +134,11 @@ export class EditUserComponent implements OnInit {
   }
 
   deleteUser(id: string) {
-    console.log('trayendo info');
     this.adminService.deleteUser(id).subscribe((response: boolean) => {
       if (response) {
+        this.redirectPageWhenHideModal = true;
+        this.linkRedirectPageWhenHideModal = '/admin/users';
         this.modalService.setEventForOpenModal = 'Eliminado Correctamente';
-        setTimeout(() => {
-          this.router.navigate(['/admin/users']);
-        }, 1000);
       } else {
         this.modalService.setEventForOpenModal =
           'No se pudo eliminar el usuario';

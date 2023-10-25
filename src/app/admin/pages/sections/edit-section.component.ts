@@ -49,7 +49,8 @@ import {
 export class EditSectionComponent implements OnInit {
   /* lógica para el modal component, para redireccionar al cerrar modal */
   redirectPageWhenHideModal: boolean = false;
-  linkRedirectPageWhenHideModal: string = '/';
+  /* no colocar nada en el string, se usa para validación si es vacía. */
+  linkRedirectPageWhenHideModal: string = '';
 
   /* detectar si estoy en agregar o editar */
   currentSectionIsAdd: boolean = false;

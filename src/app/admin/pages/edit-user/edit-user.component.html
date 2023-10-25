@@ -144,6 +144,9 @@
       </button>
     </form>
 
-    <app-modal-alert></app-modal-alert>
+    <app-modal-alert
+      [redirectPage]="redirectPageWhenHideModal"
+      [linkNameRedirect]="linkRedirectPageWhenHideModal"
+    ></app-modal-alert>
   </div>
 </div>
