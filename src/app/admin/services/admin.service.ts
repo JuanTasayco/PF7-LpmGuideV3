@@ -17,6 +17,15 @@ export class AdminService {
   public currentSection = computed(() => this._currentSection());
   public currentUser = computed(() => this._currentUser());
 
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.currentUrl}/auth/all`);
+  }
+
+  getUserById(id: string): Observable<User> {
+    /* remember that id must be uuid */
+    return this.http.get<User>(`${this.currentUrl}/auth/user/${id}`);
+  }
+
   createSection(section: Seccion): Observable<boolean> {
     return this.http.post<Seccion>(`${this.currentUrl}/lpm/`, section).pipe(
       map(() => true),
@@ -42,13 +51,11 @@ export class AdminService {
       );
   }
 
-  getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.currentUrl}/auth/all`);
-  }
-
-  getUserById(id: string): Observable<User> {
-    /* remember that id must be uuid */
-    return this.http.get<User>(`${this.currentUrl}/auth/user/${id}`);
+  deleteSection(id: string) {
+    return this.http.delete(`${this.currentUrl}/lpm/section/${id}`).pipe(
+      map(() => true),
+      catchError(() => of(false))
+    );
   }
 
   createUser(body: any): Observable<boolean> {

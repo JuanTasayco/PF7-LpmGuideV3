@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
-import { JsonPipe, NgFor, NgIf, TitleCasePipe } from '@angular/common';
+import { JsonPipe, NgClass, NgFor, NgIf, TitleCasePipe } from '@angular/common';
 import { InfoSectionsService } from 'src/app/guide/services/info-sections.service';
 import { Seccion } from 'src/app/guide/interfaces/sections.interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -25,11 +25,6 @@ import {
   moveItemInArray,
 } from '@angular/cdk/drag-drop';
 
-export interface Personaje {
-  name: string;
-  lastName: string;
-}
-
 @Component({
   selector: 'app-edit-section',
   standalone: true,
@@ -46,11 +41,17 @@ export interface Personaje {
     CdkDrag,
     CdkDropList,
     CdkDropListGroup,
+    NgClass,
   ],
   templateUrl: './edit-section.component.html',
   styleUrls: ['./edit-section.component.scss'],
 })
 export class EditSectionComponent implements OnInit {
+  /* lógica para el modal component, para redireccionar al cerrar modal */
+  redirectPageWhenHideModal: boolean = false;
+  linkRedirectPageWhenHideModal: string = '/';
+
+  /* detectar si estoy en agregar o editar */
   currentSectionIsAdd: boolean = false;
   public sectionsForm: FormGroup = this.formBuilder.group({
     id: [],
@@ -152,6 +153,7 @@ export class EditSectionComponent implements OnInit {
                 this.modalService.setEventForOpenModal =
                   this.adminService.currentError();
               } else {
+                this.redirectPageWhenHideModal = true;
                 this.modalService.setEventForOpenModal =
                   'Actualizado correctamente';
               }
@@ -171,6 +173,7 @@ export class EditSectionComponent implements OnInit {
                 this.adminService.currentError();
             } else {
               this.modalService.setEventForOpenModal = 'Agregado correctamente';
+              this.redirectPageWhenHideModal = true;
             }
           });
       }
@@ -276,6 +279,7 @@ export class EditSectionComponent implements OnInit {
     });
   }
 
+  /* event for Angular material cdk Drag and Drop */
   drop(event: CdkDragDrop<any>, arrayName: string): void {
     /* animación para que se quede donde lo dejo al arrastrar */
     moveItemInArray(
@@ -292,7 +296,16 @@ export class EditSectionComponent implements OnInit {
 
     /* me funciona sin detect changes, pero solo para prevenir en caso Angular en algún momento no los quiera ver como un two way data binding */
     this.cdr.detectChanges();
-    console.log(this.currentChanges);
+  }
+
+  deleteSection(id: string) {
+    this.adminService.deleteSection(id).subscribe((response: boolean) => {
+      if (response) {
+        this.modalService.setEventForOpenModal = 'Seccion eliminada';
+        this.redirectPageWhenHideModal = true;
+        this.linkRedirectPageWhenHideModal = '/admin/sections/add';
+      }
+    });
   }
 
   constructor(

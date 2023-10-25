@@ -28,6 +28,10 @@ import { ModalChangesService } from 'src/app/shared/modal-changes.service';
   styleUrls: ['./edit-user.component.scss'],
 })
 export class EditUserComponent implements OnInit {
+  /* lógica para el modal component, para redireccionar al cerrar modal */
+  redirectPageWhenHideModal: boolean = false;
+  linkRedirectPageWhenHideModal: string = '/';
+
   currentSeccionIsEdit: boolean = false;
   currentMsgForModal: string = '';
 

@@ -13,7 +13,7 @@
     {{ "Editar" }}
   </h1>
 
-  <section class="Section-section Section-section--banner bg-gray-900">
+  <section class="Section-s Section-s--banner bg-gray-900">
     <div
       class="Section-container py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
     >
@@ -40,7 +40,7 @@
     <div class="text-center pb-5">
       <button
         type="submit"
-        class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+        class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-800 shadow-lg shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
       >
         Guardar
       </button>
@@ -86,7 +86,7 @@
           <button
             type="button"
             (click)="addFormGroupToArray(ingresoArray)"
-            class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+            class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-800 shadow-lg shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
           >
             Agregar
           </button>
@@ -154,7 +154,7 @@
                 <button
                   type="button"
                   (click)="deleteFormGroupToArray(i, ingresoArray)"
-                  class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 mt-3"
+                  class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-800 shadow-lg shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 mt-3"
                 >
                   Borrar
                 </button>
@@ -198,7 +198,7 @@
           <button
             type="button"
             (click)="addFormGroupToArray(contenidoArray)"
-            class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+            class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-800 shadow-lg shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
           >
             Agregar
           </button>
@@ -267,7 +267,7 @@
                 <button
                   (click)="deleteFormGroupToArray(i, contenidoArray)"
                   type="button"
-                  class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 mt-3"
+                  class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-800 shadow-lg shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 mt-3"
                 >
                   Borrar
                 </button>
@@ -278,14 +278,28 @@
       </ol>
     </div>
   </section>
-  <div class="flex items-center justify-center my-10">
+  <div class="flex items-center justify-center my-16">
     <button
       type="submit"
-      class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+      class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-800 shadow-lg shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
     >
       Guardar
+    </button>
+
+    <button
+      [disabled]="currentSectionIsAdd"
+      [ngClass]="currentSectionIsAdd ? 'cursor-not-allowed' : ''"
+      (click)="deleteSection(sectionsForm.get('id')?.value)"
+      type="button"
+      class="focus:outline-none text-white focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 bg-red-600 hover:bg-red-700 focus:ring-red-900"
+    >
+      Eliminar sección
     </button>
   </div>
 </form>
 
-<app-modal-alert> </app-modal-alert>
+<app-modal-alert
+  [redirectPage]="redirectPageWhenHideModal"
+  [linkNameRedirect]="linkRedirectPageWhenHideModal"
+>
+</app-modal-alert>

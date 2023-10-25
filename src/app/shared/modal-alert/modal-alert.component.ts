@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  Input,
   OnInit,
   Renderer2,
   ViewChild,
@@ -14,6 +15,7 @@ import { NgClass, NgIf } from '@angular/common';
 import { Modal, ModalOptions } from 'flowbite';
 import { ModalChangesService } from '../modal-changes.service';
 import { Flowbite } from 'src/app/guide/decorator/flowbite-decorator';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-modal-alert',
   standalone: true,
@@ -28,6 +30,9 @@ export class ModalAlertComponent implements AfterViewInit, OnInit {
   modal!: Modal;
   addBgToModal: boolean = false;
   /*  bg-gray-900 bg-opacity-50 fixed inset-0 */
+
+  @Input() redirectPage: boolean = false;
+  @Input() linkNameRedirect: string = '';
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
@@ -39,6 +44,11 @@ export class ModalAlertComponent implements AfterViewInit, OnInit {
       closable: true,
       onHide: () => {
         this.addBgToModal = false;
+
+        if (this.redirectPage) {
+          this.router.navigate([this.linkNameRedirect]);
+          window.location.reload();
+        }
       },
       onShow: () => {
         this.addBgToModal = true;
@@ -64,5 +74,5 @@ export class ModalAlertComponent implements AfterViewInit, OnInit {
     this.modal.hide();
   }
 
-  constructor() {}
+  constructor(private router: Router) {}
 }
