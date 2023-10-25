@@ -5,6 +5,7 @@ import { SectionsComponent } from '../../components/sections/sections.component'
 import { PrincipalContentStaticComponent } from 'src/app/shared/principal-content-static/principal-content-static.component';
 import { ActivatedRoute } from '@angular/router';
 import { FooterComponent } from 'src/app/shared/footer/footer.component';
+import { AllSectionsComponent } from '../../components/all-sections/all-sections.component';
 
 @Component({
   selector: 'app-principal',
@@ -13,6 +14,7 @@ import { FooterComponent } from 'src/app/shared/footer/footer.component';
     SectionsComponent,
     PrincipalContentStaticComponent,
     FooterComponent,
+    AllSectionsComponent,
   ],
   templateUrl: './principal.component.html',
   styleUrls: ['./principal.component.scss'],

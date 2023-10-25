@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { JsonPipe, NgFor, NgIf, TitleCasePipe } from '@angular/common';
 import { InfoSectionsService } from 'src/app/guide/services/info-sections.service';
 import { RouterModule } from '@angular/router';
-import { Flowbite } from 'src/app/guide/decorator/flowbite-decorator';
 
 @Component({
   selector: 'app-side-nav',

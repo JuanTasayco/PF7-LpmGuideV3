@@ -4,8 +4,7 @@ import { AboutMeComponent } from './pages/about-me/about-me.component';
 import { ContentsComponent } from './pages/contents/contents.component';
 import { QuestionsComponent } from './pages/questions/questions.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
-import { PartComponent } from './pages-parts/index';
-import { PartConceptComponent } from './pages-parts/part-concept/part-concept.component';
+
 
 export const routes_pages: Routes = [
   {
@@ -28,14 +27,15 @@ export const routes_pages: Routes = [
         path: 'questions',
         component: QuestionsComponent,
       },
-      {
+      
+   /*    {
         path: 'part/:id',
         component: PartComponent,
       },
       {
         path: 'part/:id/:concepto',
         component: PartConceptComponent,
-      },
+      }, */
 
       {
         path: '**',
