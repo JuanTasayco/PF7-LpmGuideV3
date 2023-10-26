@@ -5,6 +5,7 @@ import { switchMap } from 'rxjs';
 import { InfoSectionsService } from '../../services/info-sections.service';
 import { ActivatedRoute } from '@angular/router';
 import { Seccion } from '../../interfaces/sections.interfaces';
+import { AllSectionsComponent } from '../all-sections/all-sections.component';
 
 @Component({
   selector: 'app-description-section',

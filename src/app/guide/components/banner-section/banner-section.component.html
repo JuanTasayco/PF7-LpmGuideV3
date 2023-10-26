@@ -1,122 +1,103 @@
-<div class="Banner h-full">
-  <section class="Banner-section mt-[5rem]">
-    <div class="Banner-block bg-slate-900 dark:bg-gray-900">
-      <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
-        <div
-          class="bg-gray-800 border border-gray-700 rounded-lg p-8 md:p-12 mb-8"
-        >
-          <div
-            class="text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md bg-gray-700 text-blue-400 mb-2"
-          >
-            <svg
-              class="Banner-svg w-2.5 h-2.5 mr-1.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 20 14"
-            >
-              <path
-                d="M11 0H2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm8.585 1.189a.994.994 0 0 0-.9-.138l-2.965.983a1 1 0 0 0-.685.949v8a1 1 0 0 0 .675.946l2.965 1.02a1.013 1.013 0 0 0 1.032-.242A1 1 0 0 0 20 12V2a1 1 0 0 0-.415-.811Z"
-              />
-            </svg>
-            {{ abc[0] | uppercase }}
-          </div>
-          <h1
-            class="Section-h1 text-white text-3xl md:text-5xl font-extrabold mb-2"
-          >
-            {{ secciones()[0].titulo2 | titlecase }}
-          </h1>
-          <p class="Banner-p text-lg font-normal text-gray-400 mb-6">
-            {{ secciones()[0].subtitulo }}
-          </p>
-          <a
-            [routerLink]="[
-              '/guide/part/' +
-                secciones()[0].seccion +
-                '/' +
-                secciones()[0].titulo
-            ]"
-            routerLinkActive="router-link-active"
-            class="inline-flex justify-center items-center py-2.5 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-900"
-          >
-            Leer más
-            <svg
-              class="Banner-svg w-3.5 h-3.5 ml-2"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 10"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M1 5h12m0 0L9 1m4 4L9 9"
-              />
-            </svg>
-          </a>
-        </div>
-        <div class="grid md:grid-cols-2 gap-8">
-          <div
-            class="bg-gray-800 border border-gray-700 rounded-lg p-8 md:p-12"
-            *ngFor="let secc of secciones().slice(1); let i = index"
-          >
-            <div
-              class="text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md bg-gray-700 text-green-400 mb-2"
-            >
-              <svg
-                class="Banner-svg w-2.5 h-2.5 mr-1.5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 18 18"
-              >
-                <path
-                  d="M17 11h-2.722L8 17.278a5.512 5.512 0 0 1-.9.722H17a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1ZM6 0H1a1 1 0 0 0-1 1v13.5a3.5 3.5 0 1 0 7 0V1a1 1 0 0 0-1-1ZM3.5 15.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM16.132 4.9 12.6 1.368a1 1 0 0 0-1.414 0L9 3.55v9.9l7.132-7.132a1 1 0 0 0 0-1.418Z"
-                />
-              </svg>
-              {{ abc[i + 1] | uppercase }}
-            </div>
-            <h2 class="Banner-h2 text-white text-3xl font-extrabold mb-2">
-              {{ secc.titulo2 | titlecase }}
-            </h2>
-            <p class="Banner-p text-lg font-normal text-gray-400 mb-4">
-              {{ secc.subtitulo }}
-            </p>
-            <a
-              [routerLink]="['/guide/part/' + secc.seccion + '/' + secc.titulo]"
-              class="text-blue-500 font-medium text-lg inline-flex items-center border py-2.5 px-5 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-900 hover:no-underline"
-            >
-              Leer más
-              <svg
-                class="Banner-svg w-3.5 h-3.5 ml-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M1 5h12m0 0L9 1m4 4L9 9"
-                />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
+<div class="Banner-title text-center mt-5">
+  <small class="text-[2.5rem] ml-0 text-white tracking-tight font-semibold"
+    >Administradores</small
+  >
+  <p class="text-gray-500 md:max-w-[60%] text-center m-auto mt-5">
+    A continuación se mostrará los conceptos disponibles dentro de la sección,
+    el contenido es editable desde el panel de administradores.
+    {{ currentSection() }}
+  </p>
+</div>
 
-      <div class="flex justify-center">
-        <a
-          routerLink="/guide/contents"
-          class="Part-a inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center rounded-lg border focus:ring-4 text-white border-gray-700 hover:bg-gray-700 focus:ring-gray-800"
-        >
-          Retroceder
-        </a>
+<article class="Banner text-white h-full flex items-center justify-center">
+  <div class="Banner-container flex-col md:flex-row my-10">
+    <div class="Banner-section Banner-section-description flex-1">
+      <h1 class="Banner-h1 text-[2.5rem] font-bold space-y-10">
+        Bienvenido a la sección {{ currentSection() | titlecase }}
+      </h1>
+      <p class="Banner-p Banner-p--lead text-[1.3rem] text-gray-400 my-5">
+        Aquí podrás encontrar el contenido de la sección en curso, es importante
+        en entender el contexto que describe la sección, ya que abarca un punto
+        en el flujo del sistema,
+      </p>
+
+      <a href="" class="mt-5 text-[1.1rem] text-blue-600">
+        Necesito más ayuda con esto, tengo preguntas por resolver..</a
+      >
+    </div>
+    <div class="Banner-section Banner-section--content flex-1 m-5">
+      <div
+        *ngFor="let item of secciones()"
+        class="Banner-card rounded-lg hover:cursor-pointer hover:bg-sky-400 hover:bg-opacity-5 border-l-8 px-5 mb-5 border-pink-700 bg-slate-800 h-[4.5rem]"
+      >
+        <small class="Banner-small uppercase text-gray-400">{{
+          item.panel
+        }}</small>
+        <h2 class="Banner-h2 text-[1.2rem] font-semibold">
+          {{ item.titulo2 | titlecase }}
+        </h2>
       </div>
     </div>
-  </section>
-</div>
+  </div>
+</article>
+
+<article class="border rounded-lg shadow-sm my-2">
+  <div class="flex flex-col items-center mt-10">
+    <h2 class="text-[2.5rem] font-bold text-white text-center">
+      Designed for business teams like yours
+    </h2>
+
+    <p
+      class="Banner-p Banner-p--lead text-[1.3rem] text-gray-400 my-2 md:w-[68%] text-center"
+    >
+      Here we focus on markets where technology, innovation, and capital can
+      unlock long-term value and drive economic growth.
+    </p>
+  </div>
+
+  <div class="flex flex-col sm:flex-row py-6">
+    <div class="flex-1 p-5 flex flex-col justify-center items-center">
+      <svg
+        class="text-primary-600 max-w-[5rem]"
+        fill="skyblue"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+        <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+      </svg>
+
+      <h3 class="text-white font-bold text-[1.6rem]">
+        Sigue el flujo correcto
+      </h3>
+      <p class="text-center mt-4 text-gray-400">
+        Enterprise tools cost more, are difficult to use, and take longer to
+        implement. According to G2, Flowbite is the easiest-to-use tool, with
+        the fastest time to ROI.
+      </p>
+    </div>
+    <div class="flex-1 p-5 flex flex-col justify-center items-center">
+      <svg
+        class="text-primary-600 max-w-[5rem]"
+        fill="purple"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M9.504 1.132a1 1 0 01.992 0l1.75 1a1 1 0 11-.992 1.736L10 3.152l-1.254.716a1 1 0 11-.992-1.736l1.75-1zM5.618 4.504a1 1 0 01-.372 1.364L5.016 6l.23.132a1 1 0 11-.992 1.736L4 7.723V8a1 1 0 01-2 0V6a.996.996 0 01.52-.878l1.734-.99a1 1 0 011.364.372zm8.764 0a1 1 0 011.364-.372l1.733.99A1.002 1.002 0 0118 6v2a1 1 0 11-2 0v-.277l-.254.145a1 1 0 11-.992-1.736l.23-.132-.23-.132a1 1 0 01-.372-1.364zm-7 4a1 1 0 011.364-.372L10 8.848l1.254-.716a1 1 0 11.992 1.736L11 10.58V12a1 1 0 11-2 0v-1.42l-1.246-.712a1 1 0 01-.372-1.364zM3 11a1 1 0 011 1v1.42l1.246.712a1 1 0 11-.992 1.736l-1.75-1A1 1 0 012 14v-2a1 1 0 011-1zm14 0a1 1 0 011 1v2a1 1 0 01-.504.868l-1.75 1a1 1 0 11-.992-1.736L16 13.42V12a1 1 0 011-1zm-9.618 5.504a1 1 0 011.364-.372l.254.145V16a1 1 0 112 0v.277l.254-.145a1 1 0 11.992 1.736l-1.735.992a.995.995 0 01-1.022 0l-1.735-.992a1 1 0 01-.372-1.364z"
+          clip-rule="evenodd"
+        ></path>
+      </svg>
+
+      <h3 class="text-white font-bold text-[1.6rem]">
+        Evita distorsión en tus cambios
+      </h3>
+      <p class="text-center mt-4 text-gray-400">
+        Enterprise tools cost more, are difficult to use, and take longer to
+        implement. According to G2, Flowbite is the easiest-to-use tool, with
+        the fastest time to ROI.
+      </p>
+    </div>
+  </div>
+</article>

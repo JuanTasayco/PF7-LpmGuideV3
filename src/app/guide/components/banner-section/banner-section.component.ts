@@ -5,16 +5,20 @@ import {
   OnChanges,
   OnInit,
   SimpleChanges,
+  inject,
   signal,
 } from '@angular/core';
 import {
   CommonModule,
   NgFor,
+  NgIf,
   TitleCasePipe,
   UpperCasePipe,
 } from '@angular/common';
 import { Seccion } from '../../interfaces/sections.interfaces';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { InfoSectionsService } from '../../services/info-sections.service';
+import { switchMap, tap } from 'rxjs';
 
 export interface DescriptionPart {
   part: string;
@@ -25,25 +29,29 @@ export interface DescriptionPart {
 @Component({
   selector: 'app-banner-section',
   standalone: true,
-  imports: [NgFor, UpperCasePipe, TitleCasePipe, RouterLink],
+  imports: [NgFor, UpperCasePipe, TitleCasePipe, RouterLink, NgIf],
   templateUrl: './banner-section.component.html',
   styleUrls: ['./banner-section.component.scss'],
 })
 export class BannerSectionComponent implements OnInit {
-  ngOnInit(): void {}
-  @Input('seccionesInput') secciones = signal<Seccion[]>([]);
-  abc: string[] = 'abcdefghijklmnñopqrstwxyz'.split('');
-
-  @HostListener('window:resize', [''])
-  cambiarModoFlecha() {
-    const squareLeft = document.querySelector('#square-left');
-    const squareRight = document.querySelector('#square-right');
-    if (window.innerWidth < 768) {
-      squareLeft?.classList.remove('Banner-square--left');
-      squareRight?.classList.remove('Banner-square--right');
-    } else {
-      squareLeft?.classList.add('Banner-square--left');
-      squareRight?.classList.add('Banner-square--right');
-    }
+  secciones = signal<Seccion[]>([]);
+  currentSection = signal<string>('');
+  ngOnInit(): void {
+    this.activatedRoute.params
+      .pipe(
+        tap(({ section }) => {
+          this.currentSection.set(section);
+        }),
+        switchMap(({ section }) =>
+          this.infoSectionService.getInfoPerSectionName(section)
+        )
+      )
+      .subscribe((response) => {
+        this.secciones.update(() => response);
+        console.log(this.secciones());
+      });
   }
+
+  infoSectionService = inject(InfoSectionsService);
+  activatedRoute = inject(ActivatedRoute);
 }

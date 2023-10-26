@@ -3,10 +3,22 @@
 </p>
 
 <p class="text-gray-500 md:max-w-[60%] text-center m-auto mt-5">
-  El contenido está organizado en diferentes secciones, cada una de ellas
-  contiene una serie de conceptos a aprender, por ejemplo la sección principal
-  abarca los valores, procesos y reportes, la de mantenimiento abarca ingresar,
-  modificar y eliminar trabajadores, etc.
+  Encontrarás todo el contenido respectivo en cada sección correspondiente, aquí
+  podrás desglozar e ir directamente a la información de lo que necesitas ,
+  presiona para desglozar y verificar los conceptos.
+</p>
+
+<app-all-sections></app-all-sections>
+
+<p class="text-white text-[2rem] md:text-[3rem] text-center py-5 font-bold">
+  Secciones
+</p>
+
+<p class="text-gray-500 md:max-w-[60%] text-center m-auto mt-5">
+  El contenido también lo encontarás organizado en diferentes secciones, cada
+  una de ellas contiene una serie de conceptos a aprender, por ejemplo la
+  sección principal abarca los valores, procesos y reportes, la de mantenimiento
+  abarca ingresar, modificar y eliminar trabajadores, etc.
 </p>
 
 <div
@@ -33,7 +45,7 @@
     </div>
 
     <button
-      [routerLink]="['/guide/part', section.toLowerCase()]"
+      [routerLink]="['/guide/part/section/', section]"
       type="button"
       class="py-2.5 mt-5 px-5 mr-2 mb-2 text-sm font-medium focus:outline-none rounded-lg border focus:z-10 focus:ring-4 focus:ring-gray-700 bg-gray-800 text-gray-400 border-gray-600 hover:text-white hover:bg-gray-700 inline-flex items-center"
     >

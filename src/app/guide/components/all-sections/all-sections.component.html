@@ -1,17 +1,16 @@
-<div id="accordion-collapse relative  h-full" data-accordion="open">
+<!-- todas las secciónes + conceptos del contenido principal que redireccionan a description-section ( individual) -->
+
+<div id="accordion-collapse relative  h-full" data-accordion="close">
   <div
     *ngFor="let section of sections | keyvalue; let i = index"
     class="my-10 border-l-2 border-blue-800"
   >
     <h2 id="accordion-collapse-heading-1 ">
-      <!--       [ngClass]="{
-          ' rounded-t-xl ': i == 0
-        }"-->
       <button
         type="button"
-        class="bg-sky-600 relative bg-opacity-10 w-full h-[7rem] font-medium text-left focus:ring-yellow-500 text-white flex flex-col justify-center gap-4 p-4"
+        class="bg-sky-600 relative bg-opacity-5 w-full h-[7rem] font-medium text-left focus:ring-yellow-500 text-white flex flex-col justify-center gap-4 p-4"
         [attr.data-accordion-target]="'#' + section.key"
-        aria-expanded="false"
+        aria-expanded="true"
         [attr.aria-controls]="section.key"
       >
         <div class="flex items-center gap-3">
@@ -43,7 +42,7 @@
     </h2>
     <div
       [id]="section.key"
-      class="hidden dark"
+      class="dark"
       [attr.aria-labelledby]="'accordion' + section.key"
     >
       <div class="p-5 border border-b-0 border-gray-700 bg-gray-900">
@@ -70,4 +69,3 @@
     </div>
   </div>
 </div>
-<div class="relative bottom-0 left-0 w-full bg-slate-900"></div>

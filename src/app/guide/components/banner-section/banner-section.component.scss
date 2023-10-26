@@ -1,105 +1,22 @@
 .Banner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-
-  &-box {
-    &--width {
-      width: min(97%, 1200px);
-      margin: auto;
-    }
-  }
-
   &-container {
-    padding: 4rem 1rem;
-    &--principal {
-      display: flex;
-      flex-direction: column;
-      gap: 3rem;
+    display: flex;
+  }
+
+  &-h1 {
+    letter-spacing: -1px;
+    line-height: 2.7rem;
+  }
+
+  &-p {
+    &--lead {
+      line-height: 1.7rem;
     }
   }
 
-  &-sections {
+  &-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-  }
-
-  &-item {
-    position: relative;
-    width: auto; /* Ancho total de la flecha */
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-  }
-
-  &-square {
-    text-decoration: none;
-    border-bottom: 1px solid black;
-    color: rgba(0, 0, 0, 0.8);
-    &--left {
-      flex: 1;
-      background-color: white;
-      padding: 1rem;
-      border-radius: 5px 0 0 5px;
-      border-left: 1px solid black;
-      border-top: 1px solid black;
-      border-bottom: 1px solid black;
-      z-index: 1;
-    }
-    &--right {
-      border-top: 1px solid black;
-      border-right: 1px solid black;
-      margin-left: unset;
-      padding: 1.3rem;
-      transform: translate(-1.3rem) rotate(45deg);
-      background-color: white;
-      z-index: 0;
-    }
-  }
-
-  &-small {
-    font-size: 18px;
-    text-transform: capitalize;
-  }
-
-  &-arrow {
-    position: relative;
-    & .Arrow {
-      &-container {
-        height: 100%;
-        position: absolute;
-        color: white;
-        display: flex;
-        align-items: center;
-        &--left {
-          z-index: 1;
-          width: 58%;
-          border: 2px solid black;
-          justify-content: flex-start;
-          left: 0;
-          clip-path: polygon(0 0, 77% 0, 100% 50%, 77% 100%, 0 100%);
-        }
-
-        &--right {
-          z-index: 0;
-          width: 75%;
-          right: 0;
-          justify-content: flex-end;
-          clip-path: polygon(0 0, 82% 0, 100% 50%, 82% 100%, 0 100%);
-          border: 1px solid black;
-        }
-      }
-      &-small {
-        font-size: 1.1rem;
-      }
-      @media screen and (max-width: 1023px) {
-        &-small {
-          font-size: 1rem;
-        }
-      }
-    }
   }
 }

@@ -29,7 +29,6 @@ export class AllSectionsComponent implements OnInit {
       });
 
       this.sections = objectSection;
-      console.log(this.sections);
     });
   }
   constructor(private guideService: InfoSectionsService) {}
