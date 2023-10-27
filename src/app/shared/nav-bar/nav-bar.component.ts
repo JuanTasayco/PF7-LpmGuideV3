@@ -42,17 +42,31 @@ export class NavBarComponent implements AfterViewInit {
   @ViewChild('lpmLetterLogo') lpmLetterLogo!: ElementRef<HTMLElement>;
   @ViewChild('lpmLogo') lpmImgLogo!: ElementRef<HTMLElement>;
   ngAfterViewInit(): void {
-    gsap.from(this.lpmImgLogo.nativeElement, {
-      duration: 1,
-      z: -1000,
-      rotate: 360,
-      scaleX: 0.53,
+    /* animacion principal escalando logo ( el contenido desaparecido está en el home) */
+
+    const tl = gsap.timeline({});
+
+    gsap.set(this.lpmImgLogo.nativeElement, {
+      position: 'absolute',
+      left: '50%',
+      top: '450%',
+      scale: 8,
     });
 
-    gsap.from(this.lpmLetterLogo.nativeElement, {
-      yPercent: 200,
-      duration: 0.5,
-      ease: 'power1.out',
-    });
+    tl.from(this.lpmImgLogo.nativeElement, {
+      opacity: 0,
+      duration: 1,
+    })
+      .to(this.lpmImgLogo.nativeElement, {
+        y: '0',
+        left: 'auto',
+        top: 'auto',
+
+        scale: 1,
+        x: '0',
+      })
+      .to(this.lpmImgLogo.nativeElement, {
+        position: 'relative',
+      });
   }
 }
