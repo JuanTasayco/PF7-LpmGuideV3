@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -19,5 +21,8 @@ export class AppComponent implements OnInit {
         scrollTo(0, 0);
       }
     });
+
+    /* inicia plugin de ScrollTrigger */
+    gsap.registerPlugin(ScrollTrigger);
   }
 }
