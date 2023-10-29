@@ -5,11 +5,6 @@ import { Observable, catchError, map, of } from 'rxjs';
 import { Question, QuestionsData } from '../interfaces/question.interface';
 import { Seccion } from '../interfaces/sections.interfaces';
 
-type lastUpdates = {
-  title: string;
-  description: string;
-};
-
 @Injectable({
   providedIn: 'root',
 })

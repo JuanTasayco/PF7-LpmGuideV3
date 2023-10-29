@@ -3,7 +3,9 @@ import {
   Component,
   ElementRef,
   OnInit,
+  QueryList,
   ViewChild,
+  ViewChildren,
 } from '@angular/core';
 
 import { RouterModule } from '@angular/router';
@@ -27,10 +29,9 @@ type lastUpdates = {
 })
 export class PrincipalContentStaticComponent implements AfterViewInit, OnInit {
   @ViewChild('mobileMockup') mobileMockup!: ElementRef<HTMLElement>;
-  @ViewChild('descriptionMockup') descriptionMockup!: ElementRef<HTMLElement>;
-  @ViewChild('container') container!: ElementRef<HTMLElement>;
-  @ViewChild('sectionContainer') sectionContainer!: ElementRef<HTMLElement>;
-
+  @ViewChild('descriptions') descriptions!: ElementRef<HTMLElement>;
+  @ViewChild('principalContainer') principalContainer!: ElementRef<HTMLElement>;
+  @ViewChildren('childrenContainer') childrenContainers!: QueryList<ElementRef>;
   lastUpdates: lastUpdates[] = [];
   ngOnInit(): void {
     this.infoSection.getUpdatesForSection().subscribe(({ last }: any) => {
@@ -38,38 +39,25 @@ export class PrincipalContentStaticComponent implements AfterViewInit, OnInit {
     });
   }
   ngAfterViewInit(): void {
-    const mediumsectionContainer =
-      this.sectionContainer?.nativeElement.clientHeight! / 2;
-
-    gsap.to(this.descriptionMockup.nativeElement, {
-      xPercent: -100,
-      duration: 2,
-      opacity: 0,
-      scrollTrigger: {
-        trigger: this.sectionContainer.nativeElement,
-        start: `center ${mediumsectionContainer}`,
-        end: `bottom ${mediumsectionContainer}`,
-        scrub: true,
-      },
-    });
     const tl = gsap.timeline();
 
-    tl.to(this.mobileMockup.nativeElement, {
-      yPercent: 100,
-      duration: 3,
-      scrollTrigger: {
-        trigger: this.sectionContainer.nativeElement,
-        start: `center ${mediumsectionContainer}`,
-        end: `bottom ${mediumsectionContainer}`,
-        scrub: true,
-        toggleActions: 'play reverse reverse reset',
-      },
+    this.childrenContainers.forEach(({ nativeElement: el }) => {
+      tl.from(el, {
+        xPercent: -100,
+        scrollTrigger: {
+          trigger: el,
+          markers: true,
+          scrub: 1,
+          start: 'top center',
+          end: 'top center',
+        },
+      });
     });
 
     ScrollTrigger.create({
-      trigger: this.container.nativeElement,
-      start: '10% center',
-      end: '85% center',
+      trigger: this.principalContainer.nativeElement,
+      start: 'top 8%',
+      end: '74% 8%',
       scrub: true,
       pin: this.mobileMockup.nativeElement,
       pinSpacing: false,

@@ -1,14 +1,12 @@
 <!--   va en la clase principal Principal-container-->
-<div class="Principal-container text-white md:mt-[5rem]">
-  <!-- seccion presentación -->
-  <section
-    #sectionContainer
-    id="sectionContainer"
-    class="Principal-section Principal-section--principal lg:flex py-16"
-  >
-    <div
-      #descriptionMockup
-      class="Principal-block Principal-block--titles lg:max-w-[58%]"
+<div
+  #principalContainer
+  class="Principal-container text-white md:mt-[5rem] flex flex-col md:flex-row items-start"
+>
+  <section #descriptions class="basis-[60%]">
+    <article
+      #childrenContainer
+      class="Principal-block Principal-block--titles mx-10 md:mx-0"
     >
       <h1
         class="Principal-h1 Principal-h1--title text-[2.2rem] sm:text-[2.8rem] lg:text-[3.5rem] font-bold"
@@ -32,29 +30,13 @@
         orientado a la agilidad y la rapida solución de errores, conllevando en
         sí a un nivel de complejidad mayor en su uso.
       </p>
-    </div>
+    </article>
 
-    <div
-      #mobileMockup
-      class="Principal-block Principal-block--img flex-grow lg:relative"
+    <article
+      class="Descriptions-terms flex flex-col items-center md:items-start align-center gap-10 mt-10"
     >
-      <app-mockup-mobile
-        [altImgName]="'appModeMobile'"
-        [urlImgMockup]="'assets/mobileImg.png'"
-      ></app-mockup-mobile>
-    </div>
-  </section>
-
-  <!-- seccion anuncio -->
-  <section
-    class="Principal-section overflow-hidden Principal-section--descriptions Descriptions lg:flex mt-5"
-  >
-    <div
-      #container
-      class="Descriptions-terms lg:basis-[50%] lg:pl-[8rem] lg:pe-[4.5rem] lg:py-[5rem] lg:mx-0 sm:mx-[3rem]"
-    >
-      <article class="mb-16">
-        <div class="rounded-lg border p-6 border-opacity-5">
+      <section #childrenContainer class="w-[75%] self-start">
+        <div class="rounded-lg p-6 border-opacity-5">
           <h2 class="uppercase font-bold mb-10">Ultimas actualizaciones</h2>
           <div class="mb-10" *ngFor="let updates of lastUpdates">
             <small class="text-[1.2rem] flex items-center gap-3">
@@ -77,12 +59,12 @@
             </p>
           </div>
         </div>
-      </article>
+      </section>
 
-      <article class="">
+      <section #childrenContainer class="w-[70%] py-10">
         <button
           type="button"
-          class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-800 shadow-lg dark:shadow-lg shadow-blue-800/80 font-medium rounded-lg text-center text-sm px-5 py-2.5 inline-flex items-center mr-2 mb-10"
+          class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg shadow-blue-800/80 font-medium rounded-lg text-center text-sm px-5 py-2.5 inline-flex items-center mr-2 mb-10 cursor-default"
         >
           <svg
             class="w-4 h-4 mr-2 -ml-1 text-[#626890]"
@@ -109,14 +91,14 @@
           adquisición de información que esté necesariamente ligado a los
           sistemas contables y puedan alcanzarse de manera simple.
         </p>
-      </article>
+      </section>
 
       <!-- second -->
 
-      <article class="mt-16">
+      <section #childrenContainer class="w-[70%] py-10">
         <button
           type="button"
-          class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-800 shadow-lg dark:shadow-lg shadow-blue-800/80 font-medium rounded-lg text-center text-sm px-5 py-2.5 inline-flex items-center mr-2 mb-10"
+          class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg shadow-blue-800/80 font-medium rounded-lg text-center text-sm px-5 py-2.5 inline-flex items-center mr-2 mb-10"
         >
           <svg
             class="w-4 h-4 mr-2 -ml-1 text-[#626890]"
@@ -152,13 +134,15 @@
           se da bajo credenciales internas y bajo la supervisión interna de sus
           administradores u operadores.
         </p>
-      </article>
-    </div>
-
-    <div
-      class="Descriptions-alert flex-1 lg:pl-[2.5rem] lg:py-[5rem] py-[1rem] lg:mx-0 sm:mx-[3rem] mt-5"
-    ></div>
+      </section>
+    </article>
   </section>
-
-  <!-- bloque cuadrado -->
+  <section #mobileMockup class="flex-1 hidden md:block">
+    <div class="Principal-block Principal-block--img flex-grow lg:relative">
+      <app-mockup-mobile
+        [altImgName]="'appModeMobile'"
+        [urlImgMockup]="'assets/mobileImg.png'"
+      ></app-mockup-mobile>
+    </div>
+  </section>
 </div>
