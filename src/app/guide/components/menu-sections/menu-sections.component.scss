@@ -12,77 +12,76 @@
   }
 }
 
-/* cuadros editados, disponibles para un futuro*/
-/* .Seccion {
+.title {
+  /*   font-size: max(2vw, 24px);
+  line-height: 1.1; */
+  padding-bottom: 0.4em;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.text {
+  font-size: max(1vw, 15px);
+  line-height: 1.4;
+  overflow: hidden;
+  padding-bottom: 20px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* #wrapper {
+ 
+
+} */
+.accordions {
   display: flex;
-  flex-wrap: wrap;
-  gap: 2%;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 0;
+  max-height: 800px;
+}
 
-  margin: auto;
-  &-block {
-    &:hover {
-      cursor: pointer;
-    }
-  }
-  &-contenedor {
-    height: 20rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  &-square {
-    height: 90%;
-    width: 90%;
-    position: relative;
-    border: 2px solid white;
-    background-color: white;
-    border-radius: 5% 2% 5% 2%;
+.accordion {
+  background: linear-gradient(
+    200deg,
+    rgb(29, 145, 252) 13.57%,
+    rgb(90, 54, 192) 98.38%
+  );
+  width: 80%;
+  padding: 25px 30px 10px;
+  border-radius: 15px;
+  margin-bottom: 40px;
+  box-shadow: 0 30px 30px -10px rgba(0, 0, 0, 0.3);
 
-    &::after {
-      content: "";
-      position: absolute;
-      height: calc(100% + 13px);
-      width: calc(100% + 13px);
-      top: 0;
-      left: 0;
-      border: 2px solid white;
-      border-radius: 5%;
-    }
-    &::before {
-      content: "";
-      border: 2px solid white;
-      position: absolute;
-      border-radius: 5%;
-      bottom: 0;
-      right: 0;
-      height: calc(100% + 13px);
-      width: calc(100% + 13px);
-    }
+  &:nth-child(2) {
+    background: linear-gradient(
+      200deg,
+      rgb(242, 136, 133) 13.57%,
+      rgb(233, 79, 102) 98.38%
+    );
   }
 
-  &-descriptions {
-    align-self: flex-start;
+  &:nth-child(3) {
+    background: linear-gradient(
+      200deg,
+      rgb(101, 187, 118) 13.57%,
+      rgb(70, 111, 171) 98.38%
+    );
   }
 
-  &-containerImg {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background-color: aqua;
-  }
-  &-img {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    object-fit: cover;
-    filter: brightness(1.2);
-    mix-blend-mode: multiply;
-  }
-
-  &-h3 {
-    font-weight: 700;
-    font-size: clamp(1rem, 2vh, 4rem);
+  &:nth-child(4) {
+    background: linear-gradient(200deg, #c215d1 13.57%, #9813a1 98.38%);
   }
 }
- */
+
+@media (max-width: 480px) {
+  .accordion {
+    padding: 15px 20px 8px;
+  }
+  .title {
+    font-size: 20px;
+  }
+
+  .accordions {
+    max-height: 800px;
+  }
+}

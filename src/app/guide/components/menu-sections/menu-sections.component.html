@@ -1,4 +1,39 @@
 <p class="text-white text-[2rem] md:text-[3rem] text-center py-5 font-bold">
+  Secciones
+</p>
+
+<p class="text-gray-500 md:max-w-[60%] text-center m-auto mt-5 mb-20">
+  El contenido también lo encontarás organizado en diferentes secciones, cada
+  una de ellas contiene una serie de conceptos a aprender, por ejemplo la
+  sección principal abarca los valores, procesos y reportes, la de mantenimiento
+  abarca ingresar, modificar y eliminar trabajadores, etc.
+</p>
+
+<div id="wrapper">
+  <div id="content">
+    <div #accordions class="accordions">
+      <div
+        class="accordion bg-slate-800 cursor-pointer"
+        [routerLink]="['/guide/part/section/', section]"
+        #accordion
+        *ngFor="let section of sections()"
+      >
+        <div
+          class="title text-[2.2rem] sm:text-[2.8rem] lg:text-[3rem] font-bold"
+        >
+          {{ section | titlecase }}
+        </div>
+        <div #text class="text">
+          Accede directamente a la sección {{ section }} para conocer sus
+          componentes y su forma, cada sección es un punto a tomar en cuenta en
+          el flujo del sistema.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="text-white text-[2rem] md:text-[3rem] text-center py-5 font-bold">
   Contenido
 </p>
 
@@ -10,18 +45,9 @@
 
 <app-all-sections></app-all-sections>
 
-<p class="text-white text-[2rem] md:text-[3rem] text-center py-5 font-bold">
-  Secciones
-</p>
+<!-- accordioGsap -->
 
-<p class="text-gray-500 md:max-w-[60%] text-center m-auto mt-5">
-  El contenido también lo encontarás organizado en diferentes secciones, cada
-  una de ellas contiene una serie de conceptos a aprender, por ejemplo la
-  sección principal abarca los valores, procesos y reportes, la de mantenimiento
-  abarca ingresar, modificar y eliminar trabajadores, etc.
-</p>
-
-<div
+<!-- <div
   class="Seccion grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-5 my-14"
 >
   <div
@@ -69,3 +95,4 @@
     </button>
   </div>
 </div>
+ -->

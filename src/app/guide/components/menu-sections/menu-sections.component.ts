@@ -1,10 +1,20 @@
-import { AfterViewInit, Component, Input, OnInit, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+  signal,
+} from '@angular/core';
 import { NgFor, NgIf, TitleCasePipe } from '@angular/common';
 import { InfoSectionsService } from '../../services/info-sections.service';
 import { RouterModule } from '@angular/router';
 import { ImgPipe } from '../../pipes/img.pipe';
 import { AllSectionsComponent } from '../all-sections/all-sections.component';
-
+import { gsap } from 'gsap';
 @Component({
   selector: 'app-sections',
   standalone: true,
@@ -31,5 +41,38 @@ export class MenuSectionsComponent implements OnInit, AfterViewInit {
   }
 
   constructor(private infoSectionService: InfoSectionsService) {}
-  ngAfterViewInit(): void {}
+
+  @ViewChild('accordions') accordionContainer!: ElementRef<HTMLElement>;
+  @ViewChildren('accordion') accordions!: QueryList<ElementRef>;
+  @ViewChildren('text') textsAccordion!: QueryList<ElementRef>;
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      const tl = gsap.timeline({
+        ease: 'linear',
+        scrollTrigger: {
+          trigger: this.accordionContainer.nativeElement,
+          pin: true,
+          start: 'top 20%',
+          end: 'bottom 20%',
+          scrub: 1,
+          markers: true,
+        },
+      });
+
+      tl.to('.accordion .text', {
+        height: 0,
+        paddingBottom: 0,
+        opacity: 0,
+        stagger: 0.5,
+      });
+      tl.to(
+        '.accordion',
+        {
+          marginBottom: -15,
+          stagger: 0.5,
+        },
+        '<'
+      );
+    }, 500);
+  }
 }
