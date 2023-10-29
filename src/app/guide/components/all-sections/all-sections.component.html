@@ -1,6 +1,10 @@
 <!-- todas las secciónes + conceptos del contenido principal que redireccionan a description-section ( individual) -->
 
-<div id="accordion-collapse relative  h-full" data-accordion="close">
+<div
+  id="accordion-collapse  "
+  class="relative md:w-[80%] m-auto"
+  data-accordion="close"
+>
   <div
     *ngFor="let section of sections | keyvalue; let i = index"
     class="my-10 border-l-2 border-blue-800"
@@ -35,7 +39,7 @@
           </svg>
         </div>
 
-        <h2 class="text-white bottom-2 text-[1.8rem] underline">
+        <h2 class="text-white bottom-2  text-[1.3rem] md:text-[1.8rem] underline">
           {{ section.key | titlecase }}
         </h2>
       </button>
