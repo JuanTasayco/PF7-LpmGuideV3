@@ -46,7 +46,6 @@ export class PrincipalContentStaticComponent implements AfterViewInit, OnInit {
         xPercent: -100,
         scrollTrigger: {
           trigger: el,
-          markers: true,
           scrub: 1,
           start: 'top center',
           end: 'top center',
@@ -57,8 +56,8 @@ export class PrincipalContentStaticComponent implements AfterViewInit, OnInit {
     ScrollTrigger.create({
       trigger: this.principalContainer.nativeElement,
       start: 'top 8%',
-      end: '74% 8%',
-      scrub: true,
+      end: '75% 8%',
+      scrub: 1,
       pin: this.mobileMockup.nativeElement,
       pinSpacing: false,
       toggleActions: 'play reverse play reverse',
