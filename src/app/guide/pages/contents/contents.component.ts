@@ -1,9 +1,9 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MenuSectionsComponent } from '../../components/menu-sections/menu-sections.component';
 import { PrincipalContentStaticComponent } from 'src/app/shared/principal-content-static/principal-content-static.component';
 import { ActivatedRoute } from '@angular/router';
 import { FooterComponent } from 'src/app/shared/footer/footer.component';
-
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 @Component({
   selector: 'app-contents',
   standalone: true,
@@ -15,7 +15,7 @@ import { FooterComponent } from 'src/app/shared/footer/footer.component';
   templateUrl: './contents.component.html',
   styleUrls: ['./contents.component.scss'],
 })
-export class ContentsComponent implements AfterViewInit {
+export class ContentsComponent implements AfterViewInit, OnInit {
   ngAfterViewInit(): void {
     this.activatedRoute.fragment.subscribe((fragm) => {
       if (fragm) {
@@ -28,4 +28,5 @@ export class ContentsComponent implements AfterViewInit {
   }
 
   constructor(private activatedRoute: ActivatedRoute) {}
+  ngOnInit(): void {}
 }

@@ -37,6 +37,7 @@ export class BannerSectionComponent implements OnInit {
   secciones = signal<Seccion[]>([]);
   currentSection = signal<string>('');
   ngOnInit(): void {
+    scrollTo(0, 0);
     this.activatedRoute.params
       .pipe(
         tap(({ section }) => {
@@ -48,7 +49,6 @@ export class BannerSectionComponent implements OnInit {
       )
       .subscribe((response) => {
         this.secciones.update(() => response);
-        console.log(this.secciones());
       });
   }
 

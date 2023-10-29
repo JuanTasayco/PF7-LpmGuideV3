@@ -4,6 +4,9 @@ import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from '@studio-freight/lenis';
+import { LenisService } from './lenis-scroll/lenis.service';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -13,7 +16,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 })
 export class AppComponent implements OnInit {
   title = 'PF7-LpmAppV3';
-  constructor(private activatedRouter: ActivatedRoute) {}
+  lenis!: Lenis;
   ngOnInit(): void {
     initFlowbite();
     this.activatedRouter.fragment.subscribe((frag) => {
@@ -23,6 +26,11 @@ export class AppComponent implements OnInit {
     });
 
     /* inicia plugin de ScrollTrigger */
-    gsap.registerPlugin(ScrollTrigger);
+    this.lenis = this.lenisService.getlenisInstance();
   }
+
+  constructor(
+    private activatedRouter: ActivatedRoute,
+    private lenisService: LenisService
+  ) {}
 }

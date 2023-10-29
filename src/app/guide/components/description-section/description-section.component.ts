@@ -23,6 +23,7 @@ export class DescriptionSectionComponent implements OnInit {
     seccion: '',
   });
   ngOnInit(): void {
+    scrollTo(0, 0);
     this.activatedRoute.params
       .pipe(
         switchMap(({ title }) =>

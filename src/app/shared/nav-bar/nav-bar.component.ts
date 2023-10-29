@@ -44,7 +44,7 @@ export class NavBarComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     /* animacion principal escalando logo ( el contenido desaparecido está en el home) */
 
-    const tl = gsap.timeline({});
+    /* const tl = gsap.timeline({});
 
     gsap.set(this.lpmImgLogo.nativeElement, {
       position: 'absolute',
@@ -67,6 +67,6 @@ export class NavBarComponent implements AfterViewInit {
       })
       .to(this.lpmImgLogo.nativeElement, {
         position: 'relative',
-      });
+      }); */
   }
 }

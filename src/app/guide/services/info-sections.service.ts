@@ -4,6 +4,12 @@ import { environment } from 'src/environments/environment.development';
 import { Observable, catchError, map, of } from 'rxjs';
 import { Question, QuestionsData } from '../interfaces/question.interface';
 import { Seccion } from '../interfaces/sections.interfaces';
+
+type lastUpdates = {
+  title: string;
+  description: string;
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -29,14 +35,19 @@ export class InfoSectionsService {
   public getOnlyOneDataByTitle(title: string) {
     return this.http
       .get<Seccion>(`${this.url}/lpm/${title}`)
-      .pipe(catchError((error) => of(false)));
+      .pipe(catchError(() => of(false)));
   }
 
   public getInfoPerSectionName(section: string): Observable<Seccion[]> {
     return this.http.get<Seccion[]>(`${this.url}/lpm/sections/${section}`);
   }
 
-  public getMultipleDataByMatch(title: string) {
+  /* funciona con json */
+  public getUpdatesForSection() {
+    return this.http.get('assets/json/lastUpdates.json');
+  }
+
+  public getMultipleDataByMatch(title: string): Observable<any> {
     return this.http.get(`${this.url}/lpm/titles/${title}`);
   }
 }

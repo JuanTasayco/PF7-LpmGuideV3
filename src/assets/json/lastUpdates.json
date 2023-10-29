@@ -1,0 +1,16 @@
+{
+  "last": [
+    {
+      "title": "Fin de firmas digitales",
+      "description": "se han retirado las firmas digitales en su totalidad del reporte boletas"
+    },
+    {
+      "title": "Jubilados AFP",
+      "description": "La nueva forma de colocar jubilados es simplemente retirar sus conceptos AFP de la ficha trabajador ( no colocar en estado de jubiliación, ya que ocasiona un bug)"
+    },
+    {
+      "title": "Nuevo proceso de validación",
+      "description": "Al culminar los cambios, la validación de afp tiene un nuevo método adicional que permite evitar fallos como dobles descuentos, bases erroneas, etc."
+    }
+  ]
+}
