@@ -32,6 +32,8 @@ export class PrincipalContentStaticComponent implements AfterViewInit, OnInit {
   @ViewChild('descriptions') descriptions!: ElementRef<HTMLElement>;
   @ViewChild('principalContainer') principalContainer!: ElementRef<HTMLElement>;
   @ViewChildren('childrenContainer') childrenContainers!: QueryList<ElementRef>;
+  @ViewChild('scrollIndicator') scrollIndicator!: ElementRef<HTMLElement>;
+
   lastUpdates: lastUpdates[] = [];
   ngOnInit(): void {
     this.infoSection.getUpdatesForSection().subscribe(({ last }: any) => {
@@ -64,7 +66,15 @@ export class PrincipalContentStaticComponent implements AfterViewInit, OnInit {
       toggleActions: 'play reverse play reverse',
     });
 
-    /* animation button */
+    /* animation scroll animation mouse */
+    console.log(this.scrollIndicator.nativeElement);
+    gsap.to(this.scrollIndicator.nativeElement, {
+      y: 10,
+      duration: 1,
+      repeat: -1,
+      yoyo: true,
+      ease: 'power1.inOut',
+    });
   }
 
   constructor(private infoSection: InfoSectionsService) {}

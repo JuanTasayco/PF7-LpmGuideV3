@@ -1,6 +1,11 @@
 {
   "questions": [
     {
+      "subtitle": "Algunos números en el reporte me salen distorsionados ( rayas)",
+      "text": "Este es un problema común debido a que Starsoft sobreescribe data importante del sistema 2, la solución es ejecutar la maquina virtual que tienes instalado en tu ordenador, ejecuta window7 como si de una maquina cualquiera se tratara.",
+      "id": "question-1"
+    },
+    {
       "subtitle": "Tengo problemas con la asignación familiar, que hago ?",
       "text": "La asignación familar en el sistema necesita recalcularse manualmente en base a un conmutador, este se encuentra en la sección de variables ( asignación familiar), una vez allí buscar entre los recuadros en linea una opción llamada Desc.proporcional, si está marcada el cálculo será proporcional, de lo contrario, se le entregará el valor completo, esto se marca y se desmarca manualmente en base a lo que necesitamos. Por ejemplo si el trabajador tiene vacaciones, vamos aquí y marcamos proporcional, procesamos solo a ese personal y listo, si necesitamos que un trabajador tenga asignación completa, volvemos aquí desmarcamos y procesamos solo a ese trabajador. Tener en cuenta que si procesas a un trabajador de vacaciones modificado anteriormente con valor proporcional y ahora lo procesas cuando el valor está completo en la ficha de variable(asignación familiar),  este tendrá volverá a su asignación completa, por eso se recomienda no procesar a todos una vez ya tengas cambios avanzados.",
       "id": "question-1"

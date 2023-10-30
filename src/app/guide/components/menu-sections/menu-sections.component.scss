@@ -21,7 +21,7 @@
 }
 
 .text {
-  font-size: max(1vw, 15px);
+  
   line-height: 1.4;
   overflow: hidden;
   padding-bottom: 20px;
@@ -43,34 +43,14 @@
 .accordion {
   background: linear-gradient(
     200deg,
-    rgb(29, 145, 252) 13.57%,
-    rgb(90, 54, 192) 98.38%
+    #2e2749 13.57%,
+    /* Morado oscuro */ #002855 98.38% /* Azul marino */
   );
   width: 80%;
   padding: 25px 30px 10px;
   border-radius: 15px;
   margin-bottom: 40px;
   box-shadow: 0 30px 30px -10px rgba(0, 0, 0, 0.3);
-
-  &:nth-child(2) {
-    background: linear-gradient(
-      200deg,
-      rgb(242, 136, 133) 13.57%,
-      rgb(233, 79, 102) 98.38%
-    );
-  }
-
-  &:nth-child(3) {
-    background: linear-gradient(
-      200deg,
-      rgb(101, 187, 118) 13.57%,
-      rgb(70, 111, 171) 98.38%
-    );
-  }
-
-  &:nth-child(4) {
-    background: linear-gradient(200deg, #c215d1 13.57%, #9813a1 98.38%);
-  }
 }
 
 @media (max-width: 480px) {
