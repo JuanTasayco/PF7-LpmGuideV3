@@ -30,7 +30,6 @@ export class AuthService {
       .pipe(
         map(() => true),
         catchError((respError: HttpErrorResponse) => {
-          console.log(respError.error?.message);
           this.currentErrorMsg.update(() => respError.error?.message);
           return of(false);
         })
