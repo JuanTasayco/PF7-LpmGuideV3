@@ -37,7 +37,7 @@ export class LoginComponent implements AfterViewInit, OnInit {
   existError: boolean = false;
   /*  juantasayco@gmail.com*/
   public formLogin: FormGroup = this.fb.group({
-    email: ['labight@gmail.com', [Validators.required, Validators.email]],
+    email: ['', [Validators.required, Validators.email]],
     password: ['123456', [Validators.required, Validators.minLength(3)]],
     terms: [true, []],
   });

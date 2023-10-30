@@ -56,8 +56,6 @@ export class EditUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.redirectPageWhenHideModal);
-    console.log(this.linkRedirectPageWhenHideModal);
     if (this.router.url.includes('edit')) {
       this.userEdit.reset();
       this.currentSeccionIsEdit = true;
@@ -107,7 +105,6 @@ export class EditUserComponent implements OnInit {
       /* agregando */
       if (this.userEdit.valid) {
         const { id, ...newUser } = this.userEdit.value;
-        console.log(newUser);
         this.adminService.createUser(newUser).subscribe((resp: boolean) => {
           if (!resp) {
             this.modalService.setEventForOpenModal =

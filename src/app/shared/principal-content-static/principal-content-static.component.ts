@@ -67,7 +67,7 @@ export class PrincipalContentStaticComponent implements AfterViewInit, OnInit {
     });
 
     /* animation scroll animation mouse */
-    console.log(this.scrollIndicator.nativeElement);
+
     gsap.to(this.scrollIndicator.nativeElement, {
       y: 10,
       duration: 1,

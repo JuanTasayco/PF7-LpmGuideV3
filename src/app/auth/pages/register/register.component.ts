@@ -9,6 +9,8 @@ import {
 import { RouterModule } from '@angular/router';
 import { FormLogicService } from '../../services/form-logic.service';
 import { ModalAlertComponent } from '../../../shared/modal-alert/modal-alert.component';
+import { AuthService } from '../../services/auth.service';
+import { ModalChangesService } from 'src/app/shared/modal-changes.service';
 
 @Component({
   selector: 'app-register',
@@ -18,10 +20,18 @@ import { ModalAlertComponent } from '../../../shared/modal-alert/modal-alert.com
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
+  /* lógica para el modal component, para redireccionar al cerrar modal */
+  redirectPageWhenHideModal: boolean = false;
+  /* no colocar nada en el string, se usa para validación si es vacía. */
+  linkRedirectPageWhenHideModal: string = '';
+
   public formRegister: FormGroup = this.fb.group(
     {
-      user: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(3)]],
+      email: [
+        'juantasayco269@gmail.com',
+        [Validators.required, Validators.email],
+      ],
+      password: ['123456', [Validators.required, Validators.minLength(3)]],
       terms: false,
       passRepeat: ['', [Validators.required]],
     },
@@ -36,17 +46,12 @@ export class RegisterComponent {
   @ViewChild('inputPassword') passwordInput!: ElementRef<HTMLElement>;
   @ViewChild('inputpassRepeat') passRepeatInput!: ElementRef<HTMLElement>;
   existError: any = false;
-  showModal: boolean = false;
+
   getErrorsForm(name: string) {
     const control = this.formRegister.get(name);
     if (!control?.pristine || control?.touched) {
-      /*   const element =
-        name === 'user'
-          ? this.emailInput.nativeElement
-          : this.passwordInput.nativeElement;
- */
       const ELEMENTS_DOM: any = {
-        user: this.emailInput.nativeElement,
+        email: this.emailInput.nativeElement,
         password: this.passwordInput.nativeElement,
         passRepeat: this.passRepeatInput.nativeElement,
       };
@@ -98,21 +103,36 @@ export class RegisterComponent {
   }
 
   sendForm() {
-    if (this.formRegister.valid) {
-      console.log('sendFormulary');
-    } else {
-      this.formRegister.markAllAsTouched();
-      this.showModal = true;
-    }
-  }
+    if (this.formRegister.valid && this.formRegister.get('terms')?.value) {
+      const { password, email } = this.formRegister.value;
 
-  getEventCloseModal(eventClose: boolean) {
-    this.showModal = eventClose;
+      this.authService
+        .registerUser({
+          email,
+          password,
+        })
+        .subscribe((response: boolean) => {
+          if (response) {
+            this.redirectPageWhenHideModal = true;
+            this.linkRedirectPageWhenHideModal = '/auth/login';
+            this.modalService.setEventForOpenModal = 'Registrado Correctamente';
+          } else {
+            this.modalService.setEventForOpenModal =
+              this.authService.currentErrorMsg();
+          }
+        });
+    } else {
+      this.modalService.setEventForOpenModal =
+        'Existen errores en el formulario';
+      this.formRegister.markAllAsTouched();
+    }
   }
 
   constructor(
     private fb: FormBuilder,
     private renderer: Renderer2,
-    private formLogicService: FormLogicService
+    private formLogicService: FormLogicService,
+    private authService: AuthService,
+    private modalService: ModalChangesService
   ) {}
 }

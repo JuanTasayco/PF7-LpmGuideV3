@@ -37,12 +37,12 @@
           type="text"
           id="email-address-icon"
           class="normalInput"
-          formControlName="user"
+          formControlName="email"
           placeholder="names@gmail.com"
         />
       </div>
-      <p *ngIf="getErrorsForm('user')" class="mt-2 text-sm text-red-600">
-        <span class="font-medium">Oops! </span>{{ getErrors("user") }}
+      <p *ngIf="getErrorsForm('email')" class="mt-2 text-sm text-red-600">
+        <span class="font-medium">Oops! </span>{{ getErrors("email") }}
       </p>
     </div>
 
@@ -121,5 +121,8 @@
       Registrarse
     </button>
   </form>
-  <app-modal-alert></app-modal-alert>
+  <app-modal-alert
+    [redirectPage]="redirectPageWhenHideModal"
+    [linkNameRedirect]="linkRedirectPageWhenHideModal"
+  ></app-modal-alert>
 </div>

@@ -9,6 +9,11 @@ import {
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { User } from 'src/app/admin/interfaces/admin.interfaces';
 
+type Usr = {
+  email: string;
+  password: string;
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -19,7 +24,18 @@ export class AuthService {
 
   currentErrorMsg = signal<string>('');
 
-  registerUser() {}
+  registerUser(body: Usr) {
+    return this.httpClient
+      .post<User>(`${this.currentUrl}/auth/register`, body)
+      .pipe(
+        map(() => true),
+        catchError((respError: HttpErrorResponse) => {
+          console.log(respError.error?.message);
+          this.currentErrorMsg.update(() => respError.error?.message);
+          return of(false);
+        })
+      );
+  }
 
   loginUser(userData: LoginUser): Observable<boolean> {
     return this.httpClient
