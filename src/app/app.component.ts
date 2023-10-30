@@ -19,18 +19,10 @@ export class AppComponent implements OnInit {
   lenis!: Lenis;
   ngOnInit(): void {
     initFlowbite();
-    this.activatedRouter.fragment.subscribe((frag) => {
-      if (!frag) {
-        scrollTo(0, 0);
-      }
-    });
 
     /* inicia plugin de ScrollTrigger */
     this.lenis = this.lenisService.getlenisInstance();
   }
 
-  constructor(
-    private activatedRouter: ActivatedRoute,
-    private lenisService: LenisService
-  ) {}
+  constructor(private lenisService: LenisService) {}
 }

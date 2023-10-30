@@ -1,11 +1,26 @@
 <section class="About relative text-white bg-slate-900">
   <div
-    class="About-presentImg bg-gradient-to-r from-pink-700 via-sky-500 to-blue-700 max-h-[500px] sm:max-h-[200px] lg:max-h-[300px] 2xl:max-h-[500px]"
+    class="About-presentImg relative max-h-[500px] sm:max-h-[200px] lg:max-h-[300px] 2xl:max-h-[500px] z-10"
   >
-    <img src="assets/test.jpg" alt="bookImage" class="About-img" />
+    <img
+      src="assets/wallpaper.jpg"
+      alt="bookImage"
+      class="About-img opacity-20"
+    />
+
+    <div class="absolute top-52 left-5">
+      <small class=" text-[1.1rem] text-gray-400">Acerca de la Guía</small>
+      <h2 class="text-white text-[2.3rem] font-bold leading-9 w-[70%] mt-2">
+        Ten en cuenta el orden de las secciones, esto te ayudará a entender
+        mejor el uso del sistema
+      </h2>
+    </div>
   </div>
-  <div class="About-descriptions">
-    <h2 class="text-[2.5rem] font-semibold line mt-[3rem]">General</h2>
+
+  <div
+    class="About-descriptions p-10 rounded-lg bg-slate-900 w-[90%] -mt-20 z-10"
+  >
+    <h2 class="text-[2.5rem] font-semibold line">General</h2>
     <p class="About-p">
       Esta guía sirve como una profundización al sistema de contabilidad 2, para
       entender el enfoque, flujo y la finalidad de este. Nos centramos en
@@ -27,11 +42,13 @@
       internas, esto se coordinará directamente con el área de computo y de ser
       necesario se informará al programador.
     </p>
+
+    <div class="About-sections mt-[2rem]">
+      <app-sections></app-sections>
+    </div>
   </div>
 
-  <div class="About-sections mt-[10rem]">
-    <app-sections></app-sections>
-  </div>
+ 
 </section>
 
 <div class="relative mt-[3rem] w-full left-0 bg-slate-900 bottom-0">

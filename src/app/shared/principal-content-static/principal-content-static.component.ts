@@ -44,6 +44,7 @@ export class PrincipalContentStaticComponent implements AfterViewInit, OnInit {
     this.childrenContainers.forEach(({ nativeElement: el }) => {
       tl.from(el, {
         xPercent: -100,
+        stagger: 0.1,
         scrollTrigger: {
           trigger: el,
           scrub: 1,
