@@ -33,6 +33,7 @@
     <div class="Banner-section Banner-section--content flex-1 m-5">
       <div
         *ngFor="let item of secciones()"
+        [routerLink]="['/guide/part', item.titulo]"
         class="Banner-card rounded-lg hover:cursor-pointer hover:bg-sky-400 hover:bg-opacity-5 border-l-8 px-5 mb-5 border-pink-700 bg-slate-800 h-[4.5rem]"
       >
         <small class="Banner-small uppercase text-gray-400">{{
