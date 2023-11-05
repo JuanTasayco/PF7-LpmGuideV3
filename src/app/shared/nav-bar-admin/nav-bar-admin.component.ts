@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { NgClass, NgFor, NgIf, TitleCasePipe } from '@angular/common';
 import { Flowbite } from 'src/app/guide/decorator/flowbite-decorator';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { InfoSectionsService } from 'src/app/guide/services/info-sections.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { User } from 'src/app/admin/interfaces/admin.interfaces';
@@ -50,11 +50,17 @@ export class NavBarAdminComponent implements AfterViewInit, OnInit {
     return Object.keys(this.items);
   }
 
+  exitSesion() {
+    localStorage.removeItem('keyToken');
+    this.route.navigate(['/guide/principal']);
+  }
+
   ngAfterViewInit(): void {}
 
   constructor(
     private guideService: InfoSectionsService,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: Router
   ) {}
 }
 

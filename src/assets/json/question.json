@@ -3,7 +3,7 @@
     {
       "subtitle": "Algunos números en el reporte me salen distorsionados ( rayas)",
       "text": "Este es un problema común debido a que Starsoft sobreescribe data importante del sistema 2, la solución es ejecutar la maquina virtual que tienes instalado en tu ordenador, ejecuta window7 como si de una maquina cualquiera se tratara.",
-      "id": "question-1"
+      "id": "question-0"
     },
     {
       "subtitle": "Tengo problemas con la asignación familiar, que hago ?",
