@@ -16,16 +16,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
   styleUrls: ['./contents.component.scss'],
 })
 export class ContentsComponent implements AfterViewInit, OnInit {
-  ngAfterViewInit(): void {
-    this.activatedRoute.fragment.subscribe((fragm) => {
-      if (fragm) {
-        const element = document.getElementById('mi-section');
-        if (element) {
-          element.scrollIntoView({ block: 'start' });
-        }
-      }
-    });
-  }
+  ngAfterViewInit(): void {}
 
   constructor(private activatedRoute: ActivatedRoute) {}
   ngOnInit(): void {}

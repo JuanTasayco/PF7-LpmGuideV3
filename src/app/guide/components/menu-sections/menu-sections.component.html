@@ -43,56 +43,6 @@
   presiona para desglozar y verificar los conceptos.
 </p>
 
-<app-all-sections></app-all-sections>
-
-<!-- accordioGsap -->
-
-<!-- <div
-  class="Seccion grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-5 my-14"
->
-  <div
-    *ngFor="let section of sections(); let i = index"
-    class="max-w-sm p-6 m-auto border rounded-lg shadow border-gray-800"
-  >
-    <span
-      class="text-xs font-medium mr-2 px-2.5 py-0.5 rounded bg-purple-900 text-purple-300"
-      >Tutorial</span
-    >
-
-    <div class="Seccion-descriptions mt-4">
-      <h5 class="text-2xl font-semibold tracking-tight text-white mb-5">
-        {{ section | titlecase }}
-      </h5>
-
-      <p class="mb-3 font-normal text-gray-400">
-        Acceder a la sección {{ section }}, entra y aprende a manejar dominar
-        este punto del sistema de conta.
-      </p>
-    </div>
-
-    <button
-      [routerLink]="['/guide/part/section/', section]"
-      type="button"
-      class="py-2.5 mt-5 px-5 mr-2 mb-2 text-sm font-medium focus:outline-none rounded-lg border focus:z-10 focus:ring-4 focus:ring-gray-700 bg-gray-800 text-gray-400 border-gray-600 hover:text-white hover:bg-gray-700 inline-flex items-center"
-    >
-      Ir a Sección
-
-      <svg
-        class="w-3 h-3 ml-2.5"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 18 18"
-      >
-        <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"
-        />
-      </svg>
-    </button>
-  </div>
+<div *ngIf="firstContentChanged">
+  <app-all-sections></app-all-sections>
 </div>
- -->

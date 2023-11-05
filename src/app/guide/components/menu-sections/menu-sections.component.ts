@@ -30,13 +30,14 @@ import { gsap } from 'gsap';
   styleUrls: ['./menu-sections.component.scss'],
 })
 export class MenuSectionsComponent implements OnInit, AfterViewInit {
-  public sections = signal<string[]>(['']);
-
+  public sections = signal<string[]>([]);
+  firstContentChanged: boolean = false;
   ngOnInit(): void {
     this.infoSectionService
       .getSectionsName()
       .subscribe((responseSections: string[]) => {
         this.sections.set(responseSections);
+        this.firstContentChanged = true;
       });
   }
 
@@ -72,6 +73,6 @@ export class MenuSectionsComponent implements OnInit, AfterViewInit {
         },
         '<'
       );
-    }, 500);
+    }, 1500);
   }
 }
