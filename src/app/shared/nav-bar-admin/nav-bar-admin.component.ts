@@ -66,6 +66,7 @@ export class NavBarAdminComponent implements AfterViewInit, OnInit {
 
   exitSesion() {
     localStorage.removeItem('keyToken');
+    this.route.navigate(['/guide/principal']);
   }
 
   ngAfterViewInit(): void {}
