@@ -56,7 +56,7 @@
       <p class="Section-p text-4xl font-extrabold text-white py-7">
         Introducción
       </p>
-      <ol
+      <div
         class="Section-ol Section-ol--introduccion relative border-l border-gray-700"
       >
         <div class="Section-add p-5" [formGroup]="formForArray">
@@ -67,6 +67,7 @@
               id="subIng"
               type="text"
               class="normalInput"
+              aria-labelledby="subIng"
             />
           </div>
 
@@ -78,6 +79,7 @@
               formControlName="imagesUrl"
               type="file"
               class="border rounded-lg text-white text-sm w-full"
+              aria-labelledby="lastnameIng"
             />
           </div>
         </div>
@@ -94,7 +96,7 @@
 
         <!-- show intro objects add -->
         <div cdkDropListGroup class="Drop">
-          <div
+          <ul
             cdkDropList
             [cdkDropListData]="ingresoArray.controls"
             (cdkDropListDropped)="drop($event, 'ingreso')"
@@ -127,6 +129,7 @@
                     id="nameIntro{{ i }}"
                     type="text"
                     class="normalInput"
+                    aria-labelledby="subtitleInput"
                   />
                 </div>
 
@@ -139,6 +142,7 @@
                     (change)="changeImage($event, 'update', ingresoArray, i)"
                     type="file"
                     class="normalInput w-full"
+                    aria-labelledby="imageContent"
                   />
                 </div>
 
@@ -160,15 +164,15 @@
                 </button>
               </div>
             </li>
-          </div>
+          </ul>
         </div>
-      </ol>
+      </div>
     </div>
 
     <!-- contenido -->
     <div class="Section-content flex-1">
       <p class="Section-p text-4xl font-extrabold text-white py-7">Pasos</p>
-      <ol
+      <div
         class="Section-ol Section-ol--introduccion relative border-l border-gray-700"
       >
         <div class="Section-add p-5" [formGroup]="formForArray">
@@ -179,6 +183,7 @@
               id="subContent"
               type="text"
               class="normalInput"
+              aria-labelledby="subtitleInput"
             />
           </div>
 
@@ -190,6 +195,7 @@
               (change)="changeImage($event, 'add', contenidoArray, undefined)"
               type="file"
               class="border rounded-lg text-white w-full text-sm"
+              aria-labelledby="imageInput"
             />
           </div>
         </div>
@@ -206,7 +212,7 @@
 
         <!-- show contenido objects add -->
         <div cdkDropListGroup class="Drop">
-          <div
+          <ul
             cdkDropList
             [cdkDropListData]="contenidoArray.controls"
             (cdkDropListDropped)="drop($event, 'contenido')"
@@ -239,6 +245,7 @@
                     id="nameCont{{ i }}"
                     type="text"
                     class="normalInput"
+                    aria-labelledby="inputSubtitles"
                   />
                 </div>
 
@@ -251,6 +258,7 @@
                     id="lastname"
                     type="file"
                     class="normalInput w-full"
+                    aria-labelledby="imageContent"
                   />
                 </div>
 
@@ -273,9 +281,9 @@
                 </button>
               </div>
             </li>
-          </div>
+          </ul>
         </div>
-      </ol>
+      </div>
     </div>
   </section>
   <div class="flex items-center justify-center my-16">

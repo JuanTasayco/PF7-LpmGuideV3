@@ -50,6 +50,7 @@
           >
         </li>
         <li>
+          <!-- el a tiene   -->
           <a
             id="mega-menu-full-dropdown-button"
             data-collapse-toggle="mega-menu-full-dropdown"
@@ -88,7 +89,8 @@
 
         <li>
           <a
-            routerLink="/guide"
+            routerLink="/guide/principal"
+            (click)="exitSesion()"
             class="block py-2 pl-3 pr-4 rounded md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-blue-500 md:hover:bg-transparent border-gray-700"
             >Salir</a
           >
@@ -163,20 +165,25 @@
   <!-- lógica para las barras de despliegue de algunos li en la barra de navegación -->
 
   <!-- coloca hidden cuando cierra y arriba -->
+  <!-- megaMenu -->
   <div
-    *ngIf="items"
     id="mega-menu-full-dropdown"
     class="mt-1 shadow-sm border-y bg-gray-800 border-gray-600 hidden"
   >
     <div
+      *ngIf="items"
       class="grid max-w-screen-xl px-4 py-5 mx-auto text-white sm:grid-cols-2 md:px-6"
     >
-      <ul *ngFor="let item of itemsKeys; let i = index" class="mt-3">
+      <ul
+        aria-labelledby="mega-menu-full-dropdown-button"
+        *ngFor="let item of itemsKeys; let i = index"
+        class="mt-3"
+      >
         <li>
-          <!-- button para submenus -->
+          <!-- button para submenus   [attr.data-dropdown-toggle]="item"-->
           <button
+            (click)="openSections(i)"
             [id]="i"
-            [attr.data-dropdown-toggle]="item"
             class="flex items-center justify-between w-full py-2 pl-3 pr-4 border-b md:border-0 md:p-0 md:w-auto text-white md:hover:text-blue-500 focus:text-white border-gray-700 hover:bg-gray-700 md:hover:bg-transparent"
           >
             <div class="font-semibold">{{ item | titlecase }}</div>
@@ -201,11 +208,12 @@
             modificación.</span
           >
 
-          <div>
+          <div class="relative">
             <!-- Dropdown menu -->
             <div
+              #submenusDropdown
               [id]="item"
-              class="z-50 hidden font-normal divide-y rounded-lg shadow w-44 bg-gray-700 divide-gray-600"
+              class="z-50 hidden absolute font-normal divide-y rounded-lg shadow w-44 bg-gray-700 divide-gray-600"
             >
               <ul
                 class="py-2 text-sm text-gray-400"

@@ -15,6 +15,7 @@ import { Router, RouterModule } from '@angular/router';
 import { InfoSectionsService } from 'src/app/guide/services/info-sections.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { User } from 'src/app/admin/interfaces/admin.interfaces';
+import { toArray } from 'gsap';
 @Component({
   selector: 'app-nav-bar-admin',
   standalone: true,
@@ -28,6 +29,7 @@ export class NavBarAdminComponent implements AfterViewInit, OnInit {
   @ViewChild('menuDisplay') menuDisplayItem!: ElementRef<HTMLElement>;
   currentUser = signal<User | null>(null);
   items!: { [key: string]: any[] };
+
   ngOnInit(): void {
     this.guideService.getAllSections().subscribe((info) => {
       let sections: string[] = [...new Set(info.map((info) => info.seccion))];
@@ -50,9 +52,20 @@ export class NavBarAdminComponent implements AfterViewInit, OnInit {
     return Object.keys(this.items);
   }
 
+  @ViewChildren('submenusDropdown') submenus!: QueryList<ElementRef>;
+  openSections(pos: number) {
+    const items: Array<ElementRef> = this.submenus.toArray();
+    items.forEach(({ nativeElement: el }, index) => {
+      if (index == pos) {
+        el.classList.toggle('hidden');
+      } else {
+        el.classList.add('hidden');
+      }
+    });
+  }
+
   exitSesion() {
     localStorage.removeItem('keyToken');
-    this.route.navigate(['/guide/principal']);
   }
 
   ngAfterViewInit(): void {}
