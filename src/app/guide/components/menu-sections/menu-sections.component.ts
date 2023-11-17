@@ -55,7 +55,6 @@ export class MenuSectionsComponent implements OnInit, AfterViewInit {
           start: 'top 20%',
           end: 'bottom 20%',
           scrub: 1,
-          markers: true,
         },
 
         onStart: () => {
