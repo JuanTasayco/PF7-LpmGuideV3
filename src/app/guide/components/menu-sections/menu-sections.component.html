@@ -27,8 +27,11 @@
     <div class="Flow-content mt-16">
       <div class="Flow-row grid grid-cols-1 md:grid-cols-3">
         <div
-          *ngFor="let item of sections | keyvalue"
-          class="Flow-column border-r border-slate-500 flex flex-col gap-5"
+          *ngFor="let item of sections | keyvalue; let i = index"
+          class="Flow-column border-slate-500 flex flex-col gap-5"
+          [ngClass]="{
+            'border-r': i !== 2
+          }"
         >
           <h2 class="Flow-h2 self-center text-[1.5rem] font-bold">
             {{ item.key | titlecase }}

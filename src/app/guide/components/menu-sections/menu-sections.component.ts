@@ -1,5 +1,11 @@
 import { AfterViewInit, Component, OnInit, signal } from '@angular/core';
-import { KeyValuePipe, NgFor, NgIf, TitleCasePipe } from '@angular/common';
+import {
+  KeyValuePipe,
+  NgClass,
+  NgFor,
+  NgIf,
+  TitleCasePipe,
+} from '@angular/common';
 import { InfoSectionsService } from '../../services/info-sections.service';
 import { RouterModule } from '@angular/router';
 import { ImgPipe } from '../../pipes/img.pipe';
@@ -20,6 +26,7 @@ import {
     AllSectionsComponent,
     NgIf,
     KeyValuePipe,
+    NgClass,
   ],
   templateUrl: './menu-sections.component.html',
   styleUrls: ['./menu-sections.component.scss'],
@@ -32,7 +39,15 @@ export class MenuSectionsComponent implements OnInit {
     this.infoSectionService.getCalendary().subscribe((response) => {
       /*    this.sections.set(<Record<Calendary, CalendaryObject>>response); */
       this.sections = response;
-      console.log(this.sections);
+
+      const orderObjects: Calendary[] = ['asistencias', 'valores', 'reportes'];
+      let newOrder!: any;
+
+      for (let key of orderObjects) {
+        console.log(this.sections[key]);
+        /*    newOrder[key] = this.sections[key]; */
+      }
+      console.log(newOrder);
     });
   }
 
