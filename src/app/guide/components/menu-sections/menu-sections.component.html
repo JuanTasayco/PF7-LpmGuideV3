@@ -1,4 +1,88 @@
-<p class="text-white text-[2rem] md:text-[3rem] text-center py-5 font-bold">
+<div class="Flow">
+  <div class="Flow-container">
+    <div class="Flow-titles">
+      <h2 class="Flow-h2 font-bold text-[2.25rem] tracking-tight">
+        The schedule
+      </h2>
+      <small class="Font-subtitle text-gray-400 text-[1.25rem]"
+        >April 27th, 28th, & 29th 2023</small
+      >
+      <span
+        class="text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded bg-gray-700 text-blue-400 border border-blue-400"
+      >
+        <svg
+          class="w-2.5 h-2.5 me-1.5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"
+          />
+        </svg>
+        Flujo
+      </span>
+    </div>
+    <div class="Flow-content mt-16">
+      <div class="Flow-row grid grid-cols-1 md:grid-cols-3">
+        <div class="Flow-column border-r border-slate-500 flex flex-col gap-5">
+          <h2 class="Flow-h2 self-center text-[1.5rem]">Asistencias</h2>
+          <div class="Flow-sections" style="border: 2px solid red">
+            <!-- section 1 -->
+            <div
+              class="Flow-section flex flex-col items-start gap-5 py-8"
+              style="border: 2px solid blue"
+            >
+              <span
+                class="Flow-span text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded bg-gray-700 text-blue-400 border border-blue-400"
+              >
+                <svg
+                  class="Flow-svg w-2.5 h-2.5 me-1.5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"
+                  />
+                </svg>
+                Flujo
+              </span>
+
+              <small class="Flow-span text-[1.25rem] tracking-tight font-bold"
+                >Opening remarks</small
+              >
+
+              <div class="flex items-center gap-4">
+                <img
+                  class="w-10 h-10 rounded-full"
+                  src="/docs/images/people/profile-picture-5.jpg"
+                  alt=""
+                />
+                <div class="font-medium dark:text-white">
+                  <div>Jese Leos</div>
+                  <div class="text-sm text-gray-500 dark:text-gray-400">
+                    Joined in August 2014
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- section 2 -->
+          </div>
+        </div>
+        <div class="Flow-column border-r border-slate-500">
+          <h2>Valores</h2>
+          <div class="Flow-sections"></div>
+        </div>
+        <div class="Flow-column">Reportes</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <p class="text-white text-[2rem] md:text-[3rem] text-center py-5 font-bold">
   Secciones
 </p>
 
@@ -43,7 +127,7 @@
   presiona para desglozar y verificar los conceptos.
 </p>
 
-<!-- acordion principal -->
 <div *ngIf="firstContentChanged">
   <app-all-sections></app-all-sections>
 </div>
+ -->

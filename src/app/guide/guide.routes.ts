@@ -5,7 +5,6 @@ import { ContentsComponent } from './pages/contents/contents.component';
 import { QuestionsComponent } from './pages/questions/questions.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
 import { DescriptionSectionComponent } from './components/description-section/description-section.component';
-import { BannerSectionComponent } from './components/banner-section/banner-section.component';
 
 export const routes_pages: Routes = [
   {
@@ -31,11 +30,6 @@ export const routes_pages: Routes = [
       {
         path: 'part/:title',
         component: DescriptionSectionComponent,
-      },
-
-      {
-        path: 'part/section/:section',
-        component: BannerSectionComponent,
       },
 
       {

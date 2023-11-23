@@ -33,11 +33,14 @@ export class MenuSectionsComponent implements OnInit, AfterViewInit {
   public sections = signal<string[]>([]);
   firstContentChanged: boolean = false;
   ngOnInit(): void {
-    this.infoSectionService
+    /*     this.infoSectionService
       .getSectionsName()
       .subscribe((responseSections: string[]) => {
         this.sections.set(responseSections);
-      });
+        console.log(this.sections());
+      }); */
+
+    this.infoSectionService.getAllSections().subscribe(console.log);
   }
 
   constructor(private infoSectionService: InfoSectionsService) {}
@@ -45,37 +48,5 @@ export class MenuSectionsComponent implements OnInit, AfterViewInit {
   @ViewChild('accordions') accordionContainer!: ElementRef<HTMLElement>;
   @ViewChildren('accordion') accordions!: QueryList<ElementRef>;
   @ViewChildren('text') textsAccordion!: QueryList<ElementRef>;
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      const tl = gsap.timeline({
-        ease: 'linear',
-        scrollTrigger: {
-          trigger: this.accordionContainer.nativeElement,
-          pin: true,
-          start: 'top 20%',
-          end: 'bottom 20%',
-          scrub: 1,
-        },
-
-        onStart: () => {
-          this.firstContentChanged = true;
-        },
-      });
-
-      tl.to('.accordion .text', {
-        height: 0,
-        paddingBottom: 0,
-        opacity: 0,
-        stagger: 0.5,
-      });
-      tl.to(
-        '.accordion',
-        {
-          marginBottom: -15,
-          stagger: 0.5,
-        },
-        '<'
-      );
-    }, 1500);
-  }
+  ngAfterViewInit(): void {}
 }

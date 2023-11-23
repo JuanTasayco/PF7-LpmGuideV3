@@ -1,4 +1,21 @@
-.Seccion {
+.Flow {
+  color: white;
+
+  &-titles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &-column {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* .Seccion {
   &-block {
     &:hover {
       cursor: pointer;
@@ -13,8 +30,7 @@
 }
 
 .title {
-  /*   font-size: max(2vw, 24px);
-  line-height: 1.1; */
+
   padding-bottom: 0.4em;
   color: rgb(255, 255, 255);
   text-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
@@ -28,10 +44,7 @@
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* #wrapper {
- 
 
-} */
 .accordions {
   display: flex;
   flex-direction: column;
@@ -44,7 +57,7 @@
   background: linear-gradient(
     200deg,
     #2e2749 13.57%,
-    /* Morado oscuro */ #002855 98.38% /* Azul marino */
+    #002855 98.38% 
   );
   width: 80%;
   padding: 25px 30px 10px;
@@ -65,3 +78,4 @@
     max-height: 800px;
   }
 }
+ */
