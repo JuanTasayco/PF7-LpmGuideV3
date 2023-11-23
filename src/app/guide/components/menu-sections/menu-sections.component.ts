@@ -1,20 +1,14 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Input,
-  OnInit,
-  QueryList,
-  ViewChild,
-  ViewChildren,
-  signal,
-} from '@angular/core';
-import { NgFor, NgIf, TitleCasePipe } from '@angular/common';
+import { AfterViewInit, Component, OnInit, signal } from '@angular/core';
+import { KeyValuePipe, NgFor, NgIf, TitleCasePipe } from '@angular/common';
 import { InfoSectionsService } from '../../services/info-sections.service';
 import { RouterModule } from '@angular/router';
 import { ImgPipe } from '../../pipes/img.pipe';
 import { AllSectionsComponent } from '../all-sections/all-sections.component';
-import { gsap } from 'gsap';
+import {
+  Calendary,
+  CalendaryObject,
+} from '../../interfaces/sections.interfaces';
+
 @Component({
   selector: 'app-sections',
   standalone: true,
@@ -25,28 +19,22 @@ import { gsap } from 'gsap';
     ImgPipe,
     AllSectionsComponent,
     NgIf,
+    KeyValuePipe,
   ],
   templateUrl: './menu-sections.component.html',
   styleUrls: ['./menu-sections.component.scss'],
 })
-export class MenuSectionsComponent implements OnInit, AfterViewInit {
-  public sections = signal<string[]>([]);
+export class MenuSectionsComponent implements OnInit {
+  /*   public sections = signal<Record<Calendary, CalendaryObject> | null>(null); */
+  sections!: Record<Calendary, CalendaryObject[]>;
   firstContentChanged: boolean = false;
   ngOnInit(): void {
-    /*     this.infoSectionService
-      .getSectionsName()
-      .subscribe((responseSections: string[]) => {
-        this.sections.set(responseSections);
-        console.log(this.sections());
-      }); */
-
-    this.infoSectionService.getAllSections().subscribe(console.log);
+    this.infoSectionService.getCalendary().subscribe((response) => {
+      /*    this.sections.set(<Record<Calendary, CalendaryObject>>response); */
+      this.sections = response;
+      console.log(this.sections);
+    });
   }
 
   constructor(private infoSectionService: InfoSectionsService) {}
-
-  @ViewChild('accordions') accordionContainer!: ElementRef<HTMLElement>;
-  @ViewChildren('accordion') accordions!: QueryList<ElementRef>;
-  @ViewChildren('text') textsAccordion!: QueryList<ElementRef>;
-  ngAfterViewInit(): void {}
 }

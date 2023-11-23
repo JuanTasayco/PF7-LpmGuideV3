@@ -3,7 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { Observable, catchError, map, of } from 'rxjs';
 import { Question, QuestionsData } from '../interfaces/question.interface';
-import { Seccion } from '../interfaces/sections.interfaces';
+import {
+  Calendary,
+  CalendaryObject,
+  Seccion,
+} from '../interfaces/sections.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -44,5 +48,11 @@ export class InfoSectionsService {
 
   public getMultipleDataByMatch(title: string): Observable<any> {
     return this.http.get(`${this.url}/lpm/titles/${title}`);
+  }
+
+  public getCalendary(): Observable<Record<Calendary, CalendaryObject[]>> {
+    return this.http.get<Record<Calendary, CalendaryObject[]>>(
+      `assets/json/calendary.json`
+    );
   }
 }

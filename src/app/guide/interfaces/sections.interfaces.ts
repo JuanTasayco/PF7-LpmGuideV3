@@ -15,3 +15,15 @@ export interface Content {
   imagesUrl: string;
   publicIdImage?: string;
 }
+
+/* Calendary */
+
+export type Calendary = 'asistencias' | 'valores' | 'reportes';
+
+export interface CalendaryObject {
+  labelName: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  img: string;
+}
