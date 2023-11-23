@@ -6,8 +6,7 @@ export const content = [
 
 export const theme = {
   extend: {},
-  corePlugins: {
-  },
+  corePlugins: {},
   screens: {
     xs: "400px",
 

@@ -10,7 +10,7 @@ import { FooterComponent } from 'src/app/shared/footer/footer.component';
 @Component({
   selector: 'app-questions',
   standalone: true,
-  imports: [NgFor, NgClass,FooterComponent],
+  imports: [NgFor, NgClass, FooterComponent],
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.scss'],
 })

@@ -12,10 +12,9 @@ export const authGuard: CanActivateFn = (route, state) => {
     tap((resp) => {
       if (!resp) {
         modalService.setEventForOpenModal = authService.currentErrorMsg();
-
         setTimeout(() => {
           router.navigate(['/auth/login']);
-        },500);
+        }, 500);
       }
     })
   );

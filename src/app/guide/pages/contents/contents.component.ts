@@ -1,9 +1,8 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MenuSectionsComponent } from '../../components/menu-sections/menu-sections.component';
 import { PrincipalContentStaticComponent } from 'src/app/shared/principal-content-static/principal-content-static.component';
-import { ActivatedRoute } from '@angular/router';
 import { FooterComponent } from 'src/app/shared/footer/footer.component';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 @Component({
   selector: 'app-contents',
   standalone: true,
@@ -18,6 +17,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 export class ContentsComponent implements AfterViewInit, OnInit {
   ngAfterViewInit(): void {}
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor() {}
   ngOnInit(): void {}
 }

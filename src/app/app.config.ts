@@ -10,6 +10,5 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     importProvidersFrom(HttpClientModule),
     provideAnimations(),
-    provideAnimations()
-],
+  ],
 };
