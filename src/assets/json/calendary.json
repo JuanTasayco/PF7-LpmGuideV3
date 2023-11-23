@@ -1,0 +1,127 @@
+{
+  "asistencias": [
+    {
+      "labelName": "asistencias",
+      "title": "Mantenimiento personal",
+      "subtitle": "Gestiona trabajadores",
+      "description": "Añade,mofidica y elimina trabajadores",
+      "img": ""
+    },
+    {
+      "labelName": "asistencias",
+      "title": "vacaciones",
+      "subtitle": "Añade vacaciones",
+      "description": "Añade vacaciones por año, mes y día.",
+      "img": ""
+    },
+    {
+      "labelName": "asistencias",
+      "title": "licencias",
+      "subtitle": "Registra permisos u otros",
+      "description": "Añade subsidios y licencias según corresponda",
+      "img": ""
+    },
+    {
+      "labelName": "asistencias",
+      "title": "faltas",
+      "subtitle": "Añade faltas",
+      "description": "Registra la falta por año, mes y día",
+      "img": ""
+    }
+  ],
+  "valores": [
+    {
+      "labelName": "valores",
+      "title": "horas extras",
+      "subtitle": "Añade horas extras",
+      "description": "Registra horas extras al 25,35 y al 100%",
+      "img": ""
+    },
+    {
+      "labelName": "valores",
+      "title": "tardanzas",
+      "subtitle": "Añade tardanzas",
+      "description": "Registra tardanzas en minutos",
+      "img": ""
+    },
+    {
+      "labelName": "valores",
+      "title": "otras rentas",
+      "subtitle": "Añade renta externa (otras rentas)",
+      "description": "Registra otras rentas a un trabajador específico mes a mes.",
+      "img": ""
+    },
+    {
+      "labelName": "valores",
+      "title": "adelantos",
+      "subtitle": "Agrega adelantos por día.",
+      "description": "Registra adelantos a un trabajador.",
+      "img": ""
+    },
+    {
+      "labelName": "valores",
+      "title": "otros conceptos",
+      "subtitle": "Registra variaciones",
+      "description": "Registra no remunerativos, otros ingresos, etc",
+      "img": ""
+    }
+  ],
+  "reportes": [
+    {
+      "labelName": "reportes",
+      "title": "planilla mensual",
+      "subtitle": "Reporte mensual planillas",
+      "description": "El reporte planilla recurrente mensual.",
+      "img": ""
+    },
+    {
+      "labelName": "reportes",
+      "title": "resumen mensual",
+      "subtitle": "Resumen mensual planillas",
+      "description": "El reporte resumen recurrente mensual.",
+      "img": ""
+    },
+    {
+      "labelName": "reportes",
+      "title": "boleta mensual",
+      "subtitle": "Resumen mensual planillas",
+      "description": "El reporte resumen recurrente mensual.",
+      "img": ""
+    },
+    {
+      "labelName": "reportes",
+      "title": "cts planilla",
+      "subtitle": "Reporte planilla CTS",
+      "description": "El reporte CTS planilla",
+      "img": ""
+    },
+    {
+      "labelName": "reportes",
+      "title": "Boletas planilla cts",
+      "subtitle": "Plasma información panel CTS en este reporte",
+      "description": "El reporte boletas CTS debe salir eligiendo el formato 8",
+      "img": ""
+    },
+    {
+      "labelName": "reportes",
+      "title": "planilla gratificacion",
+      "subtitle": "Elige sacar la planilla gratificación.",
+      "description": "El reporte gratificación eligiendo la sección gratificación",
+      "img": ""
+    },
+    {
+      "labelName": "reportes",
+      "title": "Reporte totales",
+      "subtitle": "Elige sacar la planilla de liquidos",
+      "description": "Reporte de liquidos del mes (totales), puede exportarse a excel.",
+      "img": ""
+    },
+    {
+      "labelName": "reportes",
+      "title": "Reporte Conceptos",
+      "subtitle": "Elige sacar un reporte concepto",
+      "description": "Reporte de conceptos, puedes elegir el concepto que deseas ( horExt, otrosIng, etc)",
+      "img": ""
+    }
+  ]
+}
