@@ -40,14 +40,18 @@ export class MenuSectionsComponent implements OnInit {
       /*    this.sections.set(<Record<Calendary, CalendaryObject>>response); */
       this.sections = response;
 
-      const orderObjects: Calendary[] = ['asistencias', 'valores', 'reportes'];
-      let newOrder!: any;
+      const orderedKeys: Calendary[] = ['asistencias', 'reportes', 'valores'];
 
-      for (let key of orderObjects) {
-        console.log(this.sections[key]);
-        /*    newOrder[key] = this.sections[key]; */
-      }
-      console.log(newOrder);
+      // Crea un objeto vacío para almacenar el resultado ordenado
+      const sortedResponse: Record<Calendary, CalendaryObject[]> = {} as Record<
+        Calendary,
+        CalendaryObject[]
+      >;
+
+      // Ordena las claves según el orden definido y asigna los valores correspondientes
+      orderedKeys.forEach((key) => {
+        sortedResponse[key] = response[key];
+      });
     });
   }
 
