@@ -3,14 +3,14 @@ import { CommonModule, NgFor, NgIf, TitleCasePipe } from '@angular/common';
 import { ModalComponent } from '../modal-image/modal.component';
 import { switchMap } from 'rxjs';
 import { InfoSectionsService } from '../../services/info-sections.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Seccion } from '../../interfaces/sections.interfaces';
 import { AllSectionsComponent } from '../all-sections/all-sections.component';
 
 @Component({
   selector: 'app-description-section',
   standalone: true,
-  imports: [NgFor, NgIf, ModalComponent, TitleCasePipe],
+  imports: [NgFor, NgIf, ModalComponent, TitleCasePipe, RouterModule],
   templateUrl: './description-section.component.html',
   styleUrls: ['./description-section.component.scss'],
 })

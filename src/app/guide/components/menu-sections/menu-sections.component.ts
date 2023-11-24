@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, OnInit, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  DoCheck,
+  OnInit,
+  signal,
+} from '@angular/core';
 import {
   KeyValuePipe,
   NgClass,
@@ -32,22 +38,12 @@ import {
   styleUrls: ['./menu-sections.component.scss'],
 })
 export class MenuSectionsComponent implements OnInit {
-  /*   public sections = signal<Record<Calendary, CalendaryObject> | null>(null); */
-  sections!: Record<Calendary, CalendaryObject[]>;
+  public sections = signal<Record<Calendary, CalendaryObject[]> | null>(null);
+
   firstContentChanged: boolean = false;
   ngOnInit(): void {
     this.infoSectionService.getCalendary().subscribe((response) => {
-      /*    this.sections.set(<Record<Calendary, CalendaryObject>>response); */
-      this.sections = response;
-
-      const orderObjects: Calendary[] = ['asistencias', 'valores', 'reportes'];
-      let newOrder!: any;
-
-      for (let key of orderObjects) {
-        console.log(this.sections[key]);
-        /*    newOrder[key] = this.sections[key]; */
-      }
-      console.log(newOrder);
+      this.sections.set(response);
     });
   }
 
